@@ -3,6 +3,7 @@
 
 #include "Link.h"
 #include "Widget.h"
+#include  "Port.h"
 #include "MessageBox.h"
 #include <QWidget>
 #include <QScopedPointer>

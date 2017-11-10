@@ -1,6 +1,5 @@
 include(./ArkSdk.pri)
-
-CONFIG += ordered
+CONFIG +=  ordered
 
 TEMPLATE = subdirs
 

@@ -1,11 +1,5 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2017-01-03T11:53:36
-#
-#-------------------------------------------------
-
 QT       += core gui dbus
-
+CONFIG += serialport
 TARGET = BusinessLogic
 TEMPLATE = lib
 CONFIG += staticlib
@@ -22,6 +16,7 @@ QMAKE_POST_LINK = $$SDKPATH/mycp.sh $$SDKPATH/BusinessLogic/Audio.h $$SDKPATH/Pa
                   $$SDKPATH/mycp.sh $$SDKPATH/BusinessLogic/Setting.h $$SDKPATH/Package/$$TARGET && \
                   $$SDKPATH/mycp.sh $$SDKPATH/BusinessLogic/SettingServiceProxy.h $$SDKPATH/Package/$$TARGET && \
                   $$SDKPATH/mycp.sh $$SDKPATH/BusinessLogic/Widget.h $$SDKPATH/Package/$$TARGET && \
+                  $$SDKPATH/mycp.sh $$SDKPATH/BusinessLogic/Port.h $$SDKPATH/Package/$$TARGET && \
                   rm -f $$SDKPATH/Package/Launcher/$$ARCHITECTURE/Launcher
 system($$QMAKE_POST_LINK)
 HEADERS += \
@@ -34,7 +29,8 @@ HEADERS += \
     Multimedia.h \
     Setting.h \
     Widget.h \
-    BT.h
+    BT.h \
+    Port.h
 
 SOURCES += \
     Audio.cpp \
@@ -46,5 +42,6 @@ SOURCES += \
     Multimedia.cpp \
     Setting.cpp \
     Widget.cpp \
-    BT.cpp
+    BT.cpp \
+    Port.cpp
 

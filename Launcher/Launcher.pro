@@ -1,5 +1,5 @@
 QT += core gui xml dbus
-
+CONFIG += serialport
 TEMPLATE = app
 
 TARGET = Launcher

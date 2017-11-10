@@ -229,6 +229,7 @@ void CarplayLinkWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
     connectSignalAndSlotByNamesake(g_Link, m_Parent);
+    connectSignalAndSlotByNamesake(g_Port, m_Parent);
 }
 
 void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
@@ -249,6 +250,9 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
         break;
     }
     case LINK_DISCONNECTED: {
+        char data = 0x2;
+        g_Port->responseMCU(Port::C_Close, &data, 1);
+
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
         EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
         g_EventEngine->sendCustomEvent(event2);
@@ -266,6 +270,9 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
         break;
     }
     case LINK_EXITED: {
+        char data = 0x2;
+        g_Port->responseMCU(Port::C_Close, &data, 1);
+
         if ((m_Parent->isVisible())
                 || (m_DeviceMessageBox->isVisible())) {
             g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
@@ -292,6 +299,9 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
         break;
     }
     case LINK_SUCCESS: {
+         char data = 0x1;
+         g_Port->responseMCU(Port::C_Open, &data, 1);
+
         EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
         g_EventEngine->sendCustomEvent(event2);
         g_Widget->setWidgetType(Widget::T_Carplay, WidgetStatus::Show);
