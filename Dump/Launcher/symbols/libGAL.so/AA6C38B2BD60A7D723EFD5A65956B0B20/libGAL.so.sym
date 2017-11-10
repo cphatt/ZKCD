@@ -1,0 +1,526 @@
+MODULE Linux arm AA6C38B2BD60A7D723EFD5A65956B0B20 libGAL.so
+PUBLIC 80d0 0 gcoBRUSH_Destroy
+PUBLIC 8134 0 gcoBRUSH_Delete
+PUBLIC 8498 0 gcoBRUSH_ConstructColor
+PUBLIC 854c 0 gcoBRUSH_ConstructMonochrome
+PUBLIC 85fc 0 gcoBRUSH_ConstructSingleColor
+PUBLIC 86a4 0 gcoBRUSH_GetBrushData
+PUBLIC 8734 0 gcoBRUSH_FlushBrush
+PUBLIC 8b54 0 gcoBRUSH_CACHE_Construct
+PUBLIC 8c0c 0 gcoBRUSH_CACHE_SetBrushLimit
+PUBLIC 8ddc 0 gcoBRUSH_CACHE_Destroy
+PUBLIC 8e94 0 gcoBRUSH_CACHE_GetBrushID
+PUBLIC 8fd4 0 gcoBRUSH_CACHE_GetBrush
+PUBLIC 9094 0 gcoBRUSH_CACHE_AddBrush
+PUBLIC 916c 0 gcoBRUSH_CACHE_DeleteBrush
+PUBLIC 92ec 0 gcoBRUSH_CACHE_FlushBrush
+PUBLIC 9468 0 gcoDUMP_Construct
+PUBLIC 94f4 0 gcoDUMP_IsEnabled
+PUBLIC 954c 0 gcoDUMP_FrameBegin
+PUBLIC 9624 0 gcoDUMP_FrameEnd
+PUBLIC 9718 0 gcoDUMP_Control
+PUBLIC 9890 0 gcoDUMP_Destroy
+PUBLIC 9934 0 gcoDUMP_DumpData
+PUBLIC 9a34 0 gcoDUMP_AddSurface
+PUBLIC 9b20 0 gcoDUMP_Delete
+PUBLIC 9bdc 0 gcoDUMP_SetDumpFlag
+PUBLIC 9c0c 0 gcfDump
+PUBLIC 9c1c 0 gcfDumpBuffer
+PUBLIC 9c24 0 gcfDumpFrameRate
+PUBLIC 9c2c 0 gcfDumpApi
+PUBLIC 9c94 0 gcfDumpArray
+PUBLIC 9dec 0 gcfDumpArrayToken
+PUBLIC 9e90 0 gcfDumpApiData
+PUBLIC a108 0 gcfDump2DCommand
+PUBLIC a110 0 gcfDump2DSurface
+PUBLIC a118 0 gcfAddMemoryInfo
+PUBLIC a120 0 gcfDelMemoryInfo
+PUBLIC a128 0 gcoHAL_FrameInfoOps
+PUBLIC a230 0 gcoHAL_GetOption
+PUBLIC a27c 0 gcGetUserDebugOption
+PUBLIC a298 0 gcoHAL_ConstructEx
+PUBLIC a69c 0 gcoHAL_DestroyEx
+PUBLIC a73c 0 gcoHAL_Construct
+PUBLIC a764 0 gcoHAL_Destroy
+PUBLIC a76c 0 gcoHAL_Call
+PUBLIC a834 0 gcoHAL_MapMemory
+PUBLIC a8d8 0 gcoHAL_UnmapMemory
+PUBLIC a964 0 gcoHAL_MapUserMemory
+PUBLIC aa98 0 gcoHAL_Commit
+PUBLIC ab2c 0 gcoHAL_Get2DEngine
+PUBLIC ad58 0 gcoHAL_GetDump
+PUBLIC ae10 0 gcoHAL_ScheduleEvent
+PUBLIC ae50 0 gcoHAL_ScheduleUnmapUserMemory
+PUBLIC aeec 0 gcoHAL_UnmapUserMemory
+PUBLIC af70 0 gcoHAL_ScheduleUnmapMemory
+PUBLIC b004 0 gcoHAL_SetPowerManagementState
+PUBLIC b09c 0 gcoHAL_ProfileStart
+PUBLIC b0dc 0 gcoHAL_ProfileEnd
+PUBLIC b11c 0 gcoHAL_DestroySurface
+PUBLIC b178 0 gcoHAL_SetTimer
+PUBLIC b210 0 gcoHAL_GetTimerTime
+PUBLIC b2c4 0 gcoHAL_SetTimeOut
+PUBLIC b350 0 gcoHAL_AddFrameDB
+PUBLIC b358 0 gcoHAL_DumpFrameDB
+PUBLIC b5dc 0 gcoHAL_NameVideoMemory
+PUBLIC b610 0 gcoHAL_ImportVideoMemory
+PUBLIC b644 0 gcoHAL_GetVideoMemoryFd
+PUBLIC b6c4 0 gcoHAL_GetHardware
+PUBLIC b888 0 gcoHAL_GetProductName
+PUBLIC ba2c 0 gcoHAL_CreateShBuffer
+PUBLIC bacc 0 gcoHAL_DestroyShBuffer
+PUBLIC bb50 0 gcoHAL_MapShBuffer
+PUBLIC bbd4 0 gcoHAL_WriteShBuffer
+PUBLIC bc60 0 gcoHAL_ReadShBuffer
+PUBLIC bd10 0 gcoHAL_ConfigPowerManagement
+PUBLIC c618 0 gco2D_Construct
+PUBLIC cbec 0 gco2D_Destroy
+PUBLIC cf10 0 gco2D_SetBrushLimit
+PUBLIC cf50 0 gco2D_GetBrushCache
+PUBLIC cfa0 0 gco2D_FlushBrush
+PUBLIC cffc 0 gco2D_LoadSolidBrush
+PUBLIC d2d8 0 gco2D_SetMonochromeSource
+PUBLIC d3d8 0 gco2D_SetColorSourceEx
+PUBLIC d580 0 gco2D_SetColorSource
+PUBLIC d618 0 gco2D_SetColorSourceAdvanced
+PUBLIC d764 0 gco2D_SetMaskedSourceEx
+PUBLIC d8e8 0 gco2D_SetMaskedSource
+PUBLIC d964 0 gco2D_SetSource
+PUBLIC da0c 0 gco2D_SetTargetRect
+PUBLIC dae0 0 gco2D_SetClipping
+PUBLIC db90 0 gco2D_SetTargetEx
+PUBLIC dc84 0 gco2D_SetTarget
+PUBLIC dcf0 0 gco2D_CalcStretchFactor
+PUBLIC dd78 0 gco2D_SetStretchFactors
+PUBLIC ddc4 0 gco2D_SetStretchRectFactors
+PUBLIC de58 0 gco2D_ConstructSingleColorBrush
+PUBLIC df24 0 gco2D_ConstructMonochromeBrush
+PUBLIC dff0 0 gco2D_ConstructColorBrush
+PUBLIC e0b4 0 gco2D_Clear
+PUBLIC e1c4 0 gco2D_Line
+PUBLIC e324 0 gco2D_ColorLine
+PUBLIC e410 0 gco2D_Blit
+PUBLIC e558 0 gco2D_BatchBlit
+PUBLIC e680 0 gco2D_StretchBlit
+PUBLIC e7cc 0 gco2D_MonoBlit
+PUBLIC e8dc 0 gco2D_SetKernelSize
+PUBLIC e974 0 gco2D_SetFilterType
+PUBLIC e9e8 0 gco2D_SetUserFilterKernel
+PUBLIC eaec 0 gco2D_EnableUserFilterPasses
+PUBLIC eb38 0 gco2D_FreeFilterBuffer
+PUBLIC eb78 0 gco2D_FilterBlitEx
+PUBLIC ef54 0 gco2D_FilterBlit
+PUBLIC f058 0 gco2D_FilterBlitEx2
+PUBLIC f6b4 0 gco2D_EnableAlphaBlend
+PUBLIC f8d8 0 gco2D_EnableAlphaBlendAdvanced
+PUBLIC f954 0 gco2D_SetPorterDuffBlending
+PUBLIC faa4 0 gco2D_DisableAlphaBlend
+PUBLIC fae8 0 gco2D_GetPackSize
+PUBLIC fbb8 0 gco2D_Flush
+PUBLIC fbc0 0 gco2D_LoadPalette
+PUBLIC fccc 0 gco2D_SetBitBlitMirror
+PUBLIC fd1c 0 gco2D_SetTransparencyAdvancedEx
+PUBLIC fdc0 0 gco2D_SetTransparencyAdvanced
+PUBLIC fe5c 0 gco2D_SetROP
+PUBLIC fea8 0 gco2D_SetSourceColorKeyRangeAdvanced
+PUBLIC ff44 0 gco2D_SetSourceColorKeyAdvanced
+PUBLIC ff84 0 gco2D_SetTargetColorKeyRangeAdvanced
+PUBLIC 1002c 0 gco2D_SetTargetColorKeyAdvanced
+PUBLIC 1006c 0 gco2D_SetYUVColorMode
+PUBLIC 10138 0 gco2D_SetSourceGlobalColorAdvanced
+PUBLIC 101ac 0 gco2D_SetTargetGlobalColorAdvanced
+PUBLIC 10220 0 gco2D_SetPixelMultiplyModeAdvanced
+PUBLIC 102e0 0 gco2D_SetAutoFlushCycles
+PUBLIC 10354 0 gco2D_ProfileEngine
+PUBLIC 103d0 0 gco2D_EnableDither
+PUBLIC 10450 0 gco2D_SetGenericSource
+PUBLIC 10624 0 gco2D_SetGenericTarget
+PUBLIC 107e0 0 gco2D_SetCurrentSourceIndex
+PUBLIC 10820 0 gco2D_MultiSourceBlit
+PUBLIC 1129c 0 gco2D_SetGdiStretchMode
+PUBLIC 11314 0 gco2D_SetSourceTileStatus
+PUBLIC 1142c 0 gco2D_SetTargetTileStatus
+PUBLIC 11540 0 gco2D_QueryU32
+PUBLIC 115f0 0 gco2D_SetStateU32
+PUBLIC 11790 0 gco2D_SetStateArrayU32
+PUBLIC 11874 0 gco2D_SetStateArrayI32
+PUBLIC 119c0 0 gco2D_MonoBlitEx
+PUBLIC 121e0 0 gco2D_Get2DEngine
+PUBLIC 1226c 0 gco2D_Set2DEngine
+PUBLIC 12318 0 gco2D_UnSet2DEngine
+PUBLIC 12b00 0 gcoSURF_ComputeColorMask
+PUBLIC 12bd4 0 gcoHAL_QueryChipIdentity
+PUBLIC 12c40 0 gcoHAL_QueryChipMinorFeatures
+PUBLIC 12d24 0 gcoHAL_QueryTiled
+PUBLIC 12d74 0 gcoHAL_QueryPowerManagementState
+PUBLIC 12df0 0 gcoHAL_IsFeatureAvailable
+PUBLIC 12e70 0 gcoHAL_IsFeatureAvailable1
+PUBLIC 12eb0 0 gcoHAL_QueryVideoMemory
+PUBLIC 12f04 0 gcoHAL_SetHardwareType
+PUBLIC 12f70 0 gcoHAL_GetHardwareType
+PUBLIC 12ff0 0 gcoHAL_QueryChipCount
+PUBLIC 13084 0 gcoHAL_Query3DCoreCount
+PUBLIC 130b8 0 gcoHAL_QuerySeparated2D
+PUBLIC 13194 0 gcoHAL_QueryChipLimits
+PUBLIC 1324c 0 gcoHAL_QueryChipFeature
+PUBLIC 13310 0 gcsRECT_Set
+PUBLIC 13374 0 gcsRECT_Width
+PUBLIC 133d4 0 gcsRECT_Height
+PUBLIC 13434 0 gcsRECT_Normalize
+PUBLIC 134a8 0 gcsRECT_IsEqual
+PUBLIC 1355c 0 gcsRECT_IsOfEqualSize
+PUBLIC 13618 0 gcsRECT_RelativeRotation
+PUBLIC 136ec 0 gcsRECT_Rotate
+PUBLIC 13fa8 0 gcoBUFFER_Destroy
+PUBLIC 140f4 0 gcoBUFFER_Construct
+PUBLIC 14334 0 gcoBUFFER_Reserve
+PUBLIC 1457c 0 gcoBUFFER_Write
+PUBLIC 14608 0 gcoBUFFER_Commit
+PUBLIC 14888 0 gcoBUFFER_StartTEMPCMDBUF
+PUBLIC 148e0 0 gcoBUFFER_EndTEMPCMDBUF
+PUBLIC 14d74 0 gcoSURF_Destroy
+PUBLIC 14e34 0 gcoSURF_QueryVidMemNode
+PUBLIC 14eb0 0 gcoSURF_WrapSurface
+PUBLIC 15078 0 gcoSURF_MapUserSurface
+PUBLIC 152a0 0 gcoSURF_IsValid
+PUBLIC 15308 0 gcoSURF_GetSize
+PUBLIC 1536c 0 gcoSURF_GetAlignedSize
+PUBLIC 153d0 0 gcoSURF_GetAlignment
+PUBLIC 15490 0 gcoSURF_GetFormat
+PUBLIC 154e0 0 gcoSURF_GetFormatInfo
+PUBLIC 15524 0 gcoSURF_GetPackedFormat
+PUBLIC 15968 0 gcoSURF_GetTiling
+PUBLIC 159ac 0 gcoSURF_GetBottomBufferOffset
+PUBLIC 159f0 0 gcoSURF_Lock
+PUBLIC 15b98 0 gcoSURF_Unlock
+PUBLIC 15bf0 0 gcoSURF_Fill
+PUBLIC 15bf8 0 gcoSURF_Blend
+PUBLIC 15c00 0 gcoSURF_SetClipping
+PUBLIC 15c74 0 gcoSURF_Clear2D
+PUBLIC 15ddc 0 gcoSURF_Line
+PUBLIC 15f00 0 gcoSURF_MonoBlit
+PUBLIC 16324 0 gcoSURF_EnableAlphaBlend
+PUBLIC 163d0 0 gcoSURF_DisableAlphaBlend
+PUBLIC 1643c 0 gcoSURF_Set2DSource
+PUBLIC 165a8 0 gcoSURF_Set2DTarget
+PUBLIC 16924 0 gcoSURF_LockNode
+PUBLIC 16960 0 gcoSURF_UnLockNode
+PUBLIC 1699c 0 gcoSURF_CPUCacheOperation
+PUBLIC 16a6c 0 gcoSURF_Flush
+PUBLIC 16ab0 0 gcoSURF_SetResolvability
+PUBLIC 16ab8 0 gcoSURF_SetOrientation
+PUBLIC 16ae8 0 gcoSURF_QueryOrientation
+PUBLIC 16b38 0 gcoSURF_QueryFlags
+PUBLIC 16b80 0 gcoSURF_QueryFormat
+PUBLIC 16bbc 0 gcoSURF_FilterBlit
+PUBLIC 1749c 0 gcoSURF_Blit
+PUBLIC 17bc8 0 gcoSURF_SetColorType
+PUBLIC 17bf8 0 gcoSURF_GetColorType
+PUBLIC 17c48 0 gcoSURF_SetColorSpace
+PUBLIC 17c78 0 gcoSURF_GetColorSpace
+PUBLIC 17cc8 0 gcoSURF_SetRotation
+PUBLIC 17d0c 0 gcoSURF_SetDither
+PUBLIC 17d50 0 gcoSURF_ConstructWrapper
+PUBLIC 17e2c 0 gcoSURF_SetFlags
+PUBLIC 17e84 0 gcoSURF_SetBuffer
+PUBLIC 17f78 0 gcoSURF_SetWindow
+PUBLIC 18228 0 gcoSURF_SetAlignment
+PUBLIC 1827c 0 gcoSURF_ReferenceSurface
+PUBLIC 182b4 0 gcoSURF_QueryReferenceCount
+PUBLIC 182e8 0 gcoSURF_SetOffset
+PUBLIC 182f4 0 gcoSURF_ResetSurWH
+PUBLIC 18354 0 gcoSURF_UpdateTimeStamp
+PUBLIC 183c0 0 gcoSURF_QueryTimeStamp
+PUBLIC 1841c 0 gcoSURF_AllocShBuffer
+PUBLIC 184b8 0 gcoSURF_BindShBuffer
+PUBLIC 18560 0 gcoSURF_PushSharedInfo
+PUBLIC 18614 0 gcoSURF_PopSharedInfo
+PUBLIC 1870c 0 gcsSURF_NODE_Construct
+PUBLIC 187d4 0 gcoSURF_Construct
+PUBLIC 255dc 0 gco2D_GetMaximumDataCount
+PUBLIC 2560c 0 gco2D_GetMaximumRectCount
+PUBLIC 25638 0 gco2D_GetPixelAlignment
+PUBLIC 3534c 0 gcoOS_Print
+PUBLIC 35bc0 0 gcoOS_DebugTrace
+PUBLIC 35c14 0 gcoOS_DebugTraceZone
+PUBLIC 35d7c 0 gcoOS_DebugBreak
+PUBLIC 35da8 0 gcoOS_DebugFatal
+PUBLIC 35de8 0 gcoOS_SetDebugLevel
+PUBLIC 35dfc 0 gcoOS_GetDebugLevel
+PUBLIC 35e14 0 gcoOS_SetDebugZone
+PUBLIC 35e30 0 gcoOS_GetDebugZone
+PUBLIC 35e50 0 gcoOS_SetDebugLevelZone
+PUBLIC 35e70 0 gcoOS_SetDebugZones
+PUBLIC 35ec0 0 gcoOS_Verify
+PUBLIC 35ed4 0 gcoOS_SetDebugFile
+PUBLIC 35efc 0 gcoOS_ReplaceDebugFile
+PUBLIC 35f04 0 gcoOS_SetDebugShaderFiles
+PUBLIC 35fb4 0 gcoOS_SetDebugShaderFileType
+PUBLIC 3603c 0 gcoOS_EnableDebugBuffer
+PUBLIC 36050 0 gcoOS_DebugStatus2Name
+PUBLIC 36758 0 gcoOS_StackPush
+PUBLIC 36838 0 gcoOS_StackPop
+PUBLIC 3696c 0 gcoOS_StackDump
+PUBLIC 36d20 0 gcoOS_BinaryTrace
+PUBLIC 36e98 0 gcoOS_SysTraceBegin
+PUBLIC 36e9c 0 gcoOS_SysTraceEnd
+PUBLIC 37044 0 gcoOS_GetPLSValue
+PUBLIC 370b8 0 gcoOS_SetPLSValue
+PUBLIC 37124 0 gcoOS_Destroy
+PUBLIC 3712c 0 gcoOS_GetBaseAddress
+PUBLIC 37190 0 gcoOS_GetMemorySize
+PUBLIC 371e0 0 gcoOS_AllocateMemory
+PUBLIC 3726c 0 gcoOS_Allocate
+PUBLIC 372cc 0 gcoOS_AllocateSharedMemory
+PUBLIC 372d0 0 gcoOS_FreeMemory
+PUBLIC 37344 0 gcoOS_Free
+PUBLIC 3739c 0 gcoOS_FreeSharedMemory
+PUBLIC 373a0 0 gcoOS_Open
+PUBLIC 373d4 0 gcoOS_Close
+PUBLIC 373e8 0 gcoOS_Read
+PUBLIC 37414 0 gcoOS_Write
+PUBLIC 37440 0 gcoOS_Flush
+PUBLIC 37454 0 gcoOS_DupFD
+PUBLIC 37478 0 gcoOS_CloseFD
+PUBLIC 37494 0 gcoOS_Socket
+PUBLIC 374c0 0 gcoOS_WaitForSend
+PUBLIC 375ac 0 gcoOS_CloseSocket
+PUBLIC 375d4 0 gcoOS_Connect
+PUBLIC 3768c 0 gcoOS_Shutdown
+PUBLIC 376a4 0 gcoOS_Send
+PUBLIC 376cc 0 gcoOS_GetEnv
+PUBLIC 37850 0 gcoOS_SetEnv
+PUBLIC 37858 0 gcoOS_GetCwd
+PUBLIC 3786c 0 gcoOS_Stat
+PUBLIC 37884 0 gcoOS_GetPos
+PUBLIC 378a0 0 gcoOS_SetPos
+PUBLIC 378bc 0 gcoOS_Seek
+PUBLIC 37914 0 gcoOS_CreateThread
+PUBLIC 37954 0 gcoOS_CloseThread
+PUBLIC 3796c 0 gcoOS_CreateMutex
+PUBLIC 379c4 0 gcoOS_DeleteMutex
+PUBLIC 379e8 0 gcoOS_AcquireMutex
+PUBLIC 37ac8 0 gcoOS_LockPLS
+PUBLIC 37b00 0 gcoOS_ReleaseMutex
+PUBLIC 37b14 0 gcoOS_UnLockPLS
+PUBLIC 37b48 0 gcoOS_Delay
+PUBLIC 37b6c 0 gcoOS_StrStr
+PUBLIC 37b84 0 gcoOS_StrFindReverse
+PUBLIC 37b9c 0 gcoOS_StrCopySafe
+PUBLIC 37bc4 0 gcoOS_StrCatSafe
+PUBLIC 37c10 0 gcoOS_StrCmp
+PUBLIC 37c2c 0 gcoOS_StrNCmp
+PUBLIC 37c48 0 gcoOS_StrToFloat
+PUBLIC 37c68 0 gcoOS_HexStrToInt
+PUBLIC 37c88 0 gcoOS_HexStrToFloat
+PUBLIC 37d78 0 gcoOS_StrToInt
+PUBLIC 37d98 0 gcoOS_MemCmp
+PUBLIC 37db0 0 gcoOS_PrintStrSafe
+PUBLIC 37e0c 0 gcoOS_PrintStrVSafe
+PUBLIC 37e50 0 gcoOS_StrDup
+PUBLIC 37ea8 0 gcoOS_LoadLibrary
+PUBLIC 37fa4 0 gcoOS_FreeLibrary
+PUBLIC 37fb8 0 gcoOS_GetProcAddress
+PUBLIC 37fe0 0 gcoOS_ProfileStart
+PUBLIC 3801c 0 gcoOS_ProfileEnd
+PUBLIC 380a0 0 gcoOS_Compact
+PUBLIC 380a8 0 gcoOS_AtomConstruct
+PUBLIC 3810c 0 gcoOS_AtomDestroy
+PUBLIC 38114 0 gcoOS_AtomGet
+PUBLIC 3812c 0 gcoOS_AtomSet
+PUBLIC 38140 0 gcoOS_AtomIncrement
+PUBLIC 38164 0 gcoOS_CopyTLS
+PUBLIC 3826c 0 gcoOS_GetTLS
+PUBLIC 38578 0 gcoOS_DeviceControl
+PUBLIC 38768 0 gcoOS_SetProfileSetting
+PUBLIC 387c4 0 gcoOS_UnmapUserMemory
+PUBLIC 388a0 0 gcoOS_MapUserMemory
+PUBLIC 388cc 0 gcoOS_LockVideoMemory
+PUBLIC 389a0 0 gcoOS_FreeVideoMemory
+PUBLIC 38ab0 0 gcoOS_AllocateVideoMemory
+PUBLIC 38bec 0 gcoOS_FreeContiguous
+PUBLIC 38c44 0 gcoOS_AllocateContiguous
+PUBLIC 38cc4 0 gcoOS_FreeNonPagedMemory
+PUBLIC 38d18 0 gcoOS_AllocateNonPagedMemory
+PUBLIC 38d98 0 gcoOS_QueryVideoMemory
+PUBLIC 39110 0 gcoOS_Construct
+PUBLIC 39158 0 gcoOS_AtomDecrement
+PUBLIC 3933c 0 gcoOS_FreeThreadData
+PUBLIC 393f4 0 gcoOS_GetCurrentProcessID
+PUBLIC 393f8 0 gcoOS_GetCurrentThreadID
+PUBLIC 393fc 0 gcoOS_GetTicks
+PUBLIC 39440 0 gcoOS_GetTime
+PUBLIC 39484 0 gcoOS_GetCPUTime
+PUBLIC 39500 0 gcoOS_GetMemoryUsage
+PUBLIC 3956c 0 gcoOS_ReadRegister
+PUBLIC 395d0 0 gcoOS_WriteRegister
+PUBLIC 3961c 0 gcoOS_CacheClean
+PUBLIC 3963c 0 gcoOS_CacheFlush
+PUBLIC 3965c 0 gcoOS_CacheInvalidate
+PUBLIC 3967c 0 gcoOS_MemoryBarrier
+PUBLIC 39698 0 gcoOS_GetProfileTick
+PUBLIC 396d4 0 gcoOS_QueryProfileTickRate
+PUBLIC 39710 0 gcoOS_ProfileDB
+PUBLIC 39ccc 0 gcoOS_CreateSignal
+PUBLIC 39d2c 0 gcoOS_DestroySignal
+PUBLIC 39d78 0 gcoOS_Signal
+PUBLIC 39dc8 0 gcoOS_WaitSignal
+PUBLIC 39e18 0 gcoOS_MapSignal
+PUBLIC 39e78 0 gcoOS_UnmapSignal
+PUBLIC 39ec4 0 gcoOS_AddSignalHandler
+PUBLIC 39f40 0 gcoOS_DetectProcessByNamePid
+PUBLIC 3a024 0 gcoOS_DetectProcessByName
+PUBLIC 3a040 0 gcoOS_DetectProcessByEncryptedName
+PUBLIC 3a0b4 0 gcoOS_RecordAllocation
+PUBLIC 3a0b8 0 gcoOS_EndRecordAllocation
+PUBLIC 3a0c0 0 gcoOS_AddRecordAllocation
+STACK CFI INIT 3a0c4 1ec .cfa: sp 0 + .ra: lr
+STACK CFI INIT 3a2d0 220 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 3b034 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b038 .cfa: sp 24 +
+STACK CFI 3b03c .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b06c 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b070 .cfa: sp 24 +
+STACK CFI 3b074 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b0a4 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b0a8 .cfa: sp 24 +
+STACK CFI 3b0ac .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b0dc 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b0e0 .cfa: sp 24 +
+STACK CFI 3b0e4 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b114 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b118 .cfa: sp 24 +
+STACK CFI 3b11c .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b14c 3c .cfa: sp 0 + .ra: lr
+STACK CFI 3b150 .cfa: sp 24 +
+STACK CFI 3b154 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b188 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3b18c .cfa: sp 32 +
+STACK CFI 3b190 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b1ec 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3b1f0 .cfa: sp 32 +
+STACK CFI 3b1f4 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b250 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3b254 .cfa: sp 32 +
+STACK CFI 3b258 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b2b4 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3b2b8 .cfa: sp 32 +
+STACK CFI 3b2bc .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b318 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3b31c .cfa: sp 32 +
+STACK CFI 3b320 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b37c 68 .cfa: sp 0 + .ra: lr
+STACK CFI 3b380 .cfa: sp 32 +
+STACK CFI 3b384 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b3e4 5c .cfa: sp 0 + .ra: lr
+STACK CFI 3b3e8 .cfa: sp 32 +
+STACK CFI 3b3ec .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b440 5c .cfa: sp 0 + .ra: lr
+STACK CFI 3b444 .cfa: sp 32 +
+STACK CFI 3b448 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b49c 5c .cfa: sp 0 + .ra: lr
+STACK CFI 3b4a0 .cfa: sp 32 +
+STACK CFI 3b4a4 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b4f8 5c .cfa: sp 0 + .ra: lr
+STACK CFI 3b4fc .cfa: sp 32 +
+STACK CFI 3b500 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b554 5c .cfa: sp 0 + .ra: lr
+STACK CFI 3b558 .cfa: sp 32 +
+STACK CFI 3b55c .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b5b0 60 .cfa: sp 0 + .ra: lr
+STACK CFI 3b5b4 .cfa: sp 32 +
+STACK CFI 3b5b8 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b610 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b614 .cfa: sp 24 +
+STACK CFI 3b618 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b648 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b64c .cfa: sp 24 +
+STACK CFI 3b650 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b680 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b684 .cfa: sp 24 +
+STACK CFI 3b688 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b6b8 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b6bc .cfa: sp 24 +
+STACK CFI 3b6c0 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b6f0 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3b6f4 .cfa: sp 24 +
+STACK CFI 3b6f8 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b728 3c .cfa: sp 0 + .ra: lr
+STACK CFI 3b72c .cfa: sp 24 +
+STACK CFI 3b730 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3b764 6c .cfa: sp 0 + .ra: lr
+STACK CFI 3b768 .cfa: sp 32 +
+STACK CFI 3b76c .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b7d0 6c .cfa: sp 0 + .ra: lr
+STACK CFI 3b7d4 .cfa: sp 32 +
+STACK CFI 3b7d8 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b83c 6c .cfa: sp 0 + .ra: lr
+STACK CFI 3b840 .cfa: sp 32 +
+STACK CFI 3b844 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b8a8 6c .cfa: sp 0 + .ra: lr
+STACK CFI 3b8ac .cfa: sp 32 +
+STACK CFI 3b8b0 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b914 6c .cfa: sp 0 + .ra: lr
+STACK CFI 3b918 .cfa: sp 32 +
+STACK CFI 3b91c .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b980 70 .cfa: sp 0 + .ra: lr
+STACK CFI 3b984 .cfa: sp 32 +
+STACK CFI 3b988 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3b9f0 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3b9f4 .cfa: sp 32 +
+STACK CFI 3b9f8 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3ba54 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3ba58 .cfa: sp 32 +
+STACK CFI 3ba5c .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bab8 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3babc .cfa: sp 32 +
+STACK CFI 3bac0 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bb1c 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3bb20 .cfa: sp 32 +
+STACK CFI 3bb24 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bb80 64 .cfa: sp 0 + .ra: lr
+STACK CFI 3bb84 .cfa: sp 32 +
+STACK CFI 3bb88 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bbe4 68 .cfa: sp 0 + .ra: lr
+STACK CFI 3bbe8 .cfa: sp 32 +
+STACK CFI 3bbec .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bc4c 44 .cfa: sp 0 + .ra: lr
+STACK CFI 3bc50 .cfa: sp 24 +
+STACK CFI 3bc54 .ra: .cfa -4 + ^ r4: .cfa -24 + ^ r5: .cfa -20 + ^ r6: .cfa -16 + ^ r7: .cfa -12 + ^ r8: .cfa -8 + ^
+STACK CFI INIT 3bc90 78 .cfa: sp 0 + .ra: lr
+STACK CFI 3bc94 .cfa: sp 32 +
+STACK CFI 3bc98 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bd08 70 .cfa: sp 0 + .ra: lr
+STACK CFI 3bd0c .cfa: sp 32 +
+STACK CFI 3bd10 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bd78 2c .cfa: sp 0 + .ra: lr
+STACK CFI 3bd80 .cfa: sp 8 +
+STACK CFI 3bd88 .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 3bda4 1c .cfa: sp 0 + .ra: lr
+STACK CFI 3bda8 .cfa: sp 8 +
+STACK CFI 3bdac .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 3bdc0 1c .cfa: sp 0 + .ra: lr
+STACK CFI 3bdc4 .cfa: sp 8 +
+STACK CFI 3bdc8 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 3bddc 14 .cfa: sp 0 + .ra: lr
+STACK CFI 3bde0 .cfa: sp 8 +
+STACK CFI 3bde4 .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 3bdf0 38 .cfa: sp 0 + .ra: lr
+STACK CFI 3bdf4 .cfa: sp 24 +
+STACK CFI 3bdf8 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 3be28 60 .cfa: sp 0 + .ra: lr
+STACK CFI 3be2c .cfa: sp 32 +
+STACK CFI 3be30 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3be88 58 .cfa: sp 0 + .ra: lr
+STACK CFI 3be8c .cfa: sp 32 +
+STACK CFI 3be90 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI INIT 3bee0 20 .cfa: sp 0 + .ra: lr
+STACK CFI 3bee4 .cfa: sp 8 +
+STACK CFI 3bee8 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 3bf00 20 .cfa: sp 0 + .ra: lr
+STACK CFI 3bf04 .cfa: sp 8 +
+STACK CFI 3bf08 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 3bf20 20 .cfa: sp 0 + .ra: lr
+STACK CFI 3bf24 .cfa: sp 8 +
+STACK CFI 3bf28 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 3bf40 18 .cfa: sp 0 + .ra: lr

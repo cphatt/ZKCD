@@ -1,0 +1,60 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="Local.DbusServer.Setting">
+    <signal name="onLanguageChange">
+      <arg name="language" type="i" direction="out"/>
+    </signal>
+    <signal name="onBrightnessChange">
+      <arg name="value" type="i" direction="out"/>
+    </signal>
+    <signal name="onContrastChange">
+      <arg name="value" type="i" direction="out"/>
+    </signal>
+    <signal name="onSaturationChange">
+      <arg name="value" type="i" direction="out"/>
+    </signal>
+    <signal name="onDisplayScreenChange">
+      <arg name="type" type="i" direction="out"/>
+    </signal>
+    <signal name="onCalibrateChange">
+      <arg name="status" type="i" direction="out"/>
+      <arg name="data" type="s" direction="out"/>
+    </signal>
+    <signal name="onAVStatus">
+      <arg name="type" type="i" direction="out"/>
+      <arg name="status" type="i" direction="out"/>
+    </signal>
+    <method name="synchronize">
+    </method>
+    <method name="reset">
+    </method>
+    <method name="setLanguage">
+      <arg name="language" type="i" direction="in"/>
+    </method>
+    <method name="setBrightness">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="value" type="i" direction="in"/>
+    </method>
+    <method name="setContrast">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="value" type="i" direction="in"/>
+    </method>
+    <method name="setSaturation">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="value" type="i" direction="in"/>
+    </method>
+    <method name="setDisplayScreen">
+      <arg name="type" type="i" direction="in"/>
+    </method>
+    <method name="startCalibrate">
+    </method>
+    <method name="startAV">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="width" type="i" direction="in"/>
+      <arg name="height" type="i" direction="in"/>
+    </method>
+    <method name="stopAV">
+      <arg name="type" type="i" direction="in"/>
+    </method>
+  </interface>
+</node>

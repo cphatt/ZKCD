@@ -1,0 +1,26 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="Local.DbusServer.Mirror">
+    <signal name="onLinkStatusChange">
+      <arg name="type" type="i" direction="out"/>
+      <arg name="status" type="i" direction="out"/>
+    </signal>
+    <method name="onExitSignal">
+    </method>
+    <method name="releaseAudioSource">
+      <arg name="source" type="i" direction="in"/>
+    </method>
+    <method name="requestLinkStatus">
+      <arg name="type" type="i" direction="in"/>
+      <arg name="status" type="i" direction="in"/>
+    </method>
+    <method name="requestTouchStatus">
+      <arg name="deviceType" type="i" direction="in"/>
+      <arg name="touchType" type="i" direction="in"/>
+      <arg name="touchPointXml" type="s" direction="in"/>
+    </method>
+    <method name="requestKeyValue">
+      <arg name="type" type="i" direction="in"/>
+    </method>
+  </interface>
+</node>

@@ -1,0 +1,364 @@
+MODULE Linux arm FFD2D499E7821F4462331DE9D5EC4FB00 libdirectfb_dummy.so
+FILE 0 /home/wenyi/project/2d/directfb/directfb/systems/dummy/../../lib/direct/list.h
+FILE 1 /home/wenyi/project/2d/directfb/directfb/systems/dummy/../../lib/direct/os/linux/glibc/waitqueue.h
+FILE 2 /home/wenyi/project/2d/directfb/directfb/systems/dummy/../../src/core/surface.h
+FILE 3 /home/wenyi/project/2d/directfb/directfb/systems/dummy/../../src/core/surface_buffer.h
+FILE 4 /home/wenyi/project/2d/directfb/directfb/systems/dummy/dummy.c
+FUNC f4c 48 0 dummyGetScreenSize
+f4c 10 239 4
+f5c 4 240 4
+f60 4 239 4
+f64 4 243 4
+f68 10 239 4
+f78 10 240 4
+f88 c 243 4
+FUNC f94 18 0 dummyTestRegion
+f94 4 349 4
+f98 4 354 4
+f9c 4 350 4
+fa0 8 351 4
+fa8 4 354 4
+FUNC fac 8 0 dummySetRegion
+fac 8 369 4
+FUNC fb4 8 0 system_leave
+fb4 8 486 4
+FUNC fbc 8 0 system_suspend
+fbc 8 492 4
+FUNC fc4 8 0 system_resume
+fc4 8 498 4
+FUNC fcc 8 0 system_map_mmio
+fcc 8 505 4
+FUNC fd4 4 0 system_unmap_mmio
+fd4 4 511 4
+FUNC fd8 24 0 system_get_accelerator
+fd8 14 516 4
+fec 10 517 4
+FUNC ffc 8 0 system_get_modes
+ffc 8 523 4
+FUNC 1004 8 0 system_get_current_mode
+1004 8 529 4
+FUNC 100c 8 0 system_thread_init
+100c 8 535 4
+FUNC 1014 8 0 system_input_filter
+1014 8 542 4
+FUNC 101c 8 0 system_video_memory_physical
+101c 8 548 4
+FUNC 1024 8 0 system_video_memory_virtual
+1024 8 554 4
+FUNC 102c 8 0 system_videoram_length
+102c 8 560 4
+FUNC 1034 8 0 system_aux_memory_physical
+1034 8 566 4
+FUNC 103c 8 0 system_aux_memory_virtual
+103c 8 572 4
+FUNC 1044 8 0 system_auxram_length
+1044 8 578 4
+FUNC 104c 4 0 system_get_busid
+104c 4 583 4
+FUNC 1050 8 0 system_surface_data_size
+1050 8 589 4
+FUNC 1058 4 0 system_surface_data_init
+1058 4 594 4
+FUNC 105c 4 0 system_surface_data_destroy
+105c 4 599 4
+FUNC 1060 4 0 system_get_deviceid
+1060 4 605 4
+FUNC 1064 3c 0 system_shutdown
+1064 4 475 4
+1068 10 476 4
+1078 10 115 1
+1088 c 116 1
+1094 c 480 4
+FUNC 10a0 34 0 system_join
+10a0 4 464 4
+10a4 18 465 4
+10bc c 466 4
+10c8 c 471 4
+FUNC 10d4 98 0 dummyInitLayer
+10d4 4 325 4
+10d8 4 331 4
+10dc 4 326 4
+10e0 4 328 4
+10e4 4 326 4
+10e8 4 327 4
+10ec 4 328 4
+10f0 4 329 4
+10f4 c 331 4
+1100 4 335 4
+1104 4 325 4
+1108 4 331 4
+110c 8 335 4
+1114 8 334 4
+111c 4 335 4
+1120 4 337 4
+1124 4 335 4
+1128 4 341 4
+112c 4 335 4
+1130 4 336 4
+1134 4 335 4
+1138 4 337 4
+113c 4 335 4
+1140 8 336 4
+1148 8 337 4
+1150 4 335 4
+1154 4 338 4
+1158 14 341 4
+FUNC 116c 28 0 system_get_info
+116c 4 445 4
+1170 4 438 4
+1174 4 439 4
+1178 4 438 4
+117c 4 439 4
+1180 c 445 4
+118c 8 445 4
+FUNC 1194 60 0 dummyInitScreen
+1194 4 195 4
+1198 4 198 4
+119c 4 200 4
+11a0 4 198 4
+11a4 4 200 4
+11a8 4 198 4
+11ac 8 200 4
+11b4 28 202 4
+11dc 18 205 4
+FUNC 11f4 68 0 system_initialize
+11f4 4 451 4
+11f8 4 450 4
+11fc 14 451 4
+1210 4 452 4
+1214 4 456 4
+1218 4 452 4
+121c 4 456 4
+1220 4 452 4
+1224 8 456 4
+122c 14 57 1
+1240 c 58 1
+124c 10 460 4
+FUNC 125c 88 0 dummyRemoveRegion
+125c 4 376 4
+1260 10 377 4
+1270 4 66 1
+1274 4 379 4
+1278 4 66 1
+127c 4 379 4
+1280 4 66 1
+1284 4 379 4
+1288 c 66 1
+1294 c 67 1
+12a0 4 379 4
+12a4 4 66 1
+12a8 4 379 4
+12ac 4 66 1
+12b0 4 379 4
+12b4 c 382 4
+12c0 4 383 4
+12c4 4 385 4
+12c8 c 388 4
+12d4 10 391 4
+FUNC 12e4 2cc 0 dummy_display_loop
+12e4 4 92 4
+12e8 4 91 4
+12ec 8 92 4
+12f4 4 91 4
+12f8 8 92 4
+1300 4 164 4
+1304 4 100 4
+1308 8 164 4
+1310 4 106 1
+1314 4 100 4
+1318 4 106 1
+131c c 95 4
+1328 4 97 4
+132c 4 66 1
+1330 4 97 4
+1334 4 66 1
+1338 4 97 4
+133c c 66 1
+1348 c 67 1
+1354 c 100 4
+1360 8 101 4
+1368 14 181 4
+137c 4 182 4
+1380 c 185 4
+138c 8 109 4
+1394 8 112 4
+139c 20 121 4
+13bc 8 122 4
+13c4 c 126 4
+13d0 8 128 4
+13d8 18 121 4
+13f0 4 135 4
+13f4 10 133 4
+1404 10 135 4
+1414 10 151 4
+1424 c 153 4
+1430 4 157 4
+1434 4 182 0
+1438 4 160 4
+143c 4 185 0
+1440 c 160 4
+144c 4 191 0
+1450 4 188 0
+1454 4 183 0
+1458 4 188 0
+145c 4 191 0
+1460 4 193 0
+1464 4 198 0
+1468 4 193 0
+146c c 201 0
+1478 4 203 0
+147c 8 164 4
+1484 10 106 1
+1494 10 243 3
+14a4 10 281 2
+14b4 4 173 4
+14b8 4 175 4
+14bc 4 173 4
+14c0 4 175 4
+14c4 18 92 4
+14dc 10 135 4
+14ec 24 138 4
+1510 20 143 4
+1530 20 147 4
+1550 10 107 1
+1560 10 139 4
+1570 40 194 0
+FUNC 15b0 1c0 0 dummyDisplayRequest
+15b0 4 256 4
+15b4 4 281 2
+15b8 8 256 4
+15c0 c 281 2
+15cc 8 268 4
+15d4 8 314 4
+15dc 10 243 3
+15ec 8 274 4
+15f4 c 282 4
+1600 8 283 4
+1608 4 294 4
+160c 4 295 4
+1610 4 293 4
+1614 4 294 4
+1618 4 296 4
+161c 4 292 4
+1620 4 293 4
+1624 4 294 4
+1628 4 295 4
+162c c 296 4
+1638 c 296 4
+1644 18 297 4
+165c 4 305 4
+1660 8 297 4
+1668 4 305 4
+166c 4 299 4
+1670 4 297 4
+1674 4 299 4
+1678 4 296 4
+167c 8 305 4
+1684 4 83 0
+1688 4 85 0
+168c 4 87 0
+1690 4 97 1
+1694 4 85 0
+1698 4 88 0
+169c 4 100 0
+16a0 4 97 1
+16a4 4 93 0
+16a8 8 95 0
+16b0 8 98 0
+16b8 4 100 0
+16bc 10 97 1
+16cc c 311 4
+16d8 8 314 4
+16e0 10 98 1
+16f0 c 281 2
+16fc 8 314 4
+1704 10 243 3
+1714 c 281 2
+1720 50 286 4
+FUNC 1770 c 0 dummyUpdateRegion
+1770 8 421 4
+1778 4 421 4
+FUNC 177c 28 0 dummyFlipRegion
+177c 4 404 4
+1780 4 404 4
+1784 8 405 4
+178c 4 404 4
+1790 4 405 4
+1794 8 407 4
+179c 4 408 4
+17a0 4 407 4
+FUNC 17a4 70 0 dummyShutdownScreen
+17a4 4 214 4
+17a8 4 211 4
+17ac c 214 4
+17b8 4 216 4
+17bc 4 97 1
+17c0 4 216 4
+17c4 c 97 1
+17d0 c 98 1
+17dc 10 220 4
+17ec 8 223 4
+17f4 8 224 4
+17fc 8 226 4
+1804 4 227 4
+1808 c 230 4
+FUNC 1814 3c 0 directfb_dummy
+1814 3c 53 4
+STACK CFI INIT f4c 48 .cfa: sp 0 + .ra: lr
+STACK CFI INIT f94 18 .cfa: sp 0 + .ra: lr
+STACK CFI INIT fac 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT fb4 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT fbc 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT fc4 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT fcc 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT fd4 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT fd8 24 .cfa: sp 0 + .ra: lr
+STACK CFI INIT ffc 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1004 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 100c 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1014 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 101c 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1024 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 102c 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1034 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 103c 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1044 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 104c 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1050 8 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1058 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 105c 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1060 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1064 3c .cfa: sp 0 + .ra: lr
+STACK CFI 1068 .cfa: sp 8 +
+STACK CFI 106c .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 10a0 34 .cfa: sp 0 + .ra: lr
+STACK CFI 10a4 .cfa: sp 8 +
+STACK CFI 10a8 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 10d4 98 .cfa: sp 0 + .ra: lr
+STACK CFI 10d8 .cfa: sp 16 +
+STACK CFI 10dc .ra: .cfa -4 + ^ r4: .cfa -16 + ^ r5: .cfa -12 + ^ r6: .cfa -8 + ^
+STACK CFI INIT 116c 28 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1194 60 .cfa: sp 0 + .ra: lr
+STACK CFI 1198 .cfa: sp 8 +
+STACK CFI 11a0 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 11f4 68 .cfa: sp 0 + .ra: lr
+STACK CFI 11fc .cfa: sp 8 +
+STACK CFI 1204 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 125c 88 .cfa: sp 0 + .ra: lr
+STACK CFI 1260 .cfa: sp 16 +
+STACK CFI 1264 .ra: .cfa -4 + ^ r4: .cfa -16 + ^ r5: .cfa -12 + ^ r6: .cfa -8 + ^
+STACK CFI INIT 12e4 2cc .cfa: sp 0 + .ra: lr
+STACK CFI 12ec .cfa: sp 36 +
+STACK CFI 12f8 .cfa: sp 160 +
+STACK CFI 1300 .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI INIT 15b0 1c0 .cfa: sp 0 + .ra: lr
+STACK CFI 15b4 .cfa: sp 32 +
+STACK CFI 15b8 .ra: .cfa -4 + ^ r3: .cfa -32 + ^ r4: .cfa -28 + ^ r5: .cfa -24 + ^ r6: .cfa -20 + ^ r7: .cfa -16 + ^ r8: .cfa -12 + ^ r9: .cfa -8 + ^
+STACK CFI INIT 1770 c .cfa: sp 0 + .ra: lr
+STACK CFI INIT 177c 28 .cfa: sp 0 + .ra: lr
+STACK CFI 1780 .cfa: sp 16 +
+STACK CFI 1784 .ra: .cfa -4 + ^ r4: .cfa -16 + ^ r5: .cfa -12 + ^ r6: .cfa -8 + ^
+STACK CFI INIT 17a4 70 .cfa: sp 0 + .ra: lr
+STACK CFI 17ac .cfa: sp 8 +
+STACK CFI 17b0 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 1814 3c .cfa: sp 0 + .ra: lr

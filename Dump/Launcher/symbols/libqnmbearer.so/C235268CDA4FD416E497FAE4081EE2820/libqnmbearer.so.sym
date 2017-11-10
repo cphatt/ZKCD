@@ -1,0 +1,6 @@
+MODULE Linux arm C235268CDA4FD416E497FAE4081EE2820 libqnmbearer.so
+PUBLIC 4818 0 _init
+PUBLIC 5398 0 qt_plugin_query_verification_data
+PUBLIC 53a8 0 qt_plugin_instance
+PUBLIC 103d8 0 _ZN10QDBusErrorD1Ev
+PUBLIC 1f8e8 0 _fini

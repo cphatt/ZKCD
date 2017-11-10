@@ -1,0 +1,108 @@
+MODULE Linux arm B762C67B5B7F6EDD4609787F26B777830 libanl-2.18.so
+PUBLIC bed 0 gai_cancel
+PUBLIC c2d 0 gai_error
+PUBLIC 11d5 0 gai_suspend
+PUBLIC 13a9 0 getaddrinfo_a
+STACK CFI INIT bec 40 .cfa: sp 0 + .ra: lr
+STACK CFI bee .cfa: sp 16 + .ra: .cfa -4 + ^ r3: .cfa -16 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI INIT c2c 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT c30 228 .cfa: sp 0 + .ra: lr
+STACK CFI c34 .cfa: sp 36 + .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI c36 .cfa: sp 104 +
+STACK CFI INIT 25d8 2c .cfa: sp 0 + .ra: lr
+STACK CFI 25da .cfa: sp 24 + .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT e58 1c .cfa: sp 0 + .ra: lr
+STACK CFI INIT e74 6c .cfa: sp 0 + .ra: lr
+STACK CFI e78 .cfa: sp 4 + r4: .cfa -4 + ^
+STACK CFI INIT ee0 1ec .cfa: sp 0 + .ra: lr
+STACK CFI ee4 .cfa: sp 32 + .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -32 + ^ r5: .cfa -28 + ^ r6: .cfa -24 + ^ r7: .cfa -20 + ^ r8: .cfa -16 + ^ r9: .cfa -12 + ^
+STACK CFI eea .cfa: sp 328 +
+STACK CFI INIT 10cc 30 .cfa: sp 0 + .ra: lr
+STACK CFI 10ce .cfa: sp 12 + .ra: .cfa -4 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI 10d0 .cfa: sp 144 +
+STACK CFI INIT 10fc 78 .cfa: sp 0 + .ra: lr
+STACK CFI 1100 .cfa: sp 20 + .ra: .cfa -4 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI 1104 .cfa: sp 64 +
+STACK CFI INIT 1174 60 .cfa: sp 0 + .ra: lr
+STACK CFI 1176 .cfa: sp 16 + .ra: .cfa -4 + ^ r4: .cfa -16 + ^ r5: .cfa -12 + ^ r6: .cfa -8 + ^
+STACK CFI INIT 11d4 1d4 .cfa: sp 0 + .ra: lr
+STACK CFI 11da .cfa: sp 36 + .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI 11dc .cfa: sp 72 +
+STACK CFI 11e2 .cfa: r7 72 +
+STACK CFI INIT 13a8 26c .cfa: sp 0 + .ra: lr
+STACK CFI 13ac .cfa: sp 36 + .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI 13b2 .cfa: sp 128 +
+STACK CFI 13ba .cfa: r7 128 +
+STACK CFI INIT 1620 8 .cfa: sp 0 + .ra: lr
+STACK CFI 1622 .cfa: sp 8 + .ra: .cfa -4 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 1630 12 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1644 5e .cfa: sp 0 + .ra: lr
+STACK CFI 1648 .cfa: sp 40 + .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r3: .cfa -40 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI INIT 16a4 2c .cfa: sp 0 + .ra: lr
+STACK CFI INIT 16d0 bc .cfa: sp 0 + .ra: lr
+STACK CFI 16d8 .cfa: sp 12 + .ra: .cfa -4 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI 16de .cfa: sp 24 +
+STACK CFI INIT 178c 58 .cfa: sp 0 + .ra: lr
+STACK CFI 1790 .cfa: sp 8 + .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT 17e4 c .cfa: sp 0 + .ra: lr
+STACK CFI INIT 17f0 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 17f4 2 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 17f8 3e .cfa: sp 0 + .ra: lr
+STACK CFI 17fa .cfa: sp 24 + .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT 1838 f4 .cfa: sp 0 + .ra: lr
+STACK CFI 183c .cfa: sp 36 + .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI 1844 .cfa: sp 1016 +
+STACK CFI INIT 192c 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1930 66 .cfa: sp 0 + .ra: lr
+STACK CFI 1936 .cfa: sp 24 + .ra: .cfa -4 + ^ r4: .cfa -24 + ^ r5: .cfa -20 + ^ r6: .cfa -16 + ^ r7: .cfa -12 + ^ r8: .cfa -8 + ^
+STACK CFI 1940 .cfa: sp 504 +
+STACK CFI INIT 1998 12 .cfa: sp 0 + .ra: lr
+STACK CFI 199a .cfa: sp 8 + r4: .cfa -8 + ^ r5: .cfa -4 + ^
+STACK CFI INIT 19ac 44 .cfa: sp 0 + .ra: lr
+STACK CFI 19b0 .cfa: sp 16 + .ra: .cfa -4 + ^ r4: .cfa -16 + ^ r5: .cfa -12 + ^ r6: .cfa -8 + ^
+STACK CFI INIT 19f0 18 .cfa: sp 0 + .ra: lr
+STACK CFI 19f4 .cfa: sp 4 + r4: .cfa -4 + ^
+STACK CFI INIT 1a08 2 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1a0c e .cfa: sp 0 + .ra: lr
+STACK CFI 1a0e .cfa: sp 8 + .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 1a1c 3a .cfa: sp 0 + .ra: lr
+STACK CFI 1a1e .cfa: sp 8 + r4: .cfa -8 + ^ r5: .cfa -4 + ^
+STACK CFI INIT 1a58 18 .cfa: sp 0 + .ra: lr
+STACK CFI 1a5a .cfa: sp 8 + .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI 1a5c .cfa: sp 24 +
+STACK CFI INIT 1a70 3a .cfa: sp 0 + .ra: lr
+STACK CFI 1a72 .cfa: sp 8 + r4: .cfa -8 + ^ r5: .cfa -4 + ^
+STACK CFI INIT 1aac 1c .cfa: sp 0 + .ra: lr
+STACK CFI 1aae .cfa: sp 12 + .ra: .cfa -4 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI 1ab0 .cfa: sp 32 +
+STACK CFI INIT 1ac8 7a .cfa: sp 0 + .ra: lr
+STACK CFI 1ace .cfa: sp 28 + .ra: .cfa -4 + ^ r4: .cfa -28 + ^ r5: .cfa -24 + ^ r6: .cfa -20 + ^ r7: .cfa -16 + ^ r8: .cfa -12 + ^ r9: .cfa -8 + ^
+STACK CFI 1ada .cfa: sp 600 +
+STACK CFI INIT 1b44 2f0 .cfa: sp 0 + .ra: lr
+STACK CFI 1b48 .cfa: sp 36 + .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI 1b4e .cfa: sp 88 +
+STACK CFI INIT 1e34 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1e38 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1e3c 4 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1e40 270 .cfa: sp 0 + .ra: lr
+STACK CFI 1e44 .cfa: sp 24 + .ra: .cfa -4 + ^ r4: .cfa -24 + ^ r5: .cfa -20 + ^ r6: .cfa -16 + ^ r7: .cfa -12 + ^ r8: .cfa -8 + ^
+STACK CFI 1e48 .cfa: sp 296 +
+STACK CFI INIT 225c 34 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 2290 1a .cfa: sp 0 + .ra: lr
+STACK CFI 2292 .cfa: sp 4 + .ra: .cfa -4 + ^
+STACK CFI 2294 .cfa: sp 24 +
+STACK CFI INIT 22ac 2 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 22b0 2ca .cfa: sp 0 + .ra: lr
+STACK CFI 22b4 .cfa: sp 28 + .ra: .cfa -4 + ^ r4: .cfa -28 + ^ r5: .cfa -24 + ^ r6: .cfa -20 + ^ r7: .cfa -16 + ^ r8: .cfa -12 + ^ r9: .cfa -8 + ^
+STACK CFI 22b6 .cfa: sp 48 +
+STACK CFI INIT 257c 2a .cfa: sp 0 + .ra: lr
+STACK CFI 2582 .cfa: sp 12 + .ra: .cfa -4 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI 2584 .cfa: sp 32 +
+STACK CFI INIT 25a8 a .cfa: sp 0 + .ra: lr
+STACK CFI 25aa .cfa: sp 8 + .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 25b4 12 .cfa: sp 0 + .ra: lr
+STACK CFI 25b6 .cfa: sp 8 + .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 25c8 6 .cfa: sp 0 + .ra: lr
+STACK CFI 25ca .cfa: sp 8 + .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 25d0 6 .cfa: sp 0 + .ra: lr
+STACK CFI 25d2 .cfa: sp 8 + .ra: .cfa -4 + ^ r3: .cfa -8 + ^

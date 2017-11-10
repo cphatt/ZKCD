@@ -1,0 +1,5 @@
+MODULE Linux arm E68A33D411E36BF08C9425049613C89F0 libqsvg.so
+PUBLIC 1ee0 0 _init
+PUBLIC 2538 0 qt_plugin_query_verification_data
+PUBLIC 2548 0 qt_plugin_instance
+PUBLIC 3918 0 _fini

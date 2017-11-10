@@ -1,0 +1,328 @@
+MODULE Linux arm 19C44EF2CBFFEE3236BBF9F8C84B0F650 libicoreresourcemanager_test.so
+FILE 0 /home/wenyi/project/2d/directfb/directfb/interfaces/ICoreResourceManager/icoreresourcemanager_test.c
+FILE 1 /home/wenyi/project/2d/directfb/directfb/interfaces/ICoreResourceManager/icoreresourcemanager_test_client.c
+FUNC 910 10 0 GetType
+910 10 62 0
+FUNC 920 10 0 GetImplementation
+920 10 62 0
+FUNC 930 40 0 ICoreResourceManager_test_AddRef
+930 8 79 0
+938 c 79 0
+944 4 83 0
+948 4 85 0
+94c 8 83 0
+954 4 85 0
+958 4 79 0
+95c 4 86 0
+960 10 79 0
+FUNC 970 10 0 Probe
+970 4 130 0
+974 c 138 0
+FUNC 980 90 0 Construct
+980 c 142 0
+98c 4 142 0
+990 c 147 0
+99c 4 166 0
+9a0 8 153 0
+9a8 4 161 0
+9ac 4 162 0
+9b0 4 153 0
+9b4 4 167 0
+9b8 4 161 0
+9bc 4 166 0
+9c0 4 169 0
+9c4 4 166 0
+9c8 4 167 0
+9cc 4 169 0
+9d0 4 179 0
+9d4 4 167 0
+9d8 4 169 0
+9dc 10 179 0
+9ec 24 147 0
+FUNC a10 68 0 ICoreResourceManager_test_Release
+a10 4 90 0
+a14 8 91 0
+a1c c 91 0
+a28 14 95 0
+a3c 14 73 0
+a50 c 98 0
+a5c 4 99 0
+a60 18 91 0
+FUNC a78 38 0 Deallocate
+a78 4 62 0
+a7c 10 62 0
+a8c c 62 0
+a98 18 62 0
+FUNC ab0 68 0 Allocate
+ab0 4 62 0
+ab4 1c 62 0
+ad0 10 62 0
+ae0 38 62 0
+FUNC b18 a8 0 ICoreResourceManager_test_CreateClient
+b18 4 107 0
+b1c 4 111 0
+b20 8 107 0
+b28 4 111 0
+b2c c 111 0
+b38 14 115 0
+b4c 8 115 0
+b54 10 117 0
+b64 4 118 0
+b68 4 121 0
+b6c 4 123 0
+b70 4 111 0
+b74 4 124 0
+b78 8 111 0
+b80 40 115 0
+FUNC bc0 10 0 ICoreResourceManager_test_ctor
+bc0 10 62 0
+FUNC bd0 10 0 ICoreResourceManager_test_dtor
+bd0 10 62 0
+FUNC be0 40 0 ICoreResourceClient_test_AddRef
+be0 8 73 1
+be8 c 73 1
+bf4 4 77 1
+bf8 4 79 1
+bfc 8 77 1
+c04 4 79 1
+c08 4 73 1
+c0c 4 80 1
+c10 10 73 1
+FUNC c20 30 0 ICoreResourceClient_test_CheckSurfaceUpdate
+c20 8 142 1
+c28 18 142 1
+c40 4 142 1
+c44 c 151 1
+FUNC c50 10c 0 ICoreResourceClient_test_CheckSurface
+c50 4 124 1
+c54 4 120 1
+c58 4 119 1
+c5c 4 124 1
+c60 4 119 1
+c64 4 119 1
+c68 4 120 1
+c6c c 120 1
+c78 14 124 1
+c8c 4 131 1
+c90 4 124 1
+c94 8 132 1
+c9c 10 124 1
+cac 4 102 1
+cb0 8 103 1
+cb8 4 124 1
+cbc 8 102 1
+cc4 4 103 1
+cc8 4 102 1
+ccc 4 103 1
+cd0 8 102 1
+cd8 8 103 1
+ce0 4 102 1
+ce4 4 105 1
+ce8 4 102 1
+cec 4 105 1
+cf0 4 106 1
+cf4 4 105 1
+cf8 4 107 1
+cfc 4 108 1
+d00 30 124 1
+d30 8 131 1
+d38 24 120 1
+FUNC d5c c4 0 ICoreResourceClient_test_Release
+d5c 4 84 1
+d60 4 65 1
+d64 4 85 1
+d68 4 65 1
+d6c 4 85 1
+d70 c 85 1
+d7c 14 89 1
+d90 18 65 1
+da8 24 67 1
+dcc c 92 1
+dd8 4 93 1
+ddc 14 65 1
+df0 c 67 1
+dfc 24 85 1
+FUNC e20 98 0 ICoreResourceClient_test_AddSurface
+e20 4 159 1
+e24 4 156 1
+e28 4 159 1
+e2c c 159 1
+e38 4 102 1
+e3c 4 103 1
+e40 4 102 1
+e44 4 103 1
+e48 4 102 1
+e4c 4 103 1
+e50 4 102 1
+e54 4 103 1
+e58 8 102 1
+e60 8 103 1
+e68 4 102 1
+e6c 4 105 1
+e70 4 102 1
+e74 4 105 1
+e78 4 106 1
+e7c 4 105 1
+e80 4 107 1
+e84 4 108 1
+e88 4 167 1
+e8c 4 169 1
+e90 8 167 1
+e98 8 170 1
+ea0 18 159 1
+FUNC eb8 98 0 ICoreResourceClient_test_RemoveSurface
+eb8 4 178 1
+ebc 4 175 1
+ec0 4 178 1
+ec4 c 178 1
+ed0 4 102 1
+ed4 4 103 1
+ed8 4 102 1
+edc 4 103 1
+ee0 4 102 1
+ee4 4 103 1
+ee8 4 102 1
+eec 4 103 1
+ef0 8 102 1
+ef8 8 103 1
+f00 4 102 1
+f04 4 105 1
+f08 4 102 1
+f0c 4 105 1
+f10 4 106 1
+f14 4 105 1
+f18 4 107 1
+f1c 4 108 1
+f20 4 186 1
+f24 4 188 1
+f28 8 186 1
+f30 8 189 1
+f38 18 178 1
+FUNC f50 ec 0 ICoreResourceClient_test_UpdateSurface
+f50 4 196 1
+f54 4 195 1
+f58 4 196 1
+f5c c 196 1
+f68 4 102 1
+f6c 4 103 1
+f70 4 102 1
+f74 4 103 1
+f78 8 102 1
+f80 8 103 1
+f88 8 102 1
+f90 4 105 1
+f94 8 103 1
+f9c 8 102 1
+fa4 4 105 1
+fa8 4 200 1
+fac 4 106 1
+fb0 4 105 1
+fb4 4 107 1
+fb8 4 108 1
+fbc 4 102 1
+fc0 8 103 1
+fc8 8 102 1
+fd0 4 103 1
+fd4 4 102 1
+fd8 4 103 1
+fdc 8 102 1
+fe4 4 105 1
+fe8 8 103 1
+ff0 8 102 1
+ff8 4 105 1
+ffc 4 200 1
+1000 4 106 1
+1004 4 105 1
+1008 4 107 1
+100c 4 108 1
+1010 4 201 1
+1014 4 203 1
+1018 4 201 1
+101c 8 204 1
+1024 18 196 1
+FUNC 103c 13c 0 ICoreResourceClient_test_Construct
+103c 8 212 1
+1044 c 212 1
+1050 10 213 1
+1060 4 216 1
+1064 4 220 1
+1068 4 216 1
+106c 4 220 1
+1070 4 216 1
+1074 28 220 1
+109c 18 222 1
+10b4 14 222 1
+10c8 4 231 1
+10cc 4 225 1
+10d0 4 231 1
+10d4 4 225 1
+10d8 4 227 1
+10dc 4 232 1
+10e0 4 231 1
+10e4 4 234 1
+10e8 4 235 1
+10ec 4 232 1
+10f0 4 234 1
+10f4 4 235 1
+10f8 4 232 1
+10fc 4 234 1
+1100 4 235 1
+1104 4 236 1
+1108 4 237 1
+110c 4 238 1
+1110 4 236 1
+1114 4 237 1
+1118 4 238 1
+111c 4 242 1
+1120 4 236 1
+1124 4 237 1
+1128 4 238 1
+112c 8 242 1
+1134 44 216 1
+STACK CFI INIT 910 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 920 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 930 40 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 970 10 .cfa: sp 0 + .ra: lr
+STACK CFI 974 .cfa: sp 16 +
+STACK CFI 978 r0: .cfa -16 + ^ r1: .cfa -12 + ^ r2: .cfa -8 + ^ r3: .cfa -4 + ^
+STACK CFI INIT 980 90 .cfa: sp 0 + .ra: lr
+STACK CFI 984 .cfa: sp 16 +
+STACK CFI 988 .cfa: sp 24 +
+STACK CFI 98c .cfa: sp 32 +
+STACK CFI 990 .ra: .cfa -20 + ^ r0: .cfa -16 + ^ r1: .cfa -12 + ^ r2: .cfa -8 + ^ r3: .cfa -4 + ^ r4: .cfa -24 + ^
+STACK CFI INIT a10 68 .cfa: sp 0 + .ra: lr
+STACK CFI a14 .cfa: sp 16 +
+STACK CFI a18 .ra: .cfa -4 + ^ r3: .cfa -16 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI INIT a78 38 .cfa: sp 0 + .ra: lr
+STACK CFI a7c .cfa: sp 16 +
+STACK CFI a80 .ra: .cfa -4 + ^ r3: .cfa -16 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI INIT ab0 68 .cfa: sp 0 + .ra: lr
+STACK CFI ab4 .cfa: sp 8 +
+STACK CFI abc .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT b18 a8 .cfa: sp 0 + .ra: lr
+STACK CFI b1c .cfa: sp 24 +
+STACK CFI b20 .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT bc0 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT bd0 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT be0 40 .cfa: sp 0 + .ra: lr
+STACK CFI INIT c20 30 .cfa: sp 0 + .ra: lr
+STACK CFI INIT c50 10c .cfa: sp 0 + .ra: lr
+STACK CFI c5c .cfa: sp 20 +
+STACK CFI c64 .cfa: sp 40 +
+STACK CFI c68 .ra: .cfa -4 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT d5c c4 .cfa: sp 0 + .ra: lr
+STACK CFI d60 .cfa: sp 16 +
+STACK CFI d64 .ra: .cfa -4 + ^ r3: .cfa -16 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI INIT e20 98 .cfa: sp 0 + .ra: lr
+STACK CFI e28 .cfa: sp 8 +
+STACK CFI e2c r4: .cfa -8 + ^ r5: .cfa -4 + ^
+STACK CFI INIT eb8 98 .cfa: sp 0 + .ra: lr
+STACK CFI ec0 .cfa: sp 8 +
+STACK CFI ec4 r4: .cfa -8 + ^ r5: .cfa -4 + ^
+STACK CFI INIT f50 ec .cfa: sp 0 + .ra: lr
+STACK CFI f58 .cfa: sp 12 +
+STACK CFI f5c r4: .cfa -12 + ^ r5: .cfa -8 + ^ r6: .cfa -4 + ^
+STACK CFI INIT 103c 13c .cfa: sp 0 + .ra: lr
+STACK CFI 1040 .cfa: sp 24 +
+STACK CFI 1044 .cfa: sp 552 +
+STACK CFI 1048 .ra: .cfa -4 + ^ r4: .cfa -24 + ^ r5: .cfa -20 + ^ r6: .cfa -16 + ^ r7: .cfa -12 + ^ r8: .cfa -8 + ^

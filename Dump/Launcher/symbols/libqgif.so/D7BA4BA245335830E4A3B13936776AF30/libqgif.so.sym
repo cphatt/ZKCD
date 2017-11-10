@@ -1,0 +1,5 @@
+MODULE Linux arm D7BA4BA245335830E4A3B13936776AF30 libqgif.so
+PUBLIC 19ec 0 _init
+PUBLIC 47c4 0 qt_plugin_query_verification_data
+PUBLIC 47d4 0 qt_plugin_instance
+PUBLIC 4d0c 0 _fini

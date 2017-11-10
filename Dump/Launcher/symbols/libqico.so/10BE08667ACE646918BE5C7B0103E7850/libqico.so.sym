@@ -1,0 +1,5 @@
+MODULE Linux arm 10BE08667ACE646918BE5C7B0103E7850 libqico.so
+PUBLIC 1d18 0 _init
+PUBLIC 2348 0 qt_plugin_query_verification_data
+PUBLIC 2358 0 qt_plugin_instance
+PUBLIC 4dec 0 _fini

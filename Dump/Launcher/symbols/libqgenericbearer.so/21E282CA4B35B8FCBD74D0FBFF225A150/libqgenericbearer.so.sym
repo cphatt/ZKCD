@@ -1,0 +1,5 @@
+MODULE Linux arm 21E282CA4B35B8FCBD74D0FBFF225A150 libqgenericbearer.so
+PUBLIC 2f9c 0 _init
+PUBLIC 850c 0 qt_plugin_query_verification_data
+PUBLIC 851c 0 qt_plugin_instance
+PUBLIC 8c54 0 _fini

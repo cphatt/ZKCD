@@ -1,0 +1,11 @@
+MODULE Linux arm 0572B436B195DE050838D6D14086BB1F0 libts-0.0.so.0.1.1
+PUBLIC 8ac 0 _init
+PUBLIC b18 0 ts_close
+PUBLIC b3c 0 ts_config
+PUBLIC e84 0 ts_fd
+PUBLIC ff0 0 ts_load_module
+PUBLIC 1000 0 ts_open
+PUBLIC 1068 0 tslib_parse_vars
+PUBLIC 11a4 0 ts_read
+PUBLIC 11bc 0 ts_read_raw
+PUBLIC 11d4 0 _fini

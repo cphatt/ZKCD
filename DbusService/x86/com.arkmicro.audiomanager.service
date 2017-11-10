@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.arkmicro.audiomanager
+Exec=/home/user/Desktop/ArkSdk/Package/Launcher/x86/Launcher -t -audiomanager

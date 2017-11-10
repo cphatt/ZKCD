@@ -1,0 +1,94 @@
+SDKPATH = $$PWD
+COMPILER = arm-none-linux-gnueabi-gcc
+PROJECT = Project
+DEFINES += $$TARGET$$PROJECT
+DEFINES += APPS
+CONFIG += C++11
+
+ARCHITECTURE = arm
+message($$QMAKE_CC)
+
+system(mkdir -p $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE)
+MOC_DIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+OBJECTS_DIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+RCC_DIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+DESTDIR += $$SDKPATH/Package/$$TARGET/$$ARCHITECTURE
+
+unix:!macx: LIBS += -L$$SDKPATH/Package/BusinessLogic/$$ARCHITECTURE -lBusinessLogic
+unix:!macx: LIBS += -L$$SDKPATH/Package/UserInterface/$$ARCHITECTURE -lUserInterface
+unix:!macx: LIBS += -L$$SDKPATH/Package/ArkApplication/$$ARCHITECTURE -lArkApplication
+unix:!macx: LIBS += -L$$SDKPATH/Package/AutoConnect/$$ARCHITECTURE -lAutoConnect
+unix:!macx: LIBS += -L$$SDKPATH/Package/EventEngine/$$ARCHITECTURE -lEventEngine
+unix:!macx: LIBS += -L$$SDKPATH/Package/DbusService/$$ARCHITECTURE -lDbusService
+unix:!macx: LIBS += -L$$SDKPATH/Package/AudioConfig/$$ARCHITECTURE -lAudioConfig
+unix:!macx: LIBS += -L$$SDKPATH/Package/SettingService/$$ARCHITECTURE -lSettingService
+unix:!macx: LIBS += -L$$SDKPATH/Package/MultimediaService/$$ARCHITECTURE -lMultimediaService
+unix:!macx: LIBS += -L$$SDKPATH/Package/Utility/$$ARCHITECTURE -lUtility
+unix:!macx: LIBS += -L$$SDKPATH/Package/RunnableThread/$$ARCHITECTURE -lRunnableThread
+unix:!macx: LIBS += -L$$SDKPATH/Package/DiskDeviceWatcher/$$ARCHITECTURE -lDiskDeviceWatcher
+
+unix:!macx: LIBS += -ldl
+unix:!macx: LIBS += -L$$SDKPATH/ArkMicro/Library -larkcmn
+unix:!macx: LIBS += -L$$SDKPATH/ArkMicro/Library -lDetach
+unix:!macx: LIBS += -L$$SDKPATH/ArkMicro/Library -lDetachClient
+
+BUSINESSLOGIC = $$SDKPATH/Package/BusinessLogic
+INCLUDEPATH += $$BUSINESSLOGIC
+DEPENDPATH += $$BUSINESSLOGIC
+
+USERINTERFACE = $$SDKPATH/Package/UserInterface
+INCLUDEPATH += $$USERINTERFACE
+DEPENDPATH += $$USERINTERFACE
+
+AUDIOCONFIG = $$SDKPATH/Package/AudioConfig
+INCLUDEPATH += $$AUDIOCONFIG
+DEPENDPATH += $$AUDIOCONFIG
+
+DISKDEVICEWATCHER = $$SDKPATH/Package/DiskDeviceWatcher
+INCLUDEPATH += $$DISKDEVICEWATCHER
+DEPENDPATH += $$DISKDEVICEWATCHER
+
+UTILITY = $$SDKPATH/Package/Utility
+INCLUDEPATH += $$UTILITY
+DEPENDPATH += $$UTILITY
+
+ARKAPPLICATION = $$SDKPATH/Package/ArkApplication
+INCLUDEPATH += $$ARKAPPLICATION
+DEPENDPATH += $$ARKAPPLICATION
+
+EVENENGINE = $$SDKPATH/Package/EventEngine
+INCLUDEPATH += $$EVENENGINE
+DEPENDPATH += $$EVENENGINE
+
+DBUSSERVICE = $$SDKPATH/Package/DbusService
+INCLUDEPATH += $$DBUSSERVICE
+DEPENDPATH += $$DBUSSERVICE
+
+AUTOCONNECT = $$SDKPATH/Package/AutoConnect
+INCLUDEPATH += $$AUTOCONNECT
+DEPENDPATH += $$AUTOCONNECT
+
+RUNNABLETHREAD = $$SDKPATH/Package/RunnableThread
+INCLUDEPATH += $$RUNNABLETHREAD
+DEPENDPATH += $$RUNNABLETHREAD
+
+BTSERVICE = $$SDKPATH/Package/BTService
+INCLUDEPATH += $$BTSERVICE
+DEPENDPATH += $$BTSERVICE
+
+SETTINGSERVICE = $$SDKPATH/Package/SettingService
+INCLUDEPATH += $$SETTINGSERVICE
+DEPENDPATH += $$SETTINGSERVICE
+
+MULTIMEDIASERVICE = $$SDKPATH/Package/MultimediaService
+INCLUDEPATH += $$MULTIMEDIASERVICE
+DEPENDPATH += $$MULTIMEDIASERVICE
+
+ARKMICRO = $$SDKPATH/ArkMicro/Header
+INCLUDEPATH += $$ARKMICRO
+DEPENDPATH += $$ARKMICRO
+
+AUDIOSERVICE = $$SDKPATH/Package/AudioService
+INCLUDEPATH += $$AUDIOSERVICE
+DEPENDPATH += $$AUDIOSERVICE
+

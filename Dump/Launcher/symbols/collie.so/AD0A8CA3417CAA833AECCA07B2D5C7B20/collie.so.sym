@@ -1,0 +1,19 @@
+MODULE Linux arm AD0A8CA3417CAA833AECCA07B2D5C7B20 collie.so
+PUBLIC 480 0 _init
+PUBLIC 79c 0 mod_init
+PUBLIC 1354 0 _fini
+STACK CFI INIT 818 3c .cfa: sp 0 + .ra: lr
+STACK CFI 81c .cfa: sp 24 +
+STACK CFI 820 .ra: .cfa -4 + ^ r4: .cfa -24 + ^ r5: .cfa -20 + ^ r6: .cfa -16 + ^ r8: .cfa -12 + ^ r9: .cfa -8 + ^
+STACK CFI INIT 854 3c .cfa: sp 0 + .ra: lr
+STACK CFI 858 .cfa: sp 24 +
+STACK CFI 85c .ra: .cfa -4 + ^ r4: .cfa -24 + ^ r5: .cfa -20 + ^ r6: .cfa -16 + ^ r8: .cfa -12 + ^ r9: .cfa -8 + ^
+STACK CFI INIT 890 498 .cfa: sp 0 + .ra: lr
+STACK CFI 898 .cfa: sp 36 +
+STACK CFI 8a0 .cfa: sp 56 +
+STACK CFI 8a4 .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI INIT d28 420 .cfa: sp 0 + .ra: lr
+STACK CFI d30 .cfa: sp 36 +
+STACK CFI d34 .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI d38 .cfa: sp 48 +
+STACK CFI INIT 1148 1ec .cfa: sp 0 + .ra: lr

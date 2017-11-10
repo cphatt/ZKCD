@@ -1,0 +1,6 @@
+MODULE Linux arm 0F6B447C2C299C76D48A991A8DB6A3F10 libqconnmanbearer.so
+PUBLIC 4c48 0 _init
+PUBLIC 5814 0 qt_plugin_query_verification_data
+PUBLIC 5824 0 qt_plugin_instance
+PUBLIC 11a10 0 _ZN10QDBusErrorD1Ev
+PUBLIC 297d4 0 _fini

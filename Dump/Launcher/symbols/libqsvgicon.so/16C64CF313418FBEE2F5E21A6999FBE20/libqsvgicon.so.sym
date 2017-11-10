@@ -1,0 +1,5 @@
+MODULE Linux arm 16C64CF313418FBEE2F5E21A6999FBE20 libqsvgicon.so
+PUBLIC 22e4 0 _init
+PUBLIC 29dc 0 qt_plugin_query_verification_data
+PUBLIC 29ec 0 qt_plugin_instance
+PUBLIC 78f8 0 _fini

@@ -1,0 +1,457 @@
+2017-06-21 14:24:35: minidump_processor.cc:302: INFO: Processing minidump in file 59b997fa-797f-a644-0f8ca14f-2c9550d5.dmp
+2017-06-21 14:24:35: minidump.cc:4416: INFO: Minidump opened minidump 59b997fa-797f-a644-0f8ca14f-2c9550d5.dmp
+2017-06-21 14:24:35: minidump.cc:4533: INFO: Minidump not byte-swapping minidump
+2017-06-21 14:24:35: minidump.cc:4917: INFO: GetStream: type 1197932545 not present
+2017-06-21 14:24:35: minidump.cc:4917: INFO: GetStream: type 1197932546 not present
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/bin/Launcher
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /tmp/qtembedded-0/fonts/wenquanyi_micro_hei_28_50.qsf
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /tmp/qtembedded-0/fonts/wenquanyi_micro_hei_21_50.qsf
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/fonts/wqy-microhei.ttc
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /tmp/qtembedded-0/fonts/wenquanyi_micro_hei_37_50.qsf
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /tmp/qtembedded-0/fonts/wenquanyi_micro_hei_26_50.qsf
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /tmp/qtembedded-0/fonts/wenquanyi_micro_hei_18_50.qsf
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/plugins/imageformats/libqjpeg.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/plugins/imageformats/libqgif.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/plugins/imageformats/libqsvg.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/plugins/imageformats/libqico.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /SYSV00000000 (deleted)
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/libc-2.11.1.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/libgcc_s.so.1
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/libm-2.11.1.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/libstdc++.so.6.0.14
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libts-0.0.so.0.1.1
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/libpthread-2.11.1.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libpng17.so.17.0.0
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libjpeg.so.9.2.0
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libz.so.1.2.8
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libfusion-1.7.so.4.0.0
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libdirect-1.7.so.4.0.0
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libdirectfb-1.7.so.4.0.0
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/librt-2.11.1.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libdbus-1.so.3.2.0
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libQtCore.so.4.7.4
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libQtNetwork.so.4.7.4
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libQtGui.so.4.7.4
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libQtXml.so.4.7.4
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libQtSvg.so.4.7.4
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libQtDBus.so.4.7.4
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libDumpClient.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libDump.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/lib/libarkcmn.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/libdl-2.11.1.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /usr/local/Qt4.7.4/lib/libDetach.so
+2017-06-21 14:24:35: minidump.cc:2547: INFO: MinidumpModule could not determine version for /lib/ld-2.11.1.so
+2017-06-21 14:24:35: minidump_processor.cc:127: INFO: Found 4 memory regions.
+2017-06-21 14:24:35: minidump_processor.cc:137: INFO: Minidump 59b997fa-797f-a644-0f8ca14f-2c9550d5.dmp has CPU info, OS info, no Breakpad info, exception, module list, thread list, no dump thread, and requesting thread
+2017-06-21 14:24:35: minidump_processor.cc:175: INFO: Looking at thread 59b997fa-797f-a644-0f8ca14f-2c9550d5.dmp:0/3 id 0x213
+2017-06-21 14:24:35: source_line_resolver_base.cc:236: INFO: Loading symbols for module /usr/lib/libdbus-1.so.3.2.0 from memory buffer
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1b
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x76fe3868
+2017-06-21 14:24:35: source_line_resolver_base.cc:236: INFO: Loading symbols for module /usr/local/Qt4.7.4/lib/libQtDBus.so.4.7.4 from memory buffer
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x75af0000
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1b
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef853dc
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1b
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef853ec
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c6b08
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef853fc
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef857b4
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x831670
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef8541c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c312c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x831670
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c3108
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c312c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x831670
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef8542c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c6e68
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef857b4
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c3108
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef857f4
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bceb0
+2017-06-21 14:24:35: source_line_resolver_base.cc:236: INFO: Loading symbols for module /usr/local/Qt4.7.4/lib/libQtCore.so.4.7.4 from memory buffer
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4055e0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1b6fb8
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4055e0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef857dc
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x8317b0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c5c20
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x32
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef85948
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef8572c
+2017-06-21 14:24:35: source_line_resolver_base.cc:236: INFO: Loading symbols for module /usr/local/Qt4.7.4/lib/libQtGui.so.4.7.4 from memory buffer
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c2f88
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1b7480
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1b6fb8
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x767e20
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x75c35240
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef8592c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1b6fb8
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1c6c20
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x767818
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bceb0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x767818
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c3108
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0xffffffff
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef8592c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef8551c
+2017-06-21 14:24:35: source_line_resolver_base.cc:236: INFO: Loading symbols for module /usr/bin/Launcher from memory buffer
+2017-06-21 14:24:35: postfix_evaluator-inl.h:334: INFO: Identifier r11 not in dictionary
+2017-06-21 14:24:35: postfix_evaluator-inl.h:106: ERROR: Could not PopValues to get two values for binary operation +: r11 4 +
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x767818
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef8592c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x5d0908
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bce00
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1c6c20
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x767e28
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1e7460
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x776c68
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bceb0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x62
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c3108
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef857f4
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bceb0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c3108
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0xffffffff
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef85948
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef857f4
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4c3108
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x831780
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bceb0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4055e0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x2b
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef85948
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x831780
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x4055e0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bceb0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1bceb0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: minidump_processor.cc:175: INFO: Looking at thread 59b997fa-797f-a644-0f8ca14f-2c9550d5.dmp:1/3 id 0x215
+2017-06-21 14:24:35: source_line_resolver_base.cc:236: INFO: Loading symbols for module /lib/libpthread-2.11.1.so from memory buffer
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x5ecd30
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x3b
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x2b164dd0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x1d
+2017-06-21 14:24:35: postfix_evaluator-inl.h:334: INFO: Identifier r11 not in dictionary
+2017-06-21 14:24:35: postfix_evaluator-inl.h:106: ERROR: Could not PopValues to get two values for binary operation +: r11 4 +
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x77d880
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x638988
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x6389e8
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x5ecd30
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73875fa0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef84c9c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73875f9c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73875f9c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x6389d9
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x5ecd30
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x635e00
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73876460
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x152
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: postfix_evaluator-inl.h:334: INFO: Identifier r11 not in dictionary
+2017-06-21 14:24:35: postfix_evaluator-inl.h:106: ERROR: Could not PopValues to get two values for binary operation +: r11 4 +
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73876460
+2017-06-21 14:24:35: postfix_evaluator-inl.h:334: INFO: Identifier r11 not in dictionary
+2017-06-21 14:24:35: postfix_evaluator-inl.h:106: ERROR: Could not PopValues to get two values for binary operation +: r11 4 +
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73876460
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x152
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73875fa0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x7ef84c9c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73875f9c
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x73875dd8
+2017-06-21 14:24:35: postfix_evaluator-inl.h:334: INFO: Identifier r11 not in dictionary
+2017-06-21 14:24:35: postfix_evaluator-inl.h:106: ERROR: Could not PopValues to get two values for binary operation +: r11 4 +
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: minidump_processor.cc:175: INFO: Looking at thread 59b997fa-797f-a644-0f8ca14f-2c9550d5.dmp:2/3 id 0x237
+2017-06-21 14:24:35: source_line_resolver_base.cc:236: INFO: Loading symbols for module /lib/libc-2.11.1.so from memory buffer
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x75c35278
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x40
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: basic_code_modules.cc:88: INFO: No module at 0x0
+2017-06-21 14:24:35: minidump_processor.cc:296: INFO: Processed 59b997fa-797f-a644-0f8ca14f-2c9550d5.dmp
+2017-06-21 14:24:35: minidump.cc:4388: INFO: Minidump closing minidump
+Operating system: Linux
+                  0.0.0 Linux 3.4.0 #241 Wed Jun 21 14:14:51 CST 2017 armv7l
+CPU: arm
+     ARMv7 ARM Cortex-A5 features: swp,half,thumb,fastmult,vfpv2,edsp,vfpv3,tls,vfpv4
+     1 CPU
+
+Crash reason:  SIGSEGV
+Crash address: 0x33
+
+Thread 0 (crashed)
+ 0  libdbus-1.so.3.2.0!dbus_shutdown + 0x3cd0
+     r0 = 0x75af0000    r1 = 0x00060928    r2 = 0x00831670    r3 = 0x0000001b
+     r4 = 0x004c3108    r5 = 0x004c312c    r6 = 0x004c6e68    r7 = 0x004c3108
+     r8 = 0x00000001    r9 = 0x763b94b8   r10 = 0x000dbc00   r12 = 0x760d6b64
+     fp = 0x7ef853cc    sp = 0x7ef853b0    lr = 0x75dd81d4    pc = 0x760bfde4
+    Found by: given as instruction pointer in context
+ 1  libQtDBus.so.4.7.4!_fini + 0x386
+     sp = 0x7ef853c0    pc = 0x76f39d78
+    Found by: stack scanning
+ 2  libdbus-1.so.3.2.0!dbus_timeout_get_enabled + 0x2be
+     sp = 0x7ef853d0    pc = 0x760b173c
+    Found by: stack scanning
+ 3  libQtDBus.so.4.7.4!_fini + 0x386
+     sp = 0x7ef853d4    pc = 0x76f39d78
+    Found by: stack scanning
+ 4  libdbus-1.so.3.2.0!dbus_bus_remove_match + 0x1e6
+     sp = 0x7ef853e0    pc = 0x760906f4
+    Found by: stack scanning
+ 5  libdbus-1.so.3.2.0!dbus_get_local_machine_id + 0x1a9a
+     sp = 0x7ef853f0    pc = 0x760aa4b8
+    Found by: stack scanning
+ 6  libdbus-1.so.3.2.0!dbus_connection_send + 0x13e
+     sp = 0x7ef85400    pc = 0x76094184
+    Found by: stack scanning
+ 7  libQtDBus.so.4.7.4!_fini + 0x386
+     sp = 0x7ef85410    pc = 0x76f39d78
+    Found by: stack scanning
+ 8  libdbus-1.so.3.2.0!dbus_timeout_handle + 0x26
+     sp = 0x7ef85420    pc = 0x760b146c
+    Found by: stack scanning
+ 9  libQtDBus.so.4.7.4!_Z15qDBusAddSpyHookPFvRK12QDBusMessageE + 0x1506
+     sp = 0x7ef85430    pc = 0x76ef0f0c
+    Found by: stack scanning
+10  libQtCore.so.4.7.4!_ZN20QEventDispatcherUNIX13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE + 0x5fe
+     sp = 0x7ef85440    pc = 0x762586fc
+    Found by: stack scanning
+11  libQtDBus.so.4.7.4!_ZNK12QDBusMessage12errorMessageEv + 0x15f6
+     sp = 0x7ef85458    pc = 0x76f01c70
+    Found by: stack scanning
+12  libQtCore.so.4.7.4!_ZN20QEventDispatcherUNIX13processEventsE6QFlagsIN10QEventLoop17ProcessEventsFlagEE + 0x832
+     sp = 0x7ef85468    pc = 0x76258930
+    Found by: stack scanning
+13  libQtGui.so.4.7.4!_fini + 0x1e7d6e
+     sp = 0x7ef85478    pc = 0x76e3a958
+    Found by: stack scanning
+14  libQtGui.so.4.7.4!_ZN7QWidget12setWhatsThisERK7QString + 0x6
+     sp = 0x7ef85480    pc = 0x76650fc4
+    Found by: stack scanning
+15  libQtCore.so.4.7.4!_ZNK16QXmlStreamReader11tokenStringEv + 0x250a
+     sp = 0x7ef85488    pc = 0x7627b98c
+    Found by: stack scanning
+16  libQtCore.so.4.7.4!_fini + 0x129726
+     sp = 0x7ef8548c    pc = 0x763b7c58
+    Found by: stack scanning
+17  Launcher!MainWidget::event [MainWidget.cpp : 169 + 0xe]
+     sp = 0x7ef854e0    pc = 0x0003c70c
+    Found by: stack scanning
+18  libQtGui.so.4.7.4!_ZNK7QWidget8sizeHintEv + 0x16
+     sp = 0x7ef85520    pc = 0x7664cbd4
+    Found by: stack scanning
+19  libQtGui.so.4.7.4!_fini + 0x1e7d6e
+     sp = 0x7ef85530    pc = 0x76e3a958
+    Found by: stack scanning
+20  libQtGui.so.4.7.4!_ZN7QWidget12setWhatsThisERK7QString + 0x6
+     sp = 0x7ef85538    pc = 0x76650fc4
+    Found by: stack scanning
+21  libQtGui.so.4.7.4!_ZNK7QWidget8sizeHintEv + 0x16
+     sp = 0x7ef85548    pc = 0x7664cbd4
+    Found by: stack scanning
+22  libQtGui.so.4.7.4!_fini + 0x1e7d6e
+     sp = 0x7ef85558    pc = 0x76e3a958
+    Found by: stack scanning
+23  libQtGui.so.4.7.4!_ZN7QWidget12setWhatsThisERK7QString + 0x6
+     sp = 0x7ef85560    pc = 0x76650fc4
+    Found by: stack scanning
+
+Thread 1
+ 0  libpthread-2.11.1.so!pthread_cond_timedwait + 0x1ec
+     r0 = 0xfffffffc    r1 = 0x00000080    r2 = 0x00000009    r3 = 0x73875d38
+     r4 = 0x00000001    r5 = 0x00000080    r6 = 0x00636510    r7 = 0x000000f0
+     r8 = 0x73875d70    r9 = 0x00000080   r10 = 0x00000009   r12 = 0x00000000
+     fp = 0x006364f8    sp = 0x73875d08    lr = 0x75ddcb34    pc = 0x75ddcb44
+    Found by: given as instruction pointer in context
+ 1  libQtCore.so.4.7.4!_ZNK17QByteArrayMatcher7indexInEPKcii + 0x1926
+     r4 = 0x006364f8    r5 = 0x00007530    r6 = 0x006389d8    r7 = 0x0000003b
+     r8 = 0x0000001e    r9 = 0x44b82fa1   r10 = 0x00636510    fp = 0x3b9aca00
+     sp = 0x73875d68    pc = 0x7613bdc8
+    Found by: call frame info
+ 2  Launcher!LocalDbusServerBluetoothInterface::onBTPairCode [moc_BTServiceProxy.cpp : 129 + 0x18]
+     sp = 0x73875d80    pc = 0x000b07c2
+    Found by: stack scanning
+ 3  libQtCore.so.4.7.4!_fini + 0x216e2
+     sp = 0x73875d84    pc = 0x762afc14
+    Found by: stack scanning
+ 4  libQtCore.so.4.7.4!_ZN18QThreadStorageData6finishEPPv + 0x6ea
+     sp = 0x73875da8    pc = 0x761324a4
+    Found by: stack scanning
+ 5  libQtCore.so.4.7.4!_ZNK17QByteArrayMatcher7indexInEPKcii + 0x136e
+     sp = 0x73875dc8    pc = 0x7613b810
+    Found by: stack scanning
+ 6  libQtCore.so.4.7.4!_ZNK17QByteArrayMatcher7indexInEPKcii + 0x12fe
+     sp = 0x73875dd4    pc = 0x7613b7a0
+    Found by: stack scanning
+ 7  libpthread-2.11.1.so!__pthread_initialize_minimal + 0x1ada
+     sp = 0x73875dd8    pc = 0x75dd6b60
+    Found by: stack scanning
+ 8  Launcher!main [main.cpp : 84 + 0x6]
+     sp = 0x73875de4    pc = 0x00017670
+    Found by: stack scanning
+ 9  libpthread-2.11.1.so!__pthread_initialize_minimal + 0x1aaa
+     sp = 0x73875e08    pc = 0x75dd6b30
+    Found by: stack scanning
+
+Thread 2
+ 0  libc-2.11.1.so!__select + 0x4c
+     r0 = 0x00000007    r1 = 0x73075d2c    r2 = 0x00000000    r3 = 0x00000000
+     r4 = 0x00000000    r5 = 0xffffffff    r6 = 0x763bba18    r7 = 0x0000008e
+     r8 = 0x763bba3c    r9 = 0x73075fa0   r10 = 0x73875abc   r12 = 0x00000000
+     fp = 0x73075f9c    sp = 0x73075d10    lr = 0x75bd7674    pc = 0x75bc154c
+    Found by: given as instruction pointer in context
+ 1  libQtCore.so.4.7.4!_ZN25QAbstractItemModelPrivate10itemsMovedERK11QModelIndexiiS2_iN2Qt11OrientationE + 0x6a
+     r4 = 0xffffffff    r5 = 0xffffffff    r6 = 0x763bba18    r7 = 0x00000000
+     r8 = 0x763bba3c    r9 = 0x73075fa0   r10 = 0x73875abc    fp = 0x73075f9c
+     sp = 0x73075d20    pc = 0x76223540
+    Found by: call frame info
+ 2  libc-2.11.1.so!__libc_thread_freeres + 0x138a2
+     sp = 0x73075d2c    pc = 0x75c1bb74
+    Found by: stack scanning
+
+Loaded modules:
+0x00008000 - 0x001a3fff  Launcher  ???  (main)
+0x727e3000 - 0x72816fff  wenquanyi_micro_hei_28_50.qsf  ???
+0x72846000 - 0x72876fff  wenquanyi_micro_hei_21_50.qsf  ???
+0x74306000 - 0x747f6fff  wqy-microhei.ttc  ???
+0x75149000 - 0x7517cfff  wenquanyi_micro_hei_37_50.qsf  ???
+0x7517d000 - 0x751b1fff  wenquanyi_micro_hei_26_50.qsf  ???
+0x75217000 - 0x75248fff  wenquanyi_micro_hei_18_50.qsf  ???
+0x752ee000 - 0x75340fff  libqjpeg.so  ???
+0x75341000 - 0x7534efff  libqgif.so  ???
+0x753cc000 - 0x753d8fff  libqsvg.so  ???
+0x753d9000 - 0x753e6fff  libqico.so  ???
+0x753e7000 - 0x753e7fff  SYSV00000000 (deleted)  ???
+0x75af1000 - 0x75c34fff  libc-2.11.1.so  ???
+0x75c38000 - 0x75c4afff  libgcc_s.so.1  ???
+0x75c4b000 - 0x75ceffff  libm-2.11.1.so  ???
+0x75cf0000 - 0x75dc0fff  libstdc++.so.6.0.14  ???
+0x75dc7000 - 0x75dd0fff  libts-0.0.so.0.1.1  ???
+0x75dd1000 - 0x75deefff  libpthread-2.11.1.so  ???
+0x75df1000 - 0x75e58fff  libpng17.so.17.0.0  ???
+0x75e59000 - 0x75eb9fff  libjpeg.so.9.2.0  ???
+0x75eba000 - 0x75ee0fff  libz.so.1.2.8  ???
+0x75ee1000 - 0x75ef5fff  libfusion-1.7.so.4.0.0  ???
+0x75ef6000 - 0x75f23fff  libdirect-1.7.so.4.0.0  ???
+0x75f25000 - 0x76074fff  libdirectfb-1.7.so.4.0.0  ???
+0x76075000 - 0x76084fff  librt-2.11.1.so  ???
+0x76085000 - 0x760d6fff  libdbus-1.so.3.2.0  ???
+0x760d7000 - 0x763bbfff  libQtCore.so.4.7.4  ???
+0x763bc000 - 0x764a8fff  libQtNetwork.so.4.7.4  ???
+0x764a9000 - 0x76e44fff  libQtGui.so.4.7.4  ???
+0x76e46000 - 0x76e87fff  libQtXml.so.4.7.4  ???
+0x76e88000 - 0x76edafff  libQtSvg.so.4.7.4  ???
+0x76edb000 - 0x76f51fff  libQtDBus.so.4.7.4  ???
+0x76f52000 - 0x76f5dfff  libDumpClient.so  ???
+0x76f5e000 - 0x76f7ffff  libDump.so  ???
+0x76f80000 - 0x76f8afff  libarkcmn.so  ???
+0x76f8b000 - 0x76f97fff  libdl-2.11.1.so  ???
+0x76f98000 - 0x76fbffff  libDetach.so  ???
+0x76fc0000 - 0x76fdefff  ld-2.11.1.so  ???

@@ -1,0 +1,5 @@
+MODULE Linux arm EDEE5EB95CF79B28D5FC4D579CEEC7190 libqjpeg.so
+PUBLIC 2c18 0 _init
+PUBLIC 45ea8 0 qt_plugin_query_verification_data
+PUBLIC 45eb8 0 qt_plugin_instance
+PUBLIC 464fc 0 _fini

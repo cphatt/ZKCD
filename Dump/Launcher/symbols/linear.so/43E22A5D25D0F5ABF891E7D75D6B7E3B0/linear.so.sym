@@ -1,0 +1,6 @@
+MODULE Linux arm 43E22A5D25D0F5ABF891E7D75D6B7E3B0 linear.so
+PUBLIC 5c4 0 _init
+PUBLIC a64 0 mod_init
+PUBLIC 1030 0 _fini
+STACK CFI INIT bd4 1ec .cfa: sp 0 + .ra: lr
+STACK CFI INIT de0 220 .cfa: sp 0 + .ra: lr

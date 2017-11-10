@@ -1,0 +1,472 @@
+MODULE Linux arm 5287B3C37F01B813544F0DFCD61C6CDF0 libidirectfbimageprovider_bmp.so
+FILE 0 /home/wenyi/project/2d/directfb/directfb/interfaces/IDirectFBImageProvider/../../include/directfb_util.h
+FILE 1 /home/wenyi/project/2d/directfb/directfb/interfaces/IDirectFBImageProvider/idirectfbimageprovider_bmp.c
+FUNC 928 10 0 GetType
+928 10 55 1
+FUNC 938 10 0 GetImplementation
+938 10 55 1
+FUNC 948 7c 0 fetch_data
+948 4 89 1
+94c 4 92 1
+950 8 89 1
+958 4 89 1
+95c 4 106 1
+960 4 92 1
+964 4 93 1
+968 4 95 1
+96c 4 93 1
+970 c 95 1
+97c 8 96 1
+984 8 107 1
+98c 18 97 1
+9a4 8 99 1
+9ac 4 102 1
+9b0 4 103 1
+9b4 4 92 1
+9b8 4 102 1
+9bc 8 92 1
+FUNC 9c4 38 0 IDirectFBImageProvider_BMP_SetRenderCallback
+9c4 8 503 1
+9cc 8 503 1
+9d4 4 505 1
+9d8 4 506 1
+9dc 4 508 1
+9e0 4 503 1
+9e4 4 503 1
+9e8 4 509 1
+9ec 10 503 1
+FUNC 9fc 88 0 IDirectFBImageProvider_BMP_GetSurfaceDescription
+9fc 4 515 1
+a00 4 514 1
+a04 4 515 1
+a08 c 515 1
+a14 8 517 1
+a1c 8 523 1
+a24 4 521 1
+a28 4 523 1
+a2c 4 522 1
+a30 4 523 1
+a34 4 521 1
+a38 4 523 1
+a3c 4 525 1
+a40 8 520 1
+a48 4 522 1
+a4c 4 523 1
+a50 8 526 1
+a58 8 518 1
+a60 24 515 1
+FUNC a84 48 0 IDirectFBImageProvider_BMP_GetImageDescription
+a84 8 532 1
+a8c c 532 1
+a98 4 534 1
+a9c 8 537 1
+aa4 4 534 1
+aa8 4 535 1
+aac 4 540 1
+ab0 1c 532 1
+FUNC acc 24 0 Probe
+acc 4 547 1
+ad0 4 551 1
+ad4 4 548 1
+ad8 18 551 1
+FUNC af0 68 0 Allocate
+af0 4 55 1
+af4 1c 55 1
+b10 10 55 1
+b20 38 55 1
+FUNC b58 40 0 IDirectFBImageProvider_BMP_Destruct
+b58 4 361 1
+b5c 4 362 1
+b60 c 364 1
+b6c 8 365 1
+b74 c 367 1
+b80 4 368 1
+b84 c 370 1
+b90 4 372 1
+b94 4 371 1
+FUNC b98 38 0 Deallocate
+b98 4 55 1
+b9c 10 55 1
+bac c 55 1
+bb8 18 55 1
+FUNC bd0 36c 0 bmp_decode_rgb_row
+bd0 c 270 1
+bdc 8 272 1
+be4 4 270 1
+be8 4 272 1
+bec 4 270 1
+bf0 10 272 1
+c00 4 277 1
+c04 c 273 1
+c10 4 92 1
+c14 4 273 1
+c18 8 92 1
+c20 4 93 1
+c24 4 95 1
+c28 4 93 1
+c2c c 95 1
+c38 8 96 1
+c40 8 355 1
+c48 18 97 1
+c60 8 99 1
+c68 4 102 1
+c6c 4 103 1
+c70 4 92 1
+c74 4 102 1
+c78 c 92 1
+c84 8 281 1
+c8c 4 283 1
+c90 4 281 1
+c94 8c 283 1
+d20 8 285 1
+d28 8 285 1
+d30 4 286 1
+d34 c 286 1
+d40 4 287 1
+d44 24 288 1
+d68 10 285 1
+d78 8 354 1
+d80 c 336 1
+d8c 4 345 1
+d90 4 344 1
+d94 4 343 1
+d98 4 345 1
+d9c 4 343 1
+da0 4 346 1
+da4 4 344 1
+da8 4 345 1
+dac 4 343 1
+db0 10 336 1
+dc0 8 354 1
+dc8 8 292 1
+dd0 8 292 1
+dd8 4 293 1
+ddc 10 293 1
+dec 4 294 1
+df0 24 295 1
+e14 10 292 1
+e24 8 354 1
+e2c 8 299 1
+e34 8 299 1
+e3c 4 300 1
+e40 4 299 1
+e44 4 300 1
+e48 24 301 1
+e6c c 299 1
+e78 8 354 1
+e80 10 305 1
+e90 8 309 1
+e98 4 305 1
+e9c c 309 1
+ea8 4 312 1
+eac 8 311 1
+eb4 4 310 1
+eb8 4 315 1
+ebc 4 310 1
+ec0 4 315 1
+ec4 4 314 1
+ec8 4 313 1
+ecc 4 317 1
+ed0 4 314 1
+ed4 4 317 1
+ed8 4 313 1
+edc 8 317 1
+ee4 c 305 1
+ef0 8 354 1
+ef8 c 321 1
+f04 4 330 1
+f08 4 329 1
+f0c 4 330 1
+f10 8 328 1
+f18 4 329 1
+f1c 4 330 1
+f20 4 328 1
+f24 10 321 1
+f34 8 354 1
+FUNC f3c 4bc 0 IDirectFBImageProvider_BMP_RenderTo
+f3c 4 387 1
+f40 c 378 1
+f4c 4 387 1
+f50 c 387 1
+f5c 8 389 1
+f64 4 392 1
+f68 8 393 1
+f70 c 393 1
+f7c 8 398 1
+f84 c 399 1
+f90 c 399 1
+f9c c 401 1
+fa8 4 402 1
+fac 8 403 1
+fb4 4 402 1
+fb8 4 403 1
+fbc 4 402 1
+fc0 4 403 1
+fc4 4 671 0
+fc8 4 673 0
+fcc 4 672 0
+fd0 4 674 0
+fd4 8 673 0
+fdc 8 674 0
+fe4 4 600 0
+fe8 4 671 0
+fec 4 672 0
+ff0 4 673 0
+ff4 4 674 0
+ff8 4 600 0
+ffc 4 599 0
+1000 8 598 0
+1008 8 600 0
+1010 8 599 0
+1018 8 601 0
+1020 8 600 0
+1028 1c 413 1
+1044 8 414 1
+104c c 417 1
+1058 28 484 1
+1080 c 487 1
+108c 18 488 1
+10a4 c 489 1
+10b0 c 493 1
+10bc 4 495 1
+10c0 4 411 1
+10c4 c 496 1
+10d0 8 400 1
+10d8 8 394 1
+10e0 10 387 1
+10f0 18 406 1
+1108 4 418 1
+110c c 419 1
+1118 4 418 1
+111c c 423 1
+1128 10 423 1
+1138 10 436 1
+1148 4 437 1
+114c 4 436 1
+1150 4 437 1
+1154 10 442 1
+1164 34 444 1
+1198 c 445 1
+11a4 4 444 1
+11a8 c 446 1
+11b4 8 445 1
+11bc 8 463 1
+11c4 8 473 1
+11cc c 474 1
+11d8 8 475 1
+11e0 10 418 1
+11f0 10 375 1
+1200 4 479 1
+1204 8 478 1
+120c 4 479 1
+1210 8 480 1
+1218 c 438 1
+1224 2c 439 1
+1250 2c 464 1
+127c c 467 1
+1288 18 468 1
+12a0 10 469 1
+12b0 4 453 1
+12b4 c 445 1
+12c0 4 452 1
+12c4 8 446 1
+12cc 8 450 1
+12d4 8 452 1
+12dc 8 450 1
+12e4 8 452 1
+12ec 8 450 1
+12f4 4 452 1
+12f8 4 450 1
+12fc 4 452 1
+1300 8 450 1
+1308 8 452 1
+1310 4 455 1
+1314 4 457 1
+1318 10 455 1
+1328 18 456 1
+1340 10 457 1
+1350 24 444 1
+1374 10 426 1
+1384 8 427 1
+138c 18 432 1
+13a4 14 433 1
+13b8 c 428 1
+13c4 34 429 1
+FUNC 13f8 608 0 Construct
+13f8 4 556 1
+13fc 4 559 1
+1400 4 125 1
+1404 4 559 1
+1408 4 556 1
+140c 4 556 1
+1410 4 125 1
+1414 4 556 1
+1418 4 559 1
+141c 8 561 1
+1424 c 564 1
+1430 44 117 1
+1474 c 119 1
+1480 8 95 1
+1488 4 93 1
+148c 8 95 1
+1494 8 96 1
+149c 4 362 1
+14a0 c 364 1
+14ac 8 365 1
+14b4 c 367 1
+14c0 4 368 1
+14c4 c 370 1
+14d0 4 371 1
+14d4 c 580 1
+14e0 18 97 1
+14f8 8 99 1
+1500 4 102 1
+1504 4 103 1
+1508 4 92 1
+150c 4 102 1
+1510 4 92 1
+1514 18 124 1
+152c 18 125 1
+1544 8 202 1
+154c 20 135 1
+156c 4 136 1
+1570 4 135 1
+1574 4 136 1
+1578 1c 137 1
+1594 4 139 1
+1598 c 137 1
+15a4 4 125 1
+15a8 4 127 1
+15ac c 125 1
+15b8 20 143 1
+15d8 8 144 1
+15e0 28 145 1
+1608 8 147 1
+1610 18 559 1
+1628 20 151 1
+1648 c 152 1
+1654 4 151 1
+1658 4 152 1
+165c 24 153 1
+1680 8 155 1
+1688 20 159 1
+16a8 8 160 1
+16b0 4 159 1
+16b4 4 160 1
+16b8 1c 161 1
+16d4 4 163 1
+16d8 c 161 1
+16e4 c 167 1
+16f0 8 168 1
+16f8 1c 169 1
+1714 4 171 1
+1718 c 169 1
+1724 8 97 1
+172c c 175 1
+1738 8 176 1
+1740 4 175 1
+1744 1c 176 1
+1760 4 180 1
+1764 4 176 1
+1768 20 186 1
+1788 4 188 1
+178c c 186 1
+1798 20 192 1
+17b8 4 193 1
+17bc 4 192 1
+17c0 4 193 1
+17c4 1c 200 1
+17e0 4 202 1
+17e4 c 200 1
+17f0 20 212 1
+1810 4 213 1
+1814 4 212 1
+1818 c 214 1
+1824 4 219 1
+1828 4 220 1
+182c 4 219 1
+1830 c 230 1
+183c 4 574 1
+1840 4 572 1
+1844 4 574 1
+1848 4 575 1
+184c 4 576 1
+1850 4 577 1
+1854 8 572 1
+185c 4 575 1
+1860 4 574 1
+1864 4 576 1
+1868 4 577 1
+186c 4 579 1
+1870 4 575 1
+1874 4 576 1
+1878 4 577 1
+187c 4 579 1
+1880 4 221 1
+1884 8 223 1
+188c 4 221 1
+1890 c 223 1
+189c c 224 1
+18a8 8 234 1
+18b0 4 235 1
+18b4 8 234 1
+18bc 4 235 1
+18c0 14 238 1
+18d4 8 239 1
+18dc 4 255 1
+18e0 4 239 1
+18e4 8 242 1
+18ec 4 252 1
+18f0 4 246 1
+18f4 4 247 1
+18f8 4 248 1
+18fc c 252 1
+1908 c 242 1
+1914 2c 236 1
+1940 18 258 1
+1958 20 259 1
+1978 4 252 1
+197c 8 255 1
+1984 4 254 1
+1988 4 255 1
+198c 4 254 1
+1990 10 255 1
+19a0 60 254 1
+FUNC 1a00 10 0 IDirectFBImageProvider_BMP_ctor
+1a00 10 55 1
+FUNC 1a10 10 0 IDirectFBImageProvider_BMP_dtor
+1a10 10 55 1
+STACK CFI INIT 928 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 938 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 948 7c .cfa: sp 0 + .ra: lr
+STACK CFI 94c .cfa: sp 20 +
+STACK CFI 950 .ra: .cfa -4 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI 958 .cfa: sp 32 +
+STACK CFI INIT 9c4 38 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 9fc 88 .cfa: sp 0 + .ra: lr
+STACK CFI a04 .cfa: sp 4 +
+STACK CFI a08 r4: .cfa -4 + ^
+STACK CFI INIT a84 48 .cfa: sp 0 + .ra: lr
+STACK CFI INIT acc 24 .cfa: sp 0 + .ra: lr
+STACK CFI INIT af0 68 .cfa: sp 0 + .ra: lr
+STACK CFI af4 .cfa: sp 8 +
+STACK CFI afc .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT b58 40 .cfa: sp 0 + .ra: lr
+STACK CFI b5c .cfa: sp 8 +
+STACK CFI b60 .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT b98 38 .cfa: sp 0 + .ra: lr
+STACK CFI b9c .cfa: sp 16 +
+STACK CFI ba0 .ra: .cfa -4 + ^ r3: .cfa -16 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI INIT bd0 36c .cfa: sp 0 + .ra: lr
+STACK CFI bd4 .cfa: sp 36 +
+STACK CFI bd8 .cfa: r11 4 + .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI INIT f3c 4bc .cfa: sp 0 + .ra: lr
+STACK CFI f44 .cfa: sp 36 +
+STACK CFI f48 .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI f4c .cfa: sp 160 +
+STACK CFI INIT 13f8 608 .cfa: sp 0 + .ra: lr
+STACK CFI 13fc .cfa: sp 36 +
+STACK CFI 1400 .ra: .cfa -4 + ^ r10: .cfa -12 + ^ r11: .cfa -8 + ^ r4: .cfa -36 + ^ r5: .cfa -32 + ^ r6: .cfa -28 + ^ r7: .cfa -24 + ^ r8: .cfa -20 + ^ r9: .cfa -16 + ^
+STACK CFI 140c .cfa: sp 104 +
+STACK CFI INIT 1a00 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1a10 10 .cfa: sp 0 + .ra: lr

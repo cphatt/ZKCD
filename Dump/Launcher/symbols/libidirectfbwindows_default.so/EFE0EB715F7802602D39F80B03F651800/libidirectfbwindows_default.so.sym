@@ -1,0 +1,288 @@
+MODULE Linux arm EFE0EB715F7802602D39F80B03F651800 libidirectfbwindows_default.so
+FILE 0 /home/wenyi/project/2d/directfb/directfb/interfaces/IDirectFBWindows/../../lib/direct/list.h
+FILE 1 /home/wenyi/project/2d/directfb/directfb/interfaces/IDirectFBWindows/idirectfbwindows_default.c
+FUNC 858 10 0 GetType
+858 10 65 1
+FUNC 868 10 0 GetImplementation
+868 10 65 1
+FUNC 878 40 0 IDirectFBWindows_AddRef
+878 8 108 1
+880 c 108 1
+88c 4 112 1
+890 4 114 1
+894 8 112 1
+89c 4 114 1
+8a0 4 108 1
+8a4 4 115 1
+8a8 10 108 1
+FUNC 8b8 20 0 IDirectFBWindows_WM_Reaction_WindowAdd
+8b8 8 135 1
+8c0 4 135 1
+8c4 c 143 1
+8d0 8 146 1
+FUNC 8d8 20 0 IDirectFBWindows_WM_Reaction_WindowRemove
+8d8 4 159 1
+8dc 4 151 1
+8e0 10 159 1
+8f0 8 162 1
+FUNC 8f8 2c 0 IDirectFBWindows_WM_Reaction_WindowConfig
+8f8 4 167 1
+8fc 4 175 1
+900 8 167 1
+908 14 175 1
+91c 8 178 1
+FUNC 924 24 0 IDirectFBWindows_WM_Reaction_WindowState
+924 4 183 1
+928 4 191 1
+92c 4 183 1
+930 10 191 1
+940 8 194 1
+FUNC 948 20 0 IDirectFBWindows_WM_Reaction_WindowRestack
+948 8 199 1
+950 10 207 1
+960 8 210 1
+FUNC 968 20 0 IDirectFBWindows_WM_Reaction_WindowFocus
+968 4 223 1
+96c 4 215 1
+970 10 223 1
+980 8 226 1
+FUNC 988 10 0 Probe
+988 4 331 1
+98c c 339 1
+FUNC 998 a8 0 Construct
+998 c 343 1
+9a4 4 343 1
+9a8 c 349 1
+9b4 8 356 1
+9bc 4 364 1
+9c0 4 366 1
+9c4 4 365 1
+9c8 4 356 1
+9cc 4 370 1
+9d0 4 364 1
+9d4 4 371 1
+9d8 4 366 1
+9dc 4 370 1
+9e0 4 371 1
+9e4 4 373 1
+9e8 4 374 1
+9ec 4 370 1
+9f0 4 371 1
+9f4 4 373 1
+9f8 4 374 1
+9fc 4 384 1
+a00 4 373 1
+a04 4 374 1
+a08 10 384 1
+a18 28 349 1
+FUNC a40 38 0 Deallocate
+a40 4 65 1
+a44 10 65 1
+a54 c 65 1
+a60 18 65 1
+FUNC a78 15c 0 IDirectFBWindows_UnregisterWatcher
+a78 4 305 1
+a7c 4 301 1
+a80 4 305 1
+a84 c 305 1
+a90 1c 309 1
+aac c 310 1
+ab8 c 312 1
+ac4 c 313 1
+ad0 c 312 1
+adc c 313 1
+ae8 c 312 1
+af4 c 313 1
+b00 c 312 1
+b0c c 313 1
+b18 c 312 1
+b24 c 313 1
+b30 c 312 1
+b3c c 313 1
+b48 c 312 1
+b54 c 313 1
+b60 4 182 0
+b64 4 183 0
+b68 4 185 0
+b6c 4 191 0
+b70 8 188 0
+b78 4 191 0
+b7c 4 193 0
+b80 4 194 0
+b84 4 201 0
+b88 4 198 0
+b8c 4 318 1
+b90 8 201 0
+b98 4 203 0
+b9c 4 318 1
+ba0 8 320 1
+ba8 8 324 1
+bb0 10 305 1
+bc0 4 324 1
+bc4 10 325 1
+FUNC bd4 16c 0 IDirectFBWindows_Release
+bd4 4 119 1
+bd8 8 120 1
+be0 c 120 1
+bec 14 124 1
+c00 18 93 1
+c18 c 95 1
+c24 c 96 1
+c30 c 95 1
+c3c c 96 1
+c48 c 95 1
+c54 c 96 1
+c60 c 95 1
+c6c c 96 1
+c78 c 95 1
+c84 c 96 1
+c90 c 95 1
+c9c c 96 1
+ca8 c 95 1
+cb4 c 96 1
+cc0 8 99 1
+cc8 18 93 1
+ce0 24 102 1
+d04 8 127 1
+d0c 4 102 1
+d10 4 93 1
+d14 c 102 1
+d20 4 127 1
+d24 4 128 1
+d28 18 120 1
+FUNC d40 68 0 Allocate
+d40 4 65 1
+d44 1c 65 1
+d60 10 65 1
+d70 38 65 1
+FUNC da8 468 0 IDirectFBWindows_RegisterWatcher
+da8 4 248 1
+dac 4 275 1
+db0 4 253 1
+db4 4 275 1
+db8 4 248 1
+dbc 8 248 1
+dc4 4 253 1
+dc8 c 253 1
+dd4 8 257 1
+ddc c 260 1
+de8 c 268 1
+df4 8 269 1
+dfc 10 272 1
+e0c 4 275 1
+e10 4 272 1
+e14 4 275 1
+e18 4 272 1
+e1c 4 273 1
+e20 4 275 1
+e24 28 275 1
+e4c 18 275 1
+e64 c 289 1
+e70 c 290 1
+e7c c 289 1
+e88 c 290 1
+e94 c 289 1
+ea0 c 290 1
+eac c 289 1
+eb8 c 290 1
+ec4 c 289 1
+ed0 c 290 1
+edc c 289 1
+ee8 c 290 1
+ef4 c 289 1
+f00 c 290 1
+f0c 8 293 1
+f14 c 296 1
+f20 c 276 1
+f2c 28 276 1
+f54 18 276 1
+f6c 10 276 1
+f7c c 277 1
+f88 28 277 1
+fb0 18 277 1
+fc8 10 277 1
+fd8 c 260 1
+fe4 c 261 1
+ff0 c 262 1
+ffc c 263 1
+1008 c 264 1
+1014 8 266 1
+101c c 278 1
+1028 28 278 1
+1050 18 278 1
+1068 10 278 1
+1078 10 275 1
+1088 c 279 1
+1094 28 279 1
+10bc 18 279 1
+10d4 10 279 1
+10e4 c 280 1
+10f0 28 280 1
+1118 18 280 1
+1130 10 280 1
+1140 4 83 0
+1144 4 85 0
+1148 4 87 0
+114c 4 85 0
+1150 4 88 0
+1154 4 100 0
+1158 4 93 0
+115c 4 98 0
+1160 4 95 0
+1164 4 98 0
+1168 4 95 0
+116c 4 100 0
+1170 8 284 1
+1178 2c 270 1
+11a4 6c 253 1
+FUNC 1210 10 0 IDirectFBWindows_default_ctor
+1210 10 65 1
+FUNC 1220 10 0 IDirectFBWindows_default_dtor
+1220 10 65 1
+STACK CFI INIT 858 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 868 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 878 40 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 8b8 20 .cfa: sp 0 + .ra: lr
+STACK CFI 8c0 .cfa: sp 8 +
+STACK CFI 8c8 .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 8d8 20 .cfa: sp 0 + .ra: lr
+STACK CFI 8e0 .cfa: sp 8 +
+STACK CFI 8e8 .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 8f8 2c .cfa: sp 0 + .ra: lr
+STACK CFI 8fc .cfa: sp 8 +
+STACK CFI 904 .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 924 24 .cfa: sp 0 + .ra: lr
+STACK CFI 930 .cfa: sp 8 +
+STACK CFI 93c .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 948 20 .cfa: sp 0 + .ra: lr
+STACK CFI 950 .cfa: sp 8 +
+STACK CFI 958 .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 968 20 .cfa: sp 0 + .ra: lr
+STACK CFI 970 .cfa: sp 8 +
+STACK CFI 978 .ra: .cfa -4 + ^ r3: .cfa -8 + ^
+STACK CFI INIT 988 10 .cfa: sp 0 + .ra: lr
+STACK CFI 98c .cfa: sp 16 +
+STACK CFI 990 r0: .cfa -16 + ^ r1: .cfa -12 + ^ r2: .cfa -8 + ^ r3: .cfa -4 + ^
+STACK CFI INIT 998 a8 .cfa: sp 0 + .ra: lr
+STACK CFI 99c .cfa: sp 16 +
+STACK CFI 9a0 .cfa: sp 24 +
+STACK CFI 9a4 .cfa: sp 32 +
+STACK CFI 9a8 .ra: .cfa -20 + ^ r0: .cfa -16 + ^ r1: .cfa -12 + ^ r2: .cfa -8 + ^ r3: .cfa -4 + ^ r4: .cfa -24 + ^
+STACK CFI INIT a40 38 .cfa: sp 0 + .ra: lr
+STACK CFI a44 .cfa: sp 16 +
+STACK CFI a48 .ra: .cfa -4 + ^ r3: .cfa -16 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI INIT a78 15c .cfa: sp 0 + .ra: lr
+STACK CFI a80 .cfa: sp 16 +
+STACK CFI a84 .ra: .cfa -4 + ^ r3: .cfa -16 + ^ r4: .cfa -12 + ^ r5: .cfa -8 + ^
+STACK CFI INIT bd4 16c .cfa: sp 0 + .ra: lr
+STACK CFI bd8 .cfa: sp 24 +
+STACK CFI bdc .ra: .cfa -4 + ^ r3: .cfa -24 + ^ r4: .cfa -20 + ^ r5: .cfa -16 + ^ r6: .cfa -12 + ^ r7: .cfa -8 + ^
+STACK CFI INIT d40 68 .cfa: sp 0 + .ra: lr
+STACK CFI d44 .cfa: sp 8 +
+STACK CFI d4c .ra: .cfa -4 + ^ r4: .cfa -8 + ^
+STACK CFI INIT da8 468 .cfa: sp 0 + .ra: lr
+STACK CFI dac .cfa: sp 28 +
+STACK CFI db0 .ra: .cfa -4 + ^ r10: .cfa -8 + ^ r4: .cfa -28 + ^ r5: .cfa -24 + ^ r6: .cfa -20 + ^ r7: .cfa -16 + ^ r8: .cfa -12 + ^
+STACK CFI dbc .cfa: sp 40 +
+STACK CFI INIT 1210 10 .cfa: sp 0 + .ra: lr
+STACK CFI INIT 1220 10 .cfa: sp 0 + .ra: lr
