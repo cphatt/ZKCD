@@ -180,6 +180,7 @@ TabBarWidgetPrivate::TabBarWidgetPrivate(TabBarWidget *parent)
     : m_Parent(parent)
 {
     initializeBasicWidget();
+    initializeOtherWidget();
     receiveAllCustomEvent();
 }
 

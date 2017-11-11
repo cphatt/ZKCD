@@ -105,7 +105,7 @@ void LinkWidget::timerEvent(QTimerEvent *event)
 
 void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
 {
-    qDebug() << "LinkWidget::ontWidgetTypeChange" << type << status;
+    qWarning() << "LinkWidget::ontWidgetTypeChange" << type << status;
     switch (type) {
     case Widget::T_Back: {
         if (isVisible()) {
@@ -149,7 +149,7 @@ void LinkWidget::onToolButtonRelease()
         m_Private->initializeMirrowWidget();
         g_Widget->setWidgetType(Widget::T_Mirror, WidgetStatus::RequestShow);
     } else if (sender() == m_Private->m_CarplayBtn) {
-        m_Private->initializeCarplayWidget();
+
         g_Widget->setWidgetType(Widget::T_Carplay, WidgetStatus::RequestShow);
     }
 }
@@ -158,6 +158,7 @@ LinkWidgetPrivate::LinkWidgetPrivate(LinkWidget *parent)
     : m_Parent(parent)
 {
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
+    initializeCarplayWidget();
 }
 
 LinkWidgetPrivate::~LinkWidgetPrivate()

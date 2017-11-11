@@ -144,7 +144,7 @@ void HomeWidget::customEvent(QEvent *event)
 {
     switch (event->type()) {
     case CustomEventType::MainWidgetShow: {
-        m_Private->connectAllSlots();
+//        m_Private->connectAllSlots();
         break;
     }
     default: {
@@ -208,7 +208,10 @@ HomeWidgetPrivate::HomeWidgetPrivate(HomeWidget *parent)
 {
     m_ToolButtonMap.clear();
     initialize();
+    connectAllSlots();
     receiveAllCustomEvent();
+
+  //   g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
 }
 
 HomeWidgetPrivate::~HomeWidgetPrivate()

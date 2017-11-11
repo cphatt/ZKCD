@@ -67,7 +67,7 @@ void StatusBarWidget::customEvent(QEvent* event)
 {
     switch (event->type()) {
     case CustomEventType::MainWidgetShow: {
-        m_Private->connectAllSlots();
+//        m_Private->connectAllSlots();
         break;
     }
     case CustomEventType::StatusBarWidgetAddChild: {
@@ -226,6 +226,7 @@ StatusBarWidgetPrivate::StatusBarWidgetPrivate(StatusBarWidget* parent)
 {
     initialize();
     receiveAllCustomEvent();
+    connectAllSlots();
 }
 
 StatusBarWidgetPrivate::~StatusBarWidgetPrivate()

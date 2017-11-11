@@ -1,7 +1,5 @@
 #include "Port.h"
 #include <QDebug>
-#include <QtSerialPort/QSerialPort>
-#include <QtSerialPort/QSerialPortInfo>
 #include "RunnableThread.h"
 #include "AutoConnect.h"
 #include <QThreadPool>
@@ -15,10 +13,13 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <linux/input.h>
+#include <string.h>
+#include <termios.h>
+
 #include "Setting.h"
 #include<QTimer>
 
-
+static int fd;
 static int input_fd;
 bool isUSBAlive;
 bool isSDAlive;
@@ -26,8 +27,8 @@ class PortPrivate
 {
     Q_DISABLE_COPY(PortPrivate)
 public:
-    explicit PortPrivate(Port* parent);
-    ~PortPrivate();
+     explicit PortPrivate(Port* parent);
+    virtual ~PortPrivate();
     void initialize();
     void connectAllSlots();
     bool isOpen();
@@ -35,17 +36,12 @@ public:
     QString portName() ;
     void setBaudRate(int baudRate);
     int baudRate();
-    virtual bool open();
-    virtual void close();
-    virtual bool clear();
-    QByteArray readData();
-    int writeData(char *buf, int size);
+
+    ssize_t  readData(void *buffer, size_t n);
+    ssize_t writeData(const void *buffer, size_t n);
     int write(char ch);
     static void SerialPortReadThread(void *);
-    QString m_portName;
-    int m_BaudRate;
-    QSerialPort *m_serialPort;
-    QByteArray requestData;
+
     QTimer *m_Timer  = NULL;
 public:
     Port* m_Parent;
@@ -80,8 +76,8 @@ Port::~Port()
 void Port::onTimeOut()
 {
 
-//        qDebug() << "send"<< m_Private->writeData("6666", 5) << "byte";
-//        m_Private->m_Timer->start();
+        qDebug() << "send"<< m_Private->writeData("6666", 5) << "byte";
+        m_Private->m_Timer->start();
 }
 /*
 该函数用于向串口中写入数据
@@ -172,10 +168,7 @@ PortPrivate::~PortPrivate()
 PortPrivate::PortPrivate(Port* parent)
     : m_Parent(parent)
 {
-    m_serialPort = NULL;
-    m_BaudRate = 9600;
-    m_portName = "";
-    requestData = "";
+    fd = -1;
     input_fd = -1;
     m_Timer = new QTimer(m_Parent);
     m_Timer->setSingleShot(true);
@@ -204,10 +197,11 @@ bool isLinkCommand(const char *buff){
     {
         checksum = checksum ^buff[i];
     }
-     qDebug() << "isLinkCommand";
+    // qWarning() << "isLinkCommand" << checksum << buff[temp];
+    printf("0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",buff[0], buff[1], buff[2], buff[3], buff[4], checksum,buff[temp]);
     if(checksum ==buff[temp])
     {       flag = 1;
-            qDebug() << "type" <<buff[3] <<",data" << type_data;
+            qWarning() << "type" <<buff[3] <<",data" << type_data;
             if(buff[3] == 0x2){
                     if(type_data == 0x1){       //turn on carlife
                             g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
@@ -403,60 +397,197 @@ void PortPrivate::SerialPortReadThread(void *paramater)
 {
     qDebug() << "SerialPortReadThread" << paramater;
     PortPrivate* m_Private = (PortPrivate*)paramater;
-    int len = 0;
+    int nwrite,i;
+    int dev;
+    unsigned char buff[256]={0};
+    char rbuff[1024+128]={0};
+    int count = 0;
 
     forever{
-        m_Private->requestData += m_Private->readData(); //m_Private->m_serialPort->readAll();
-        len = m_Private->requestData.size();
-         emit m_Private->m_Parent->read_port_data(m_Private->requestData);
-        while(len >= 5)
+        count += read(fd, rbuff+count, 32);
+        printf("count=%d.\n", count);
+        sleep(1);
+
+//        emit m_Private->m_Parent->read_port_data(m_Private->requestData);
+        while(count >= 6)
         {
-//            //将qbytearray分割成两个变量
-//          qDebug() <<"SerialPortReadThread"<<QString(m_Private->requestData);
-//          qDebug() <<"Port::handlerData" <<m_Private->requestData.toHex().data();
-//            //         m_Private->requestData = "";
-//            if(isCommand(m_Private->requestData.mid(0,6).data())){
-//                len -= 6;
-//                m_Private->requestData = m_Private->requestData.mid(6,len);
-//            }
-//            else{
-//                len -= 1;
-//                m_Private->requestData = m_Private->requestData.mid(1,len);
-//            }
-//             depend on head data
-                char *head;
-                head = m_Private->requestData.data();
-                if( *head== 0x5c ){
-                    if(isLinkCommand(m_Private->requestData.mid(0,5).data())){
-                                        len -= 5;
-                                        m_Private->requestData = m_Private->requestData.mid(5,len);
-                    }else if(len >= 10 && isTouchCommand(m_Private->requestData.mid(0,10).data())){
-                                //触摸数据先放在这里
-                    }else{
-                                   len -= 1;
-                                   m_Private->requestData = m_Private->requestData.mid(1,len);
-                    }
+            printf("0x%x ",  rbuff[0]);
+            if( rbuff[0]== 0x5c ){
+                if(isLinkCommand(rbuff )){
+                    count -= 6;
+                    strncpy(rbuff, rbuff+6, count );
+                }else if(count >= 10 && isTouchCommand(rbuff)){
+                            //触摸数据先放在这里
                 }else{
-                    len -= 1;
-                    m_Private->requestData = m_Private->requestData.mid(1,len);
-                 }
+                    count -= 1;
+                    strncpy(rbuff, rbuff+1, count );
+                }
+            }else{
+                count -= 1;
+                strncpy(rbuff, rbuff+1, count );
+            }
         }
 
     }
 }
 
+static int open_port(int comport)
+{
+    char dev[16];
+    long vdisable;
+    int fd = -1, ret = -1;
+
+    if (comport > 4)
+        return -1;
+
+    sprintf(dev, "/dev/ttyHS%d", comport);
+    printf("openning%s\n", dev);
+
+    fd = open(dev, O_RDWR | O_NOCTTY);//|O_NOCTTY|O_NDELAY
+    if (fd < 0) {
+        printf("Can't Open Serial Port ttyS%d", comport);
+        return -1;
+    }
+
+    if (fcntl(fd, F_SETFL, 0) < 0) {
+        printf("fcntl failed!\n");
+        goto exit;
+    }
+#if 0
+    if(isatty(STDIN_FILENO) == 0) {
+        printf("standard input is not a terminal device\n");
+        goto exit;O_NOCTTY
+    } else {
+        printf("isatty success!\n");
+    }
+#endif
+    printf("fd-open=%d\n", fd);
+    ret = 0;
+exit:
+    if (ret < 0)
+        close(fd);
+    return fd;
+}
+
+
+static int set_opt(int fd, int nSpeed, int nBits, char nEvent, int nStop)
+{
+    struct termios newtio;
+
+    bzero(&newtio, sizeof(newtio));
+    if (tcgetattr(fd, &newtio) != 0) {
+        perror("SetupSerial 1");
+        return -1;
+    }
+
+    newtio.c_cflag |= CLOCAL | CREAD;
+    newtio.c_cflag &= ~CSIZE;
+
+    switch(nBits) {
+    case 7:
+        newtio.c_cflag |= CS7;
+        break;
+    case 8:
+        newtio.c_cflag |= CS8;
+        break;
+    }
+
+    switch(nEvent) {
+    case 'O':
+        newtio.c_cflag |= PARENB;
+        newtio.c_cflag |= PARODD;
+        newtio.c_iflag |= (INPCK | ISTRIP);
+        break;
+    case 'E':
+        newtio.c_iflag |= (INPCK | ISTRIP);
+        newtio.c_cflag |= PARENB;
+        newtio.c_cflag &= ~PARODD;
+        break;
+    case 'N':
+        newtio.c_cflag &= ~PARENB;
+        break;
+    }
+
+    switch(nSpeed) {
+    case 2400:
+        cfsetispeed(&newtio, B2400);
+        cfsetospeed(&newtio, B2400);
+        break;
+
+    case 4800:
+        cfsetispeed(&newtio, B4800);
+        cfsetospeed(&newtio, B4800);
+        break;
+
+    case 9600:
+        cfsetispeed(&newtio, B9600);
+        cfsetospeed(&newtio, B9600);
+        break;
+
+    case 19200:
+        cfsetispeed(&newtio, B19200);
+        cfsetospeed(&newtio, B19200);
+        break;
+
+    case 115200:
+        cfsetispeed(&newtio, B115200);
+        cfsetospeed(&newtio, B115200);
+        break;
+
+    case 460800:
+        cfsetispeed(&newtio, B460800);
+        cfsetospeed(&newtio, B460800);
+        break;
+
+    default:
+        cfsetispeed(&newtio, B9600);
+        cfsetospeed(&newtio, B9600);
+        break;
+    }
+
+    if (nStop == 1)
+        newtio.c_cflag &= ~CSTOPB;
+    else if (nStop == 2)
+        newtio.c_cflag |= CSTOPB;
+
+    newtio.c_lflag &= ~(ICANON | ISIG | ECHO | IEXTEN);
+    newtio.c_iflag &= ~(INPCK|BRKINT|ICRNL|ISTRIP|IXON);
+    newtio.c_oflag  &= ~OPOST;
+
+    newtio.c_cc[VTIME] = 0;
+    newtio.c_cc[VMIN] = 5;
+
+    tcflush(fd,TCIFLUSH);
+
+
+    if ((tcsetattr(fd, TCSANOW, &newtio)) != 0) {
+        perror("com set error");
+        return -1;
+    }
+    printf("set done!\n");
+    return 0;
+}
+/**
+ * @brief PortPrivate::initialize   串口初始化函数
+ */
+
 void PortPrivate::initialize()
 {
-    system("pkill app_touchscreen");
-    m_serialPort = new QSerialPort();
-    m_BaudRate = 38400;
-    m_portName = "/dev/ttyHS0";
-    if(open()){
-        qDebug() <<"66666666666666";
-    }else{
-        qDebug() <<"77777777777777" << m_serialPort->errorString();
-        return;
+
+    int dev = 1;
+    fd = open_port(dev);
+    if (fd < 0){
+        perror("open_port error");
+        return ;
     }
+
+    if (set_opt(fd, 38400, 8, 'N', 1) < 0) {
+        perror("set_opt error");
+        ::close(fd);
+       return;
+    }
+    printf("fd=%d\n",fd);
+
 
     input_fd = ::open("/dev/input/event0", O_RDWR);
     if(input_fd < 0)
@@ -484,100 +615,49 @@ void PortPrivate::connectAllSlots(){
 
 }
 
+ssize_t PortPrivate::readData(void *buffer, size_t n)
+{
+    ssize_t numRead = 0;
+    size_t totRead = 0;
+    char *buf;
+    buf = (char *)buffer;
 
-static QSerialPort::BaudRate getBaudRate(int baudRate){
-    switch(baudRate){
-        case 1200:
-            return QSerialPort::Baud1200;
-        case 2400:
-            return QSerialPort::Baud2400;
-        case 4800:
-            return QSerialPort::Baud4800;
-        case 9600:
-            return QSerialPort::Baud9600;
-        case 19200:
-            return QSerialPort::Baud1200;
-        case 38400:
-            return QSerialPort::Baud38400;
-        case 57600:
-            return QSerialPort::Baud57600;
-        case 115200:
-            return QSerialPort::Baud115200;
-
-    }
-
-}
-
-void PortPrivate::setPortName(const QString &name){
-    m_portName = name;
-}
-
-QString PortPrivate::portName(){
-    return m_portName;
-}
-void PortPrivate::setBaudRate(int baudRate){
-    m_BaudRate = baudRate;
-}
-int PortPrivate::baudRate(){
-    return m_BaudRate;
-}
-bool PortPrivate::isOpen(){
-    return m_serialPort->isOpen();
-}
-bool PortPrivate::open(){
-    if(m_serialPort->isOpen())
-        return true;
-    m_serialPort->setPortName(m_portName);
-    m_serialPort->setBaudRate(m_BaudRate);
-    m_serialPort->setParity(QSerialPort::NoParity);
-    m_serialPort->setDataBits(QSerialPort::Data8);
-    m_serialPort->setStopBits(QSerialPort::OneStop);
-    m_serialPort->setFlowControl(QSerialPort::NoFlowControl);
-    m_serialPort->setReadBufferSize(1024);
-    return m_serialPort->open(QSerialPort::ReadWrite);
-
-}
-
-bool PortPrivate::clear(){
-    if(m_serialPort->isOpen()){
-        m_serialPort->clear();
-        this->close();
-        return this->open();
-    }
-    return false;
-
-}
-
-void PortPrivate::close(){
-    if(m_serialPort->isOpen())
-        m_serialPort->close();
-}
-
-QByteArray PortPrivate::readData(){
-    QByteArray Data = "";
-
-    while(m_serialPort->waitForReadyRead(20))
-    {
-        Data += m_serialPort->readAll();
-    }
-    Data += m_serialPort->readAll();
-    return Data;
-}
-
-int PortPrivate::writeData(char *buf, int size){
-    int len = 0;
-    forever{
-        int n = m_serialPort->write(&buf[len], size - len);
-        if(n == -1){
-            return -1;
-        }else{
-            len += n;
-            if(size == len)
-                break;
+    for (totRead = 0; totRead < n; ) {
+        numRead = read(fd, buf, n - totRead);
+        if (numRead == 0)
+            return totRead;
+        if (numRead == -1) {
+            if (errno == EINTR) {printf("\033[;31m%s:%d  numRead=%d\033[0m\n", __func__, __LINE__, numRead);
+                continue;
+            } else {
+                return -1;
+            }
         }
-
+        totRead += numRead;
+        buf += numRead;
     }
-    return len;
+
+    return totRead;
 }
-//"insmod /lib/modules/3.4.0/kernel/drivers/usb/gadget/g_ncm.ko
-//echo otg > /sys/devices/platform/musb-ark1680.0/musb-hdrc.0/mode
+
+ssize_t PortPrivate::writeData( const void *buffer, size_t n)
+{
+    ssize_t numWritten;
+    size_t totWritten = 0;
+    const char *buf;
+    buf = (char *)buffer;
+
+    for (totWritten = 0; totWritten < n; ) {
+        numWritten =:: write(fd, buf, n - totWritten);
+        if (numWritten <= 0) {
+            if (numWritten == -1 && errno == EINTR)
+                continue;
+            else
+                return -1;
+        }
+        totWritten += numWritten;
+        buf += numWritten;
+    }
+    return totWritten;
+}
+
