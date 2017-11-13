@@ -21,8 +21,8 @@ class Port : public QObject
 #define g_Port (Port::instance())
 public:
     enum Type {
-        D_touch,
-        D_MAIN,
+        T_OpenCarPlay,
+        T_CloseCarPlay,
         D_NAVI,
         D_Volume
     };
@@ -69,13 +69,13 @@ public:
         return port;
     }
 signals:
-    void onMCUDataRecv(const Port::Type type, const char *buffer, const int size);
-    void read_port_data(QByteArray data);
+    void onMCUDataRecv(const int type, const char *buffer, const int size);
+    void read_port_data(const int type);
 protected:
 //    void customEvent(QEvent* event);
 
 protected slots:
-    void handlerData(QByteArray data);
+    void handlerData(int type);
         void onTimeOut();
     //Multimedia::Interface
     void onDeviceWatcherStatus(const int type, const int status);

@@ -36,12 +36,12 @@ public:
     QString portName() ;
     void setBaudRate(int baudRate);
     int baudRate();
-
+    void doHanderData();
     ssize_t  readData(void *buffer, size_t n);
     ssize_t writeData(const void *buffer, size_t n);
     int write(char ch);
     static void SerialPortReadThread(void *);
-
+    bool isLinkCommand(const char *buff, void * paramater);
     QTimer *m_Timer  = NULL;
 public:
     Port* m_Parent;
@@ -54,13 +54,24 @@ void Port::handlerMCUData(const Port::Type type, const char *buffer, const int s
     emit onMCUDataRecv(type,buffer,size);
 }
 
-void Port::handlerData(QByteArray data)
+//void Port::handlerData(const Port::Type type)
+//{
+//        qDebug() <<"Port::handlerData" <<type;
+//        if(Port::T_OpenCarPlay == type){
+//                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
+//        }else if(Port::T_CloseCarPlay == type){
+//                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestHide);
+//        }
+//}
+void Port::handlerData(int type)
 {
-    //qDebug() <<"Port::handlerData" << m_Private->requestData;
-    //qDebug() <<"Port::handlerData" <<data.data();
-        qDebug() <<"Port::handlerData" <<data.toHex().data();
+        qDebug() <<"Port::handlerData" <<type;
+        if(1== type){
+                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
+        }else if(2 == type){
+                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestHide);
+        }
 }
-
 Port::Port(QObject *parent)
     : QObject(parent)
     , m_Private(new PortPrivate(this))
@@ -188,11 +199,12 @@ bool isTouchCommand(const char *buff){
 
 }
 
-bool isLinkCommand(const char *buff){
+bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
     unsigned char checksum=buff[0];
     unsigned char temp =buff[2] + 4;
     unsigned char type_data =buff[4];
     int i,flag =0;
+    PortPrivate* m_Private = (PortPrivate*)paramater;
     for(i = 1; i < temp; i++)
     {
         checksum = checksum ^buff[i];
@@ -204,9 +216,9 @@ bool isLinkCommand(const char *buff){
             qWarning() << "type" <<buff[3] <<",data" << type_data;
             if(buff[3] == 0x2){
                     if(type_data == 0x1){       //turn on carlife
-                            g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
+                        emit m_Private->m_Parent->read_port_data(1);
                     }else if(type_data == 0x2){     //turn on carplay
-                             g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestHide);
+                        emit m_Private->m_Parent->read_port_data(2);
                     }
             }else if(buff[3] == 0x3){       //set Laguage
                     switch(type_data){
@@ -393,6 +405,10 @@ bool isCommand(const char *read_buf){
         }
         return ret;
 }
+/**
+ * @brief PortPrivate::SerialPortReadThread 该函数的作用于处理MCU数据，但是在线程中发送带参数的信号会报错
+ * @param paramater
+ */
 void PortPrivate::SerialPortReadThread(void *paramater)
 {
     qDebug() << "SerialPortReadThread" << paramater;
@@ -411,7 +427,7 @@ void PortPrivate::SerialPortReadThread(void *paramater)
         printf("\n");
         sleep(1);
 
-//        emit m_Private->m_Parent->read_port_data(m_Private->requestData);
+//        emit m_Private->m_Parent->read_port_data(QByteArray());
         while(count >= 6)
         {
             printf("head data = 0x%x \n",  rbuff[0]);
@@ -422,7 +438,7 @@ void PortPrivate::SerialPortReadThread(void *paramater)
 
             //为什么会出现这样的情况,执行了ncpy后变成0.用memcpy就OK了，奇怪。
             if( rbuff[0]== 0x5c ){
-                if(isLinkCommand(rbuff )){    
+                if(m_Private->isLinkCommand(rbuff ,paramater)){
                     memcpy(rbuff, rbuff+6, count );
                     count -= 6;
                 }else if(count >= 10 && isTouchCommand(rbuff)){
@@ -617,10 +633,9 @@ void PortPrivate::connectAllSlots(){
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::AutoConnection);
 
 
-    QObject::connect(m_Parent, SIGNAL(read_port_data(QByteArray )),
-                     m_Parent,  SLOT(handlerData(QByteArray)),
+    QObject::connect(m_Parent, SIGNAL(read_port_data(int)),
+                     m_Parent,  SLOT(handlerData(int)),
                      type);
-
 
 }
 
@@ -670,4 +685,3 @@ ssize_t PortPrivate::writeData( const void *buffer, size_t n)
     }
     return totWritten;
 }
-

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Port.h'
 **
-** Created: Mon Nov 13 10:09:42 2017
+** Created: Mon Nov 13 16:22:57 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -32,22 +32,22 @@ static const uint qt_meta_data_Port[] = {
 
  // signals: signature, parameters, type, tag, flags
       23,    6,    5,    5, 0x05,
-      70,   65,    5,    5, 0x05,
+      63,   58,    5,    5, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      97,   65,    5,    5, 0x09,
-     121,    5,    5,    5, 0x09,
-     145,  133,    5,    5, 0x09,
+      83,   58,    5,    5, 0x09,
+     100,    5,    5,    5, 0x09,
+     124,  112,    5,    5, 0x09,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Port[] = {
     "Port\0\0type,buffer,size\0"
-    "onMCUDataRecv(Port::Type,const char*,int)\0"
-    "data\0read_port_data(QByteArray)\0"
-    "handlerData(QByteArray)\0onTimeOut()\0"
-    "type,status\0onDeviceWatcherStatus(int,int)\0"
+    "onMCUDataRecv(int,const char*,int)\0"
+    "type\0read_port_data(int)\0handlerData(int)\0"
+    "onTimeOut()\0type,status\0"
+    "onDeviceWatcherStatus(int,int)\0"
 };
 
 const QMetaObject Port::staticMetaObject = {
@@ -79,9 +79,9 @@ int Port::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: onMCUDataRecv((*reinterpret_cast< const Port::Type(*)>(_a[1])),(*reinterpret_cast< const char*(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3]))); break;
-        case 1: read_port_data((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
-        case 2: handlerData((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
+        case 0: onMCUDataRecv((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const char*(*)>(_a[2])),(*reinterpret_cast< const int(*)>(_a[3]))); break;
+        case 1: read_port_data((*reinterpret_cast< const int(*)>(_a[1]))); break;
+        case 2: handlerData((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: onTimeOut(); break;
         case 4: onDeviceWatcherStatus((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
         default: ;
@@ -92,14 +92,14 @@ int Port::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Port::onMCUDataRecv(const Port::Type _t1, const char * _t2, const int _t3)
+void Port::onMCUDataRecv(const int _t1, const char * _t2, const int _t3)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void Port::read_port_data(QByteArray _t1)
+void Port::read_port_data(const int _t1)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);

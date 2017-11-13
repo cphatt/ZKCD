@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CarplayLinkWidget.h'
 **
-** Created: Mon Nov 13 10:10:29 2017
+** Created: Mon Nov 13 16:22:59 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
