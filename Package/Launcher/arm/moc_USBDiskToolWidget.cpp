@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'USBDiskToolWidget.h'
 **
-** Created: Sat Nov 11 09:24:49 2017
+** Created: Mon Nov 13 10:10:30 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

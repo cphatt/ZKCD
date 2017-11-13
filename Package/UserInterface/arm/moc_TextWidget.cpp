@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'TextWidget.h'
 **
-** Created: Sat Nov 11 09:24:10 2017
+** Created: Mon Nov 13 10:09:50 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

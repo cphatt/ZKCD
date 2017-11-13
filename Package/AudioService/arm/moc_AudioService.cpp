@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'AudioService.h'
 **
-** Created: Sat Nov 11 09:23:40 2017
+** Created: Mon Nov 13 10:09:20 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

@@ -177,7 +177,7 @@ PortPrivate::PortPrivate(Port* parent)
     QObject::connect(m_Timer,  SIGNAL(timeout()),
                      m_Parent, SLOT(onTimeOut()),
                      type);
-    m_Timer->start();
+//    m_Timer->start();
 
 #ifndef gcc
     initialize();
@@ -248,7 +248,7 @@ bool isLinkCommand(const char *buff){
 
             }
      }
-    return  0;
+    return  flag;
 }
 
 bool isCommand(const char *read_buf){
@@ -404,27 +404,36 @@ void PortPrivate::SerialPortReadThread(void *paramater)
     int count = 0;
 
     forever{
+        printf("wait data and count=%d.\n", count);
         count += read(fd, rbuff+count, 32);
-        printf("count=%d.\n", count);
+        for(i =0 ; i < count; i++)
+            printf("0x%x, ", rbuff[i]);
+        printf("\n");
         sleep(1);
 
 //        emit m_Private->m_Parent->read_port_data(m_Private->requestData);
         while(count >= 6)
         {
-            printf("0x%x ",  rbuff[0]);
+            printf("head data = 0x%x \n",  rbuff[0]);
+            printf("count=%d.\n", count);
+            for(i =0 ; i < count; i++)
+                printf("0x%x, ", rbuff[i]);
+            printf("\n");
+
+            //为什么会出现这样的情况,执行了ncpy后变成0.用memcpy就OK了，奇怪。
             if( rbuff[0]== 0x5c ){
-                if(isLinkCommand(rbuff )){
+                if(isLinkCommand(rbuff )){    
+                    memcpy(rbuff, rbuff+6, count );
                     count -= 6;
-                    strncpy(rbuff, rbuff+6, count );
                 }else if(count >= 10 && isTouchCommand(rbuff)){
                             //触摸数据先放在这里
                 }else{
+                    memcpy(rbuff, rbuff+1, count );
                     count -= 1;
-                    strncpy(rbuff, rbuff+1, count );
                 }
             }else{
+                memcpy(rbuff, rbuff+1, count );
                 count -= 1;
-                strncpy(rbuff, rbuff+1, count );
             }
         }
 
@@ -555,7 +564,7 @@ static int set_opt(int fd, int nSpeed, int nBits, char nEvent, int nStop)
     newtio.c_oflag  &= ~OPOST;
 
     newtio.c_cc[VTIME] = 0;
-    newtio.c_cc[VMIN] = 5;
+    newtio.c_cc[VMIN] = 6; //至少6个的时候，就得返回了
 
     tcflush(fd,TCIFLUSH);
 
@@ -581,7 +590,7 @@ void PortPrivate::initialize()
         return ;
     }
 
-    if (set_opt(fd, 38400, 8, 'N', 1) < 0) {
+    if (set_opt(fd, 115200, 8, 'N', 1) < 0) {
         perror("set_opt error");
         ::close(fd);
        return;
@@ -615,6 +624,7 @@ void PortPrivate::connectAllSlots(){
 
 }
 
+//这个函数可以改一下
 ssize_t PortPrivate::readData(void *buffer, size_t n)
 {
     ssize_t numRead = 0;
