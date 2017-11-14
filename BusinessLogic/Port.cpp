@@ -2,6 +2,8 @@
 #include <QDebug>
 #include "RunnableThread.h"
 #include "AutoConnect.h"
+#include "Setting.h"
+#include<QTimer>
 #include <QThreadPool>
 #include <stdio.h>
 #include <errno.h>
@@ -15,14 +17,22 @@
 #include <linux/input.h>
 #include <string.h>
 #include <termios.h>
+#include <sys/mman.h>
 
-#include "Setting.h"
-#include<QTimer>
+#define SYS_REG_BASE	0xE4900000
+#define GPIO_REG_BASE	0xE4600000
+#define REG_SIZE		0x1000
+typedef unsigned int  u32;
 
 static int fd;
 static int input_fd;
+
+int mem_fd = -1;
+u32 *sysio = (u32 *)MAP_FAILED, *gpio =(u32 *) MAP_FAILED;
+
 bool isUSBAlive;
 bool isSDAlive;
+
 class PortPrivate
 {
     Q_DISABLE_COPY(PortPrivate)
@@ -42,27 +52,20 @@ public:
     int write(char ch);
     static void SerialPortReadThread(void *);
     bool isLinkCommand(const char *buff, void * paramater);
+
     QTimer *m_Timer  = NULL;
+
 public:
     Port* m_Parent;
 
 };
 
-void Port::handlerMCUData(const Port::Type type, const char *buffer, const int size)
-{
-    qDebug() <<"Port::handlerMCUData";
-    emit onMCUDataRecv(type,buffer,size);
-}
-
-//void Port::handlerData(const Port::Type type)
+//void Port::handlerMCUData(const Port::Type type, const char *buffer, const int size)
 //{
-//        qDebug() <<"Port::handlerData" <<type;
-//        if(Port::T_OpenCarPlay == type){
-//                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
-//        }else if(Port::T_CloseCarPlay == type){
-//                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestHide);
-//        }
+//    qDebug() <<"Port::handlerMCUData";
+//    emit onMCUDataRecv(type,buffer,size);
 //}
+
 void Port::handlerData(int type)
 {
         qDebug() <<"Port::handlerData" <<type;
@@ -121,6 +124,34 @@ int  Port::responseMCU(const Port::CarlifeResponse type, char *data,int len){
 
        return m_Private->writeData(buff, len + 5);
 }
+
+void Port::setStatus(Port::SoundStatus status){
+    soundStatus = status;
+    qWarning()<<"Port::setStatus : " << soundStatus;
+}
+/**
+ * @brief Port::setMemStatus    设置屏幕状态
+ */
+void Port::setMemStatus(Port::MemStatus status){
+        qWarning() << " Port::setMemStatus " << status;
+        switch (status) {
+            case Port::IO:
+                *(sysio + 0x1C0 / 4) = 0;
+                *(sysio + 0x1C4 / 4) = 0;
+                *(sysio + 0x1C8 / 4) = 0;
+                *(sysio + 0x1CC / 4) &= ~0xFFFF;
+                *(gpio + 0) |= (0xFFFFFFF << 2);
+                break;
+            case Port::RGB:
+            default:
+                *(sysio + 0x1C0 / 4) = (1<<28) |(1<<24) |(1<<20) |(1<<16) |(1<<12) |(1<<8) | (1<<4) |(1<<0);
+                *(sysio + 0x1C4 / 4) = (1<<28) |(1<<24) |(1<<20) |(1<<16) |(1<<12) |(1<<8) | (1<<4) |(1<<0);
+                *(sysio + 0x1C8 / 4) = (1<<28) |(1<<24) |(1<<20) |(1<<16) |(1<<12) |(1<<8) | (1<<4) |(1<<0);
+                *(sysio + 0x1CC / 4) = (1<<12) |(1<<8) | (1<<4) |(1<<0);
+                break;
+            }
+}
+
 void Port::onDeviceWatcherStatus(const DeviceWatcherType type, const DeviceWatcherStatus status)
 {
     qDebug() << "HomeWidget::onDeviceWatcherStatus" << type << status;
@@ -254,160 +285,161 @@ bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
                     }
 
 
-            }else if(buff[3] == 0x7){       //request carlife status
+            }else if(buff[3] == 0x7){       //xuanniu
                     //open
-            }else if(buff[3] == 0x8){       //旋钮
-
+            }else if(buff[3] == 0x8){       //request carlife status
+                char data = (char)m_Parent->soundStatus;
+                m_Parent->responseMCU(Port::C_SoundStatus, &data , 1);
             }
      }
     return  flag;
 }
 
-bool isCommand(const char *read_buf){
-    struct input_event ev; //input
+//bool isCommand(const char *read_buf){
+//    struct input_event ev; //input
 
-    char checksum;
-    int x_val,y_val,i;
-    bool ret = false;
+//    char checksum;
+//    int x_val,y_val,i;
+//    bool ret = false;
 
-        checksum = 0;
-        for(i=0; i<5; i++)
-            checksum += read_buf[i];
-        checksum = ~checksum;
-        //qDebug() << checksum << read_buf[i];
+//        checksum = 0;
+//        for(i=0; i<5; i++)
+//            checksum += read_buf[i];
+//        checksum = ~checksum;
+//        //qDebug() << checksum << read_buf[i];
 
-        if(checksum == read_buf[i])
-        {
-            if(read_buf[0] == 0x61 || read_buf[0] == 0xa1 || read_buf[0] == 0xe1)//header -- touch event
-            {
-                x_val = (read_buf[2] << 8) | (read_buf[1] << 0);
-                y_val = (read_buf[4] << 8) | (read_buf[3] << 0);
+//        if(checksum == read_buf[i])
+//        {
+//            if(read_buf[0] == 0x61 || read_buf[0] == 0xa1 || read_buf[0] == 0xe1)//header -- touch event
+//            {
+//                x_val = (read_buf[2] << 8) | (read_buf[1] << 0);
+//                y_val = (read_buf[4] << 8) | (read_buf[3] << 0);
 
-                if(read_buf[0] == 0xe1) //release
-                {
-                    //presure
-                    ev.type = EV_ABS;
-                    ev.code = ABS_PRESSURE;
-                    ev.value = 0x0;
-                    ::write(input_fd, &ev, sizeof(struct input_event));
+//                if(read_buf[0] == 0xe1) //release
+//                {
+//                    //presure
+//                    ev.type = EV_ABS;
+//                    ev.code = ABS_PRESSURE;
+//                    ev.value = 0x0;
+//                    ::write(input_fd, &ev, sizeof(struct input_event));
 
-                    //sync
-                    ev.type = EV_SYN;
-                    ev.code = SYN_REPORT;
-                    ev.value = 0x0;
-                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
-                   // qDebug() << "UP";
-                }
-                else	//push
-                {
-                    //x axis
-                    ev.type = EV_ABS;
-                    ev.code = ABS_X;
-                    ev.value = x_val;
-                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
-                    if(ret < 0)
-                    {
-                        qDebug() << "write X axis failed";
-                    }
-                    //y axis
-                    ev.type = EV_ABS;
-                    ev.code = ABS_Y;
-                    ev.value = y_val;
-                    ::write(input_fd, &ev, sizeof(struct input_event));
-                    //presure
-                    ev.type = EV_ABS;
-                    ev.code = ABS_PRESSURE;
-                    ev.value = 0xFFF;
-                   ::write(input_fd, &ev, sizeof(struct input_event));
+//                    //sync
+//                    ev.type = EV_SYN;
+//                    ev.code = SYN_REPORT;
+//                    ev.value = 0x0;
+//                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
+//                   // qDebug() << "UP";
+//                }
+//                else	//push
+//                {
+//                    //x axis
+//                    ev.type = EV_ABS;
+//                    ev.code = ABS_X;
+//                    ev.value = x_val;
+//                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
+//                    if(ret < 0)
+//                    {
+//                        qDebug() << "write X axis failed";
+//                    }
+//                    //y axis
+//                    ev.type = EV_ABS;
+//                    ev.code = ABS_Y;
+//                    ev.value = y_val;
+//                    ::write(input_fd, &ev, sizeof(struct input_event));
+//                    //presure
+//                    ev.type = EV_ABS;
+//                    ev.code = ABS_PRESSURE;
+//                    ev.value = 0xFFF;
+//                   ::write(input_fd, &ev, sizeof(struct input_event));
 
-                    //sync
-                    ev.type = EV_SYN;
-                    ev.code = SYN_REPORT;
-                    ev.value = 0x0;
-                    ::write(input_fd, &ev, sizeof(struct input_event));
-                    //qDebug() << "MOVE";
-                }
-                ret = true;
-            }
-            else  if(read_buf[0] == 0x51 || read_buf[0] == 0x91 || read_buf[0] == 0xd1)//header -- touch event
-            {
-                //printf("#Key data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",read_buf[0], read_buf[1], read_buf[2], read_buf[3], read_buf[4], read_buf[5]);
-                switch (read_buf[2]) {
-                case Port::K_Control :
+//                    //sync
+//                    ev.type = EV_SYN;
+//                    ev.code = SYN_REPORT;
+//                    ev.value = 0x0;
+//                    ::write(input_fd, &ev, sizeof(struct input_event));
+//                    //qDebug() << "MOVE";
+//                }
+//                ret = true;
+//            }
+//            else  if(read_buf[0] == 0x51 || read_buf[0] == 0x91 || read_buf[0] == 0xd1)//header -- touch event
+//            {
+//                //printf("#Key data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",read_buf[0], read_buf[1], read_buf[2], read_buf[3], read_buf[4], read_buf[5]);
+//                switch (read_buf[2]) {
+//                case Port::K_Control :
 
-                    break;
-                case Port::K_Escape :
-                    g_Widget->setWidgetType(Widget::T_Back, WidgetStatus::RequestShow);
-                    break;
-                case Port::K_VolumeMore :
+//                    break;
+//                case Port::K_Escape :
+//                    g_Widget->setWidgetType(Widget::T_Back, WidgetStatus::RequestShow);
+//                    break;
+//                case Port::K_VolumeMore :
 
-                    break;
-                case Port::K_VolumeLess :
+//                    break;
+//                case Port::K_VolumeLess :
 
-                    break;
-                case Port::K_Down :
+//                    break;
+//                case Port::K_Down :
 
-                    break;
-                case Port::K_Up :
+//                    break;
+//                case Port::K_Up :
 
-                    break;
-                case Port::K_Right :
+//                    break;
+//                case Port::K_Right :
 
-                    break;
-                case Port::K_Enter :
+//                    break;
+//                case Port::K_Enter :
 
-                    break;
-                case Port::K_Left :
+//                    break;
+//                case Port::K_Left :
 
-                    break;
-                case Port::K_Menu :
+//                    break;
+//                case Port::K_Menu :
 
-                    break;
-                case Port::K_BT :
+//                    break;
+//                case Port::K_BT :
 
-                    break;
-                case Port::K_CMMB :
+//                    break;
+//                case Port::K_CMMB :
 
-                    break;
-                case Port::K_GPS :
+//                    break;
+//                case Port::K_GPS :
 
-                    break;
-                case Port::K_Music :
-                    if (isUSBAlive)
-                        g_Widget->setWidgetType(Widget::T_USBDiskMusic, WidgetStatus::RequestShow);
-                    else if(isSDAlive)
-                        g_Widget->setWidgetType(Widget::T_SDDiskMusic, WidgetStatus::RequestShow);
-                    break;
-                case Port::K_Picture :
-                    if (isUSBAlive)
-                        g_Widget->setWidgetType(Widget::T_USBDiskImage, WidgetStatus::RequestShow);
-                    else if(isSDAlive)
-                        g_Widget->setWidgetType(Widget::T_SDDiskImage, WidgetStatus::RequestShow);
-                    break;
-                case Port::K_Video :
-                    if (isUSBAlive)
-                        g_Widget->setWidgetType(Widget::T_USBDiskVideo, WidgetStatus::RequestShow);
-                    else if(isSDAlive)
-                        g_Widget->setWidgetType(Widget::T_SDDiskVideo, WidgetStatus::RequestShow);
-                    break;
-                case Port::K_Home :
-                    g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-        else
-        {
-            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",read_buf[0], read_buf[1], read_buf[2], read_buf[3], read_buf[4], read_buf[5]);
-        //	printf("###### x:%d y:%d\n",(read_buf[2] << 8) | (read_buf[1] << 0),(read_buf[4] << 8) | (read_buf[3] << 0));
-        }
-        return ret;
-}
+//                    break;
+//                case Port::K_Music :
+//                    if (isUSBAlive)
+//                        g_Widget->setWidgetType(Widget::T_USBDiskMusic, WidgetStatus::RequestShow);
+//                    else if(isSDAlive)
+//                        g_Widget->setWidgetType(Widget::T_SDDiskMusic, WidgetStatus::RequestShow);
+//                    break;
+//                case Port::K_Picture :
+//                    if (isUSBAlive)
+//                        g_Widget->setWidgetType(Widget::T_USBDiskImage, WidgetStatus::RequestShow);
+//                    else if(isSDAlive)
+//                        g_Widget->setWidgetType(Widget::T_SDDiskImage, WidgetStatus::RequestShow);
+//                    break;
+//                case Port::K_Video :
+//                    if (isUSBAlive)
+//                        g_Widget->setWidgetType(Widget::T_USBDiskVideo, WidgetStatus::RequestShow);
+//                    else if(isSDAlive)
+//                        g_Widget->setWidgetType(Widget::T_SDDiskVideo, WidgetStatus::RequestShow);
+//                    break;
+//                case Port::K_Home :
+//                    g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
+//                    break;
+//                default:
+//                    break;
+//                }
+//            }
+//        }
+//        else
+//        {
+//            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",read_buf[0], read_buf[1], read_buf[2], read_buf[3], read_buf[4], read_buf[5]);
+//        //	printf("###### x:%d y:%d\n",(read_buf[2] << 8) | (read_buf[1] << 0),(read_buf[4] << 8) | (read_buf[3] << 0));
+//        }
+//        return ret;
+//}
 /**
- * @brief PortPrivate::SerialPortReadThread 该函数的作用于处理MCU数据，但是在线程中发送带参数的信号会报错
- * @param paramater
+ * @brief PortPrivate::SerialPortReadThread 该函数的作用于处理MCU数据，但是在线程中发送带枚举参数的信号会报错
+ * @param paramater PortPrivate
  */
 void PortPrivate::SerialPortReadThread(void *paramater)
 {
@@ -593,19 +625,65 @@ static int set_opt(int fd, int nSpeed, int nBits, char nEvent, int nStop)
     return 0;
 }
 /**
+ * @brief DWLMapRegisters   映射屏幕内存地址
+ * @param mem_dev
+ * @param base
+ * @param regSize
+ * @param write
+ * @return
+ */
+u32 *DWLMapRegisters(int mem_dev, unsigned int base,
+                     unsigned int regSize, u32 write)
+{
+    const int pageSize = getpagesize();
+    const int pageAlignment = pageSize - 1;
+
+    size_t mapSize;
+    const char *io =(char *) MAP_FAILED;
+
+    /* increase mapping size with unaligned part */
+    mapSize = regSize + (base & pageAlignment);
+
+    /* map page aligned base */
+    if(write)
+        io = (char *) mmap(0, mapSize, PROT_READ | PROT_WRITE,
+                           MAP_SHARED, mem_dev, base & ~pageAlignment);
+    else
+        io = (char *) mmap(0, mapSize, PROT_READ, MAP_SHARED,
+                           mem_dev, base & ~pageAlignment);
+
+    /* add offset from alignment to the io start address */
+    if(io != MAP_FAILED)
+        io += (base & pageAlignment);
+
+    return (u32 *) io;
+}
+
+void DWLUnmapRegisters(const void *io, unsigned int regSize)
+{
+    const int pageSize = getpagesize();
+    const int pageAlignment = pageSize - 1;
+
+    munmap((void *) ((int) io & (~pageAlignment)),
+           regSize + ((int) io & pageAlignment));
+}
+
+
+/**
  * @brief PortPrivate::initialize   串口初始化函数
  */
-
 void PortPrivate::initialize()
 {
 
     int dev = 1;
+
+    //初始化串口
     fd = open_port(dev);
     if (fd < 0){
         perror("open_port error");
         return ;
     }
-
+    //设置串口
     if (set_opt(fd, 115200, 8, 'N', 1) < 0) {
         perror("set_opt error");
         ::close(fd);
@@ -613,7 +691,7 @@ void PortPrivate::initialize()
     }
     printf("fd=%d\n",fd);
 
-
+    //初始化输入子系统
     input_fd = ::open("/dev/input/event0", O_RDWR);
     if(input_fd < 0)
     {
@@ -622,9 +700,33 @@ void PortPrivate::initialize()
     }else{
         qDebug()<< "open input success!";
     }
+
+    //初始化屏幕内存映射
+    mem_fd = open("/dev/mem", O_RDWR | O_SYNC);
+    if(mem_fd == -1) {
+        printf("failed to open /dev/mem, error %d is %s\n", errno, strerror(errno));
+        return;
+    }
+    sysio = DWLMapRegisters(mem_fd, SYS_REG_BASE, REG_SIZE, 1);
+    if(sysio == MAP_FAILED) {
+        printf("failed to mmap sys regs. error %d is %s\n", errno, strerror(errno));
+        DWLUnmapRegisters(sysio, REG_SIZE);
+        close(mem_fd);
+    }
+    gpio = DWLMapRegisters(mem_fd, GPIO_REG_BASE, REG_SIZE, 1);
+    if(gpio == MAP_FAILED) {
+        printf("failed to mmap gpio regs. error %d is %s\n", errno, strerror(errno));
+        DWLUnmapRegisters(gpio, REG_SIZE);
+        close(mem_fd);
+    }
+
+
+   //初始化线程
+    m_Parent->soundStatus = Port::CarPlayDisConnected;
     CustomRunnable* runnable = new CustomRunnable();
     runnable->setCallbackFunction(SerialPortReadThread, this);
     QThreadPool::globalInstance()->start(runnable);
+
 }
 
 void PortPrivate::connectAllSlots(){

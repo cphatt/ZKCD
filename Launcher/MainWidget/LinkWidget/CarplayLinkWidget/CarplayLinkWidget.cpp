@@ -232,11 +232,12 @@ void CarplayLinkWidgetPrivate::connectAllSlots()
     connectSignalAndSlotByNamesake(g_Port, m_Parent);
 }
 
-void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
+void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看触发事件，确认给MCU发信息的时间
 {
-    qDebug() << "onCarplayLinkStatus" << status;
+    qWarning()<< "onCarplayLinkStatus" << status;
     switch (status) {
-    case LINK_STARTING: {
+    case LINK_STARTING: {      //连接中
+         g_Port->setMemStatus(Port::IO);
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
         QVariant* variant = new QVariant();
         variant->setValue(static_cast<QWidget*>(m_DeviceMessageBox));
@@ -249,8 +250,10 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
         g_EventEngine->sendCustomEvent(event2);
         break;
     }
-    case LINK_DISCONNECTED: {
-        char data = 0x2;
+    case LINK_DISCONNECTED: {   //退出链接
+         g_Port->setMemStatus(Port::RGB);
+        g_Port->setStatus(Port::CarPlayDisConnected);
+        char data = 0x1;
         g_Port->responseMCU(Port::C_Close, &data, 1);
 
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
@@ -265,12 +268,16 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
         g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
         break;
     }
-    case LINK_EXITING: {
+    case LINK_EXITING: {       //Home键  ,这里可能要切换低阻
+         g_Port->setMemStatus(Port::RGB);
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
         break;
     }
-    case LINK_EXITED: {
-        char data = 0x2;
+    case LINK_EXITED: {         //退出carlife
+         g_Port->setMemStatus(Port::RGB);
+
+         g_Port->setStatus(Port::CarPlayDisConnected);
+        char data = 0x1;
         g_Port->responseMCU(Port::C_Close, &data, 1);
 
         if ((m_Parent->isVisible())
@@ -298,7 +305,9 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)
         }
         break;
     }
-    case LINK_SUCCESS: {
+    case LINK_SUCCESS: {    //链接成功
+         g_Port->setMemStatus(Port::IO);
+        g_Port->setStatus(Port::CarPlayConnected);
          char data = 0x1;
          g_Port->responseMCU(Port::C_Open, &data, 1);
 
