@@ -357,12 +357,12 @@ void MainWidgetPrivate::initializeBasicWidget()
     ArkApp->installTranslatorPath(SettingPersistent::getLanguageResources());
     m_LinkWidget = new LinkWidget(m_Parent);
 
-    m_StatusBarWidget = new StatusBarWidget(m_Parent);
-    UserInterfaceUtility::elapsed("StatusBarWidget>>");
+//    m_StatusBarWidget = new StatusBarWidget(m_Parent);
+//    UserInterfaceUtility::elapsed("StatusBarWidget>>");
     m_HomeWidget = new HomeWidget(m_Parent);
     UserInterfaceUtility::elapsed("HomeWidget>>");
-    m_TabBarWidget = new TabBarWidget(m_Parent);
-    UserInterfaceUtility::elapsed("TabBarWidget>>");
+//    m_TabBarWidget = new TabBarWidget(m_Parent);
+//    UserInterfaceUtility::elapsed("TabBarWidget>>");
 
     g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
     //    QStringList cmd;

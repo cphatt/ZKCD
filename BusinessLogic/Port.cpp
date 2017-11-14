@@ -40,6 +40,9 @@ public:
      explicit PortPrivate(Port* parent);
     virtual ~PortPrivate();
     void initialize();
+    void initializeSerial();
+    void initializeMem();
+    void initializeInput();
     void connectAllSlots();
     bool isOpen();
     void setPortName(const QString &name);
@@ -66,15 +69,6 @@ public:
 //    emit onMCUDataRecv(type,buffer,size);
 //}
 
-void Port::handlerData(int type)
-{
-        qDebug() <<"Port::handlerData" <<type;
-        if(1== type){
-                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
-        }else if(2 == type){
-                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestHide);
-        }
-}
 Port::Port(QObject *parent)
     : QObject(parent)
     , m_Private(new PortPrivate(this))
@@ -93,12 +87,26 @@ void Port::onTimeOut()
         qDebug() << "send"<< m_Private->writeData("6666", 5) << "byte";
         m_Private->m_Timer->start();
 }
-/*
+
+/**
+ * @brief Port::handlerData 用于处理线程中无法发送带参信号
+ * @param type  界面跳转类型
+ */
+void Port::handlerData(int type)
+{
+        qDebug() <<"Port::handlerData" <<type;
+        if(1== type){
+                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
+        }else if(2 == type){
+                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestHide);
+        }
+}
+/**
 该函数用于向串口中写入数据
 type -------- 事件类型
 data---------数据
 len ----------长度
-*/
+**/
 int  Port::responseMCU(const Port::CarlifeResponse type, char *data,int len){
         char buff[10] = {0};
         char checksum;
@@ -124,11 +132,15 @@ int  Port::responseMCU(const Port::CarlifeResponse type, char *data,int len){
 
        return m_Private->writeData(buff, len + 5);
 }
-
+/**
+ * @brief Port::setStatus   用于保存当前音源状态
+ * @param status
+ */
 void Port::setStatus(Port::SoundStatus status){
     soundStatus = status;
     qWarning()<<"Port::setStatus : " << soundStatus;
 }
+
 /**
  * @brief Port::setMemStatus    设置屏幕状态
  */
@@ -152,6 +164,11 @@ void Port::setMemStatus(Port::MemStatus status){
             }
 }
 
+/**
+ * @brief Port::onDeviceWatcherStatus   用于保存当前媒体设备的状态
+ * @param type  设备类型
+ * @param status    设备状态
+ */
 void Port::onDeviceWatcherStatus(const DeviceWatcherType type, const DeviceWatcherStatus status)
 {
     qDebug() << "HomeWidget::onDeviceWatcherStatus" << type << status;
@@ -230,6 +247,12 @@ bool isTouchCommand(const char *buff){
 
 }
 
+/**
+ * @brief PortPrivate::isLinkCommand    判断MCU数据并处理
+ * @param buff  包含数据的数组 数字固定为6
+ * @param paramater PortPrivate 对象
+ * @return  该协议是否执行
+ */
 bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
     unsigned char checksum=buff[0];
     unsigned char temp =buff[2] + 4;
@@ -295,6 +318,11 @@ bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
     return  flag;
 }
 
+/**
+ * @brief isCommand     判断触摸数据
+ * @param read_buf
+ * @return
+ */
 //bool isCommand(const char *read_buf){
 //    struct input_event ev; //input
 
@@ -670,18 +698,16 @@ void DWLUnmapRegisters(const void *io, unsigned int regSize)
 
 
 /**
- * @brief PortPrivate::initialize   串口初始化函数
+ * @brief PortPrivate::initializeSerial   串口初始化函数
  */
-void PortPrivate::initialize()
-{
-
-    int dev = 1;
-
+void PortPrivate::initializeSerial(){
     //初始化串口
+     int dev = 1;
     fd = open_port(dev);
     if (fd < 0){
         perror("open_port error");
-        return ;
+
+        exit(1);
     }
     //设置串口
     if (set_opt(fd, 115200, 8, 'N', 1) < 0) {
@@ -690,17 +716,19 @@ void PortPrivate::initialize()
        return;
     }
     printf("fd=%d\n",fd);
+}
 
-    //初始化输入子系统
+void  PortPrivate::initializeInput(){
     input_fd = ::open("/dev/input/event0", O_RDWR);
     if(input_fd < 0)
     {
         perror("Can not open input node\n");
-        exit(1);
     }else{
         qDebug()<< "open input success!";
     }
+}
 
+void PortPrivate::initializeMem(){
     //初始化屏幕内存映射
     mem_fd = open("/dev/mem", O_RDWR | O_SYNC);
     if(mem_fd == -1) {
@@ -719,7 +747,13 @@ void PortPrivate::initialize()
         DWLUnmapRegisters(gpio, REG_SIZE);
         close(mem_fd);
     }
+}
 
+void PortPrivate::initialize()
+{
+    initializeSerial();
+    initializeInput();
+    initializeMem();
 
    //初始化线程
     m_Parent->soundStatus = Port::CarPlayDisConnected;
@@ -741,7 +775,7 @@ void PortPrivate::connectAllSlots(){
 
 }
 
-//这个函数可以改一下
+//这个函数可以改一下,做个测试
 ssize_t PortPrivate::readData(void *buffer, size_t n)
 {
     ssize_t numRead = 0;
