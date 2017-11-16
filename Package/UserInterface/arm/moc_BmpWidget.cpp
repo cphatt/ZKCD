@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'BmpWidget.h'
 **
-** Created: Mon Nov 13 10:09:49 2017
+** Created: Thu Nov 16 14:21:01 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

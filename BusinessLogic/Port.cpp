@@ -26,7 +26,7 @@ typedef unsigned int  u32;
 
 static int fd;
 static int input_fd;
-
+static int ret;
 int mem_fd = -1;
 u32 *sysio = (u32 *)MAP_FAILED, *gpio =(u32 *) MAP_FAILED;
 
@@ -50,12 +50,12 @@ public:
     void setBaudRate(int baudRate);
     int baudRate();
     void doHanderData();
-    ssize_t  readData(void *buffer, size_t n);
+    ssize_t  readData(char *buffer, size_t n);
     ssize_t writeData(const void *buffer, size_t n);
     int write(char ch);
     static void SerialPortReadThread(void *);
     bool isLinkCommand(const char *buff, void * paramater);
-
+    bool isTouchCommand(const char *buff, void * paramater);
     QTimer *m_Timer  = NULL;
 
 public:
@@ -84,8 +84,8 @@ Port::~Port()
 void Port::onTimeOut()
 {
 
-        qDebug() << "send"<< m_Private->writeData("6666", 5) << "byte";
-        m_Private->m_Timer->start();
+        qWarning()<< "send"<< m_Private->writeData("6666", 5) << "byte";
+//        m_Private->m_Timer->start();
 }
 
 /**
@@ -236,15 +236,95 @@ PortPrivate::PortPrivate(Port* parent)
     QObject::connect(m_Timer,  SIGNAL(timeout()),
                      m_Parent, SLOT(onTimeOut()),
                      type);
-//    m_Timer->start();
+    m_Timer->start();
 
 #ifndef gcc
     initialize();
 #endif
     connectAllSlots();
 }
-bool isTouchCommand(const char *buff){
 
+/**
+ * @brief PortPrivate::isTouchCommand
+ * @param buff
+ * @param paramater
+ * @return
+ */
+bool PortPrivate::isTouchCommand(const char *buff, void * paramater){
+    struct input_event ev; //input
+    int x_val,y_val, i;
+    bool ret = false;
+    unsigned char checksum=buff[0];
+    unsigned char temp =buff[2] + 4;
+
+    for(i = 1; i < temp; i++)
+    {
+        checksum = checksum ^buff[i];
+    }
+    printf("isTouchCommand temp = %d,0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",temp,buff[4], buff[5], buff[6], buff[7], buff[8], checksum,buff[temp]);
+    if(checksum ==buff[temp]){
+        if(buff[8] == 0x01 || buff[8] == 0x02 )//header -- touch event
+        {
+                        ret = true;
+            x_val = (buff[4] << 8) | (buff[5] << 0);
+            y_val = (buff[6] << 8) | (buff[7] << 0);
+             printf("x:%d,y:%d\n", x_val, y_val);
+
+            if(buff[8] == 0x02) //release
+            {
+                //presure
+                ev.type = EV_ABS;
+                ev.code = ABS_PRESSURE;
+                ev.value = 0x0;
+                ::write(input_fd, &ev, sizeof(struct input_event));
+
+                //sync
+                ev.type = EV_SYN;
+                ev.code = SYN_REPORT;
+                ev.value = 0x0;
+                ret = ::write(input_fd, &ev, sizeof(struct input_event));
+                qWarning()<< "UP";
+            }
+            else	//push
+            {
+                //x axis
+                ev.type = EV_ABS;
+                ev.code = ABS_X;
+                ev.value = x_val;
+                ret = ::write(input_fd, &ev, sizeof(struct input_event));
+                if(ret < 0)
+                {
+                    qDebug() << "write X axis failed";
+                }
+                //y axis
+                ev.type = EV_ABS;
+                ev.code = ABS_Y;
+                ev.value = y_val;
+                ::write(input_fd, &ev, sizeof(struct input_event));
+                //presure
+                ev.type = EV_ABS;
+                ev.code = ABS_PRESSURE;
+                ev.value = 0xFFF;
+               ::write(input_fd, &ev, sizeof(struct input_event));
+
+                //sync
+                ev.type = EV_SYN;
+                ev.code = SYN_REPORT;
+                ev.value = 0x0;
+                ::write(input_fd, &ev, sizeof(struct input_event));
+                qWarning() << "MOVE";
+            }
+
+        }
+        //
+        //        else
+        //        {
+        //            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
+        //        //	printf("###### x:%d y:%d\n",(buff[2] << 8) | (buff[1] << 0),(buff[4] << 8) | (buff[3] << 0));
+        //        }
+    }
+
+    return ret;
 }
 
 /**
@@ -253,18 +333,17 @@ bool isTouchCommand(const char *buff){
  * @param paramater PortPrivate 对象
  * @return  该协议是否执行
  */
-bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
+bool PortPrivate:: isLinkCommand(const char *buff, void * paramater){   //
     unsigned char checksum=buff[0];
     unsigned char temp =buff[2] + 4;
     unsigned char type_data =buff[4];
     int i,flag =0;
     PortPrivate* m_Private = (PortPrivate*)paramater;
     for(i = 1; i < temp; i++)
-    {
         checksum = checksum ^buff[i];
-    }
-    // qWarning() << "isLinkCommand" << checksum << buff[temp];
-    printf("0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",buff[0], buff[1], buff[2], buff[3], buff[4], checksum,buff[temp]);
+
+     qWarning() << "isLinkCommand" << checksum << buff[temp];
+//    printf("isLinkCommand 0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",buff[0], buff[1], buff[2], buff[3], buff[4], checksum,buff[temp]);
     if(checksum ==buff[temp])
     {       flag = 1;
             qWarning() << "type" <<buff[3] <<",data" << type_data;
@@ -320,10 +399,10 @@ bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
 
 /**
  * @brief isCommand     判断触摸数据
- * @param read_buf
+ * @param buff
  * @return
  */
-//bool isCommand(const char *read_buf){
+//bool isCommand(const char *buff){
 //    struct input_event ev; //input
 
 //    char checksum;
@@ -332,18 +411,18 @@ bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
 
 //        checksum = 0;
 //        for(i=0; i<5; i++)
-//            checksum += read_buf[i];
+//            checksum += buff[i];
 //        checksum = ~checksum;
-//        //qDebug() << checksum << read_buf[i];
+//        //qDebug() << checksum << buff[i];
 
-//        if(checksum == read_buf[i])
+//        if(checksum == buff[i])
 //        {
-//            if(read_buf[0] == 0x61 || read_buf[0] == 0xa1 || read_buf[0] == 0xe1)//header -- touch event
+//            if(buff[0] == 0x61 || buff[0] == 0xa1 || buff[0] == 0xe1)//header -- touch event
 //            {
-//                x_val = (read_buf[2] << 8) | (read_buf[1] << 0);
-//                y_val = (read_buf[4] << 8) | (read_buf[3] << 0);
+//                x_val = (buff[2] << 8) | (buff[1] << 0);
+//                y_val = (buff[4] << 8) | (buff[3] << 0);
 
-//                if(read_buf[0] == 0xe1) //release
+//                if(buff[0] == 0xe1) //release
 //                {
 //                    //presure
 //                    ev.type = EV_ABS;
@@ -389,79 +468,11 @@ bool PortPrivate::isLinkCommand(const char *buff, void * paramater){   //
 //                }
 //                ret = true;
 //            }
-//            else  if(read_buf[0] == 0x51 || read_buf[0] == 0x91 || read_buf[0] == 0xd1)//header -- touch event
-//            {
-//                //printf("#Key data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",read_buf[0], read_buf[1], read_buf[2], read_buf[3], read_buf[4], read_buf[5]);
-//                switch (read_buf[2]) {
-//                case Port::K_Control :
-
-//                    break;
-//                case Port::K_Escape :
-//                    g_Widget->setWidgetType(Widget::T_Back, WidgetStatus::RequestShow);
-//                    break;
-//                case Port::K_VolumeMore :
-
-//                    break;
-//                case Port::K_VolumeLess :
-
-//                    break;
-//                case Port::K_Down :
-
-//                    break;
-//                case Port::K_Up :
-
-//                    break;
-//                case Port::K_Right :
-
-//                    break;
-//                case Port::K_Enter :
-
-//                    break;
-//                case Port::K_Left :
-
-//                    break;
-//                case Port::K_Menu :
-
-//                    break;
-//                case Port::K_BT :
-
-//                    break;
-//                case Port::K_CMMB :
-
-//                    break;
-//                case Port::K_GPS :
-
-//                    break;
-//                case Port::K_Music :
-//                    if (isUSBAlive)
-//                        g_Widget->setWidgetType(Widget::T_USBDiskMusic, WidgetStatus::RequestShow);
-//                    else if(isSDAlive)
-//                        g_Widget->setWidgetType(Widget::T_SDDiskMusic, WidgetStatus::RequestShow);
-//                    break;
-//                case Port::K_Picture :
-//                    if (isUSBAlive)
-//                        g_Widget->setWidgetType(Widget::T_USBDiskImage, WidgetStatus::RequestShow);
-//                    else if(isSDAlive)
-//                        g_Widget->setWidgetType(Widget::T_SDDiskImage, WidgetStatus::RequestShow);
-//                    break;
-//                case Port::K_Video :
-//                    if (isUSBAlive)
-//                        g_Widget->setWidgetType(Widget::T_USBDiskVideo, WidgetStatus::RequestShow);
-//                    else if(isSDAlive)
-//                        g_Widget->setWidgetType(Widget::T_SDDiskVideo, WidgetStatus::RequestShow);
-//                    break;
-//                case Port::K_Home :
-//                    g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
-//                    break;
-//                default:
-//                    break;
-//                }
-//            }
-//        }
+//
 //        else
 //        {
-//            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",read_buf[0], read_buf[1], read_buf[2], read_buf[3], read_buf[4], read_buf[5]);
-//        //	printf("###### x:%d y:%d\n",(read_buf[2] << 8) | (read_buf[1] << 0),(read_buf[4] << 8) | (read_buf[3] << 0));
+//            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
+//        //	printf("###### x:%d y:%d\n",(buff[2] << 8) | (buff[1] << 0),(buff[4] << 8) | (buff[3] << 0));
 //        }
 //        return ret;
 //}
@@ -474,14 +485,19 @@ void PortPrivate::SerialPortReadThread(void *paramater)
     qDebug() << "SerialPortReadThread" << paramater;
     PortPrivate* m_Private = (PortPrivate*)paramater;
     int nwrite,i;
-    int dev;
+    int n;
     unsigned char buff[256]={0};
     char rbuff[1024+128]={0};
     int count = 0;
 
     forever{
         printf("wait data and count=%d.\n", count);
-        count += read(fd, rbuff+count, 32);
+//        n= m_Private->readData(rbuff, 10);
+        n = read(fd,rbuff + count,10 );
+
+        printf("%d data has been read\n ", n);
+        if(n > 0)
+               count += n;
         for(i =0 ; i < count; i++)
             printf("0x%x, ", rbuff[i]);
         printf("\n");
@@ -492,17 +508,19 @@ void PortPrivate::SerialPortReadThread(void *paramater)
         {
             printf("head data = 0x%x \n",  rbuff[0]);
             printf("count=%d.\n", count);
-            for(i =0 ; i < count; i++)
-                printf("0x%x, ", rbuff[i]);
-            printf("\n");
+//            for(i =0 ; i < count; i++)
+//                printf("0x%x, ", rbuff[i]);
+//            printf("\n");
 
             //为什么会出现这样的情况,执行了ncpy后变成0.用memcpy就OK了，奇怪。
             if( rbuff[0]== 0x5c ){
-                if(m_Private->isLinkCommand(rbuff ,paramater)){
+
+                if(rbuff[2]== 0x1 && m_Private->isLinkCommand(rbuff ,paramater)){
                     memcpy(rbuff, rbuff+6, count );
                     count -= 6;
-                }else if(count >= 10 && isTouchCommand(rbuff)){
-                            //触摸数据先放在这里
+                }else if(count >= 10 && m_Private->isTouchCommand(rbuff, paramater)){
+                    memcpy(rbuff, rbuff+10, count );
+                    count -= 10;
                 }else{
                     memcpy(rbuff, rbuff+1, count );
                     count -= 1;
@@ -524,16 +542,18 @@ static int open_port(int comport)
 
     if (comport > 4)
         return -1;
-
-    sprintf(dev, "/dev/ttyHS%d", comport);
+    if(comport < 2)
+        sprintf(dev, "/dev/ttyHS%d", comport);
+    else
+        sprintf(dev, "/dev/ttyS%d", comport);
     printf("openning%s\n", dev);
 
-    fd = open(dev, O_RDWR | O_NOCTTY);//|O_NOCTTY|O_NDELAY
+    fd = open(dev, O_RDWR|O_NOCTTY|O_NDELAY);//|O_NOCTTY|O_NDELAY
     if (fd < 0) {
         printf("Can't Open Serial Port ttyS%d", comport);
         return -1;
     }
-
+    //消除非阻塞
     if (fcntl(fd, F_SETFL, 0) < 0) {
         printf("fcntl failed!\n");
         goto exit;
@@ -640,7 +660,7 @@ static int set_opt(int fd, int nSpeed, int nBits, char nEvent, int nStop)
     newtio.c_oflag  &= ~OPOST;
 
     newtio.c_cc[VTIME] = 0;
-    newtio.c_cc[VMIN] = 6; //至少6个的时候，就得返回了
+    newtio.c_cc[VMIN] = 1; //至少6个的时候，就得返回了
 
     tcflush(fd,TCIFLUSH);
 
@@ -702,7 +722,7 @@ void DWLUnmapRegisters(const void *io, unsigned int regSize)
  */
 void PortPrivate::initializeSerial(){
     //初始化串口
-     int dev = 1;
+     int dev = 3;
     fd = open_port(dev);
     if (fd < 0){
         perror("open_port error");
@@ -776,30 +796,30 @@ void PortPrivate::connectAllSlots(){
 }
 
 //这个函数可以改一下,做个测试
-ssize_t PortPrivate::readData(void *buffer, size_t n)
-{
-    ssize_t numRead = 0;
-    size_t totRead = 0;
-    char *buf;
-    buf = (char *)buffer;
+//ssize_t PortPrivate::readData(void *buffer, size_t n)
+//{
+//    ssize_t numRead = 0;
+//    size_t totRead = 0;
+//    char *buf;
+//    buf = (char *)buffer;
 
-    for (totRead = 0; totRead < n; ) {
-        numRead = read(fd, buf, n - totRead);
-        if (numRead == 0)
-            return totRead;
-        if (numRead == -1) {
-            if (errno == EINTR) {printf("\033[;31m%s:%d  numRead=%d\033[0m\n", __func__, __LINE__, numRead);
-                continue;
-            } else {
-                return -1;
-            }
-        }
-        totRead += numRead;
-        buf += numRead;
-    }
+//    for (totRead = 0; totRead < n; ) {
+//        numRead = read(fd, buf, n - totRead);
+//        if (numRead == 0)
+//            return totRead;
+//        if (numRead == -1) {
+//            if (errno == EINTR) {printf("\033[;31m%s:%d  numRead=%d\033[0m\n", __func__, __LINE__, numRead);
+//                continue;
+//            } else {
+//                return -1;
+//            }
+//        }
+//        totRead += numRead;
+//        buf += numRead;
+//    }
 
-    return totRead;
-}
+//    return totRead;
+//}
 
 ssize_t PortPrivate::writeData( const void *buffer, size_t n)
 {
@@ -821,3 +841,106 @@ ssize_t PortPrivate::writeData( const void *buffer, size_t n)
     }
     return totWritten;
 }
+
+
+//ssize_t safe_write(int fd, const void *vptr, size_t n)
+//{
+//    size_t  nleft;
+//    ssize_t nwritten;
+//    const char *ptr;
+
+//    ptr = vptr;
+//    nleft = n;
+
+//    while(nleft > 0)
+//    {
+//    if((nwritten = write(fd, ptr, nleft)) <= 0)
+//        {
+//            if(nwritten < 0&&errno == EINTR)
+//                nwritten = 0;
+//            else
+//                return -1;
+//        }
+//        nleft -= nwritten;
+//        ptr   += nwritten;
+//    }
+//    return(n);
+//}
+
+
+ssize_t safe_read(int fd,char *vptr,size_t n)
+{
+    size_t nleft;
+    ssize_t nread;
+    char *ptr;
+
+    ptr=vptr;
+    nleft=n;
+
+    while(nleft > 0)
+    {
+        if((nread = read(fd,ptr,nleft)) < 0)
+        {
+            if(errno == EINTR)//被信号中断
+                nread = 0;
+            else
+                return -1;
+        }
+        else
+        if(nread == 0)
+            break;
+        nleft -= nread;
+        ptr += nread;
+    }
+    return (n-nleft);
+}
+
+
+ssize_t PortPrivate::readData(char *r_buf, size_t len)
+{
+    ssize_t cnt = 0;
+    fd_set rfds;
+    struct timeval time;
+
+    /*将文件描述符加入读描述符集合*/
+    FD_ZERO(&rfds);
+    FD_SET(fd,&rfds);
+
+    /*设置超时为15s*/
+    time.tv_sec = 15;
+    time.tv_usec = 0;
+
+    /*实现串口的多路I/O*/
+    ret = select(fd+1,&rfds,NULL,NULL,&time);
+    switch(ret)
+    {
+        case -1:
+            fprintf(stderr,"select error!\n");
+            return -1;
+        case 0:
+            fprintf(stderr,"time over!\n");
+            return -1;
+        default:
+            cnt = safe_read(fd,r_buf,len);
+            if(cnt == -1)
+            {
+                fprintf(stderr,"read error!\n");
+                return -1;
+            }
+            return cnt;
+    }
+}
+
+//int uart_write(int fd,const char *w_buf,size_t len)
+//{
+//    ssize_t cnt = 0;
+
+//    cnt = safe_write(fd,w_buf,len);
+//    if(cnt == -1)
+//    {
+//        fprintf(stderr,"write error!\n");
+//        return -1;
+//    }
+
+//    return cnt;
+//}
