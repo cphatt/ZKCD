@@ -30,7 +30,8 @@ HEADERS += \
     Setting.h \
     Widget.h \
     BT.h \
-    Port.h
+    Port.h \
+    CarlifeLinkProxy.h
 
 SOURCES += \
     Audio.cpp \
@@ -43,5 +44,6 @@ SOURCES += \
     Setting.cpp \
     Widget.cpp \
     BT.cpp \
-    Port.cpp
+    Port.cpp \
+    CarlifeLinkProxy.cpp
 

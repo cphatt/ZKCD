@@ -51,8 +51,8 @@ public:
     //carlife向主控通讯
     enum CarlifeResponse {
             C_SoundStatus = 4,
-            C_Close = 5,
-            C_Open = 6,
+            C_HideCarplay = 5,
+            C_ShowCarplay = 6,
             C_BTCall = 9,
     };
     //carlife向主控通讯

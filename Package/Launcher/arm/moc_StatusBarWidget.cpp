@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'StatusBarWidget.h'
 **
-** Created: Thu Nov 16 14:21:45 2017
+** Created: Sat Nov 18 17:24:48 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

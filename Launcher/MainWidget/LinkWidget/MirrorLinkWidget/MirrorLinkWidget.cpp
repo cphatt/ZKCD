@@ -57,6 +57,7 @@ MirrorLinkWidget::MirrorLinkWidget(QWidget *parent)
     : QWidget(parent)
     , m_Private(new MirrorLinkWidgetPrivate(this))
 {
+
 }
 
 MirrorLinkWidget::~MirrorLinkWidget()
@@ -180,6 +181,8 @@ bool MirrorLinkWidget::event(QEvent *event)
 
 void MirrorLinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
 {
+
+   qWarning() << "MirrorLinkWidget::ontWidgetTypeChange" << status;
     switch (type) {
     case Widget::T_Mirror: {
         if (WidgetStatus::RequestShow == status) {
@@ -322,8 +325,10 @@ void MirrorLinkWidget::onBTName(QString name)
 MirrorLinkWidgetPrivate::MirrorLinkWidgetPrivate(MirrorLinkWidget* parent)
     : m_Parent(parent)
 {
-    connectSignalAndSlotByNamesake(g_Widget, m_Parent);
-    connectSignalAndSlotByNamesake(g_BT, m_Parent);
+
+    initialize();
+    receiveAllCustomEvent();
+    connectAllSlots();
 }
 
 MirrorLinkWidgetPrivate::~MirrorLinkWidgetPrivate()
@@ -381,7 +386,10 @@ void MirrorLinkWidgetPrivate::receiveAllCustomEvent()
 
 void MirrorLinkWidgetPrivate::connectAllSlots()
 {    
+    connectSignalAndSlotByNamesake(g_Widget, m_Parent);
     connectSignalAndSlotByNamesake(g_Link, m_Parent);
+    connectSignalAndSlotByNamesake(g_Port, m_Parent);
+    connectSignalAndSlotByNamesake(g_BT, m_Parent);
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
     if (NULL != m_DeviceMessageBox) {
         QObject::connect(m_DeviceMessageBox, SIGNAL(messageWidgetChange(const MessageBox::Type)),
@@ -440,6 +448,10 @@ void MirrorLinkWidgetPrivate::onMirrorLinkStatus(const Link_STATUS status)
         break;
     }
     case LINK_EXITED: {
+        g_Port->setStatus(Port::MirrorDisConnected);
+       char data = Port::MirrorDisConnected;
+       g_Port->responseMCU(Port::C_SoundStatus, &data, 1);
+
         if ((m_Parent->isVisible())
                 || (m_DeviceMessageBox->isVisible())) {
             g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
@@ -466,6 +478,11 @@ void MirrorLinkWidgetPrivate::onMirrorLinkStatus(const Link_STATUS status)
         break;
     }
     case LINK_SUCCESS: {
+        g_Port->setStatus(Port::MirrorConnected);
+
+         char data = Port::MirrorConnected;
+        g_Port->responseMCU(Port::C_SoundStatus, &data, 1);
+
         EventEngine::CustomEvent<QString> event(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
         g_EventEngine->sendCustomEvent(event);
         g_Widget->setWidgetType(Widget::T_Mirror, WidgetStatus::Show);

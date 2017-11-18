@@ -44,17 +44,14 @@ public:
     void initializeMem();
     void initializeInput();
     void connectAllSlots();
-    bool isOpen();
-    void setPortName(const QString &name);
-    QString portName() ;
-    void setBaudRate(int baudRate);
-    int baudRate();
+
+
     void doHanderData();
     ssize_t  readData(char *buffer, size_t n);
     ssize_t writeData(const void *buffer, size_t n);
     int write(char ch);
     static void SerialPortReadThread(void *);
-    bool isLinkCommand(const char *buff, void * paramater);
+    bool isLinkCommand(const char *buff);
     bool isTouchCommand(const char *buff, void * paramater);
     QTimer *m_Timer  = NULL;
 
@@ -96,9 +93,9 @@ void Port::handlerData(int type)
 {
         qDebug() <<"Port::handlerData" <<type;
         if(1== type){
-                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestShow);
+
         }else if(2 == type){
-                g_Widget->setWidgetType(Widget::T_Carplay,  WidgetStatus::RequestHide);
+                    setMemStatus(Port::IO);
         }
 }
 /**
@@ -250,82 +247,82 @@ PortPrivate::PortPrivate(Port* parent)
  * @param paramater
  * @return
  */
-bool PortPrivate::isTouchCommand(const char *buff, void * paramater){
-    struct input_event ev; //input
-    int x_val,y_val, i;
-    bool ret = false;
-    unsigned char checksum=buff[0];
-    unsigned char temp =buff[2] + 4;
+//bool PortPrivate::isTouchCommand(const char *buff, void * paramater){
+//    struct input_event ev; //input
+//    int x_val,y_val, i;
+//    bool ret = false;
+//    unsigned char checksum=buff[0];
+//    unsigned char temp =buff[2] + 4;
 
-    for(i = 1; i < temp; i++)
-    {
-        checksum = checksum ^buff[i];
-    }
-    printf("isTouchCommand temp = %d,0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",temp,buff[4], buff[5], buff[6], buff[7], buff[8], checksum,buff[temp]);
-    if(checksum ==buff[temp]){
-        if(buff[8] == 0x01 || buff[8] == 0x02 )//header -- touch event
-        {
-                        ret = true;
-            x_val = (buff[4] << 8) | (buff[5] << 0);
-            y_val = (buff[6] << 8) | (buff[7] << 0);
-             printf("x:%d,y:%d\n", x_val, y_val);
+//    for(i = 1; i < temp; i++)
+//    {
+//        checksum = checksum ^buff[i];
+//    }
+////    printf("isTouchCommand temp = %d,0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",temp,buff[4], buff[5], buff[6], buff[7], buff[8], checksum,buff[temp]);
+//    if(checksum ==buff[temp]){
+//        if(buff[8] == 0x01 || buff[8] == 0x02 )//header -- touch event
+//        {
+//                        ret = true;
+//            x_val = (buff[4] << 8) | (buff[5] << 0);
+//            y_val = (buff[6] << 8) | (buff[7] << 0);
+//             printf("x:%d,y:%d\n", x_val, y_val);
 
-            if(buff[8] == 0x02) //release
-            {
-                //presure
-                ev.type = EV_ABS;
-                ev.code = ABS_PRESSURE;
-                ev.value = 0x0;
-                ::write(input_fd, &ev, sizeof(struct input_event));
+//            if(buff[8] == 0x02) //release
+//            {
+//                //presure
+//                ev.type = EV_ABS;
+//                ev.code = ABS_PRESSURE;
+//                ev.value = 0x0;
+//                ::write(input_fd, &ev, sizeof(struct input_event));
 
-                //sync
-                ev.type = EV_SYN;
-                ev.code = SYN_REPORT;
-                ev.value = 0x0;
-                ret = ::write(input_fd, &ev, sizeof(struct input_event));
-                qWarning()<< "UP";
-            }
-            else	//push
-            {
-                //x axis
-                ev.type = EV_ABS;
-                ev.code = ABS_X;
-                ev.value = x_val;
-                ret = ::write(input_fd, &ev, sizeof(struct input_event));
-                if(ret < 0)
-                {
-                    qDebug() << "write X axis failed";
-                }
-                //y axis
-                ev.type = EV_ABS;
-                ev.code = ABS_Y;
-                ev.value = y_val;
-                ::write(input_fd, &ev, sizeof(struct input_event));
-                //presure
-                ev.type = EV_ABS;
-                ev.code = ABS_PRESSURE;
-                ev.value = 0xFFF;
-               ::write(input_fd, &ev, sizeof(struct input_event));
+//                //sync
+//                ev.type = EV_SYN;
+//                ev.code = SYN_REPORT;
+//                ev.value = 0x0;
+//                ret = ::write(input_fd, &ev, sizeof(struct input_event));
+//                qWarning()<< "UP";
+//            }
+//            else	//push
+//            {
+//                //x axis
+//                ev.type = EV_ABS;
+//                ev.code = ABS_X;
+//                ev.value = x_val;
+//                ret = ::write(input_fd, &ev, sizeof(struct input_event));
+//                if(ret < 0)
+//                {
+//                    qDebug() << "write X axis failed";
+//                }
+//                //y axis
+//                ev.type = EV_ABS;
+//                ev.code = ABS_Y;
+//                ev.value = y_val;
+//                ::write(input_fd, &ev, sizeof(struct input_event));
+//                //presure
+//                ev.type = EV_ABS;
+//                ev.code = ABS_PRESSURE;
+//                ev.value = 0xFFF;
+//               ::write(input_fd, &ev, sizeof(struct input_event));
 
-                //sync
-                ev.type = EV_SYN;
-                ev.code = SYN_REPORT;
-                ev.value = 0x0;
-                ::write(input_fd, &ev, sizeof(struct input_event));
-                qWarning() << "MOVE";
-            }
+//                //sync
+//                ev.type = EV_SYN;
+//                ev.code = SYN_REPORT;
+//                ev.value = 0x0;
+//                ::write(input_fd, &ev, sizeof(struct input_event));
+//                qWarning() << "MOVE";
+//            }
 
-        }
-        //
-        //        else
-        //        {
-        //            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
-        //        //	printf("###### x:%d y:%d\n",(buff[2] << 8) | (buff[1] << 0),(buff[4] << 8) | (buff[3] << 0));
-        //        }
-    }
+//        }
+//        //
+//        //        else
+//        //        {
+//        //            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
+//        //        //	printf("###### x:%d y:%d\n",(buff[2] << 8) | (buff[1] << 0),(buff[4] << 8) | (buff[3] << 0));
+//        //        }
+//    }
 
-    return ret;
-}
+//    return ret;
+//}
 
 /**
  * @brief PortPrivate::isLinkCommand    判断MCU数据并处理
@@ -333,25 +330,30 @@ bool PortPrivate::isTouchCommand(const char *buff, void * paramater){
  * @param paramater PortPrivate 对象
  * @return  该协议是否执行
  */
-bool PortPrivate:: isLinkCommand(const char *buff, void * paramater){   //
+bool PortPrivate:: isLinkCommand(const char *buff){   //
     unsigned char checksum=buff[0];
     unsigned char temp =buff[2] + 4;
     unsigned char type_data =buff[4];
     int i,flag =0;
-    PortPrivate* m_Private = (PortPrivate*)paramater;
+    if(buff[0] != 0x5c)
+        return flag;
     for(i = 1; i < temp; i++)
         checksum = checksum ^buff[i];
-
-     qWarning() << "isLinkCommand" << checksum << buff[temp];
+//     qWarning() << "isLinkCommand" << checksum << buff[temp];
 //    printf("isLinkCommand 0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",buff[0], buff[1], buff[2], buff[3], buff[4], checksum,buff[temp]);
     if(checksum ==buff[temp])
     {       flag = 1;
-            qWarning() << "type" <<buff[3] <<",data" << type_data;
+//            qWarning() << "type" <<buff[3] <<",data" << type_data;
+            printf("type = 0x%x, data = 0x%x\n", buff[3],  type_data);
             if(buff[3] == 0x2){
-                    if(type_data == 0x1){       //turn on carlife
-                        emit m_Private->m_Parent->read_port_data(1);
+                    if(type_data == 0x1){
+//                        emit m_Private->m_Parent->read_port_data(1);
+                        m_Parent->setMemStatus(Port::RGB);
+                        char data = m_Parent->soundStatus;
+                        m_Parent->responseMCU(Port::C_SoundStatus, &data, 1);
                     }else if(type_data == 0x2){     //turn on carplay
-                        emit m_Private->m_Parent->read_port_data(2);
+//                        emit m_Private->m_Parent->read_port_data(2);
+                        m_Parent->setMemStatus(Port::IO);
                     }
             }else if(buff[3] == 0x3){       //set Laguage
                     switch(type_data){
@@ -385,8 +387,6 @@ bool PortPrivate:: isLinkCommand(const char *buff, void * paramater){   //
                     default:
                         break;
                     }
-
-
             }else if(buff[3] == 0x7){       //xuanniu
                     //open
             }else if(buff[3] == 0x8){       //request carlife status
@@ -402,80 +402,76 @@ bool PortPrivate:: isLinkCommand(const char *buff, void * paramater){   //
  * @param buff
  * @return
  */
-//bool isCommand(const char *buff){
-//    struct input_event ev; //input
+bool isCommand(const char *buff){
+    struct input_event ev; //input
 
-//    char checksum;
-//    int x_val,y_val,i;
-//    bool ret = false;
+    char checksum = buff[0];
+    int x_val,y_val,i;
+    bool ret = false;
+        for(i = 1; i < 5; i++)
+            checksum = checksum ^buff[i];
+//        qWarning()<<"isCommand"<< buff[0] << checksum << buff[i];
+//                    for(i =0 ; i < 6; i++)
+//                        printf("0x%x, ", buff[i]);
+//                    printf("\n");
 
-//        checksum = 0;
-//        for(i=0; i<5; i++)
-//            checksum += buff[i];
-//        checksum = ~checksum;
-//        //qDebug() << checksum << buff[i];
+        if(checksum == buff[i])
+        {
+            if(buff[0] == 0x61 || buff[0] == 0xa1 || buff[0] == 0xe1)//header -- touch event
+            {
+                x_val = (buff[1] << 8) | (buff[2] << 0);
+                y_val = (buff[3] << 8) | (buff[4] << 0);
 
-//        if(checksum == buff[i])
-//        {
-//            if(buff[0] == 0x61 || buff[0] == 0xa1 || buff[0] == 0xe1)//header -- touch event
-//            {
-//                x_val = (buff[2] << 8) | (buff[1] << 0);
-//                y_val = (buff[4] << 8) | (buff[3] << 0);
+                if(buff[0] == 0xe1) //release
+                {
+                    //presure
+                    ev.type = EV_ABS;
+                    ev.code = ABS_PRESSURE;
+                    ev.value = 0x0;
+                    ::write(input_fd, &ev, sizeof(struct input_event));
 
-//                if(buff[0] == 0xe1) //release
-//                {
-//                    //presure
-//                    ev.type = EV_ABS;
-//                    ev.code = ABS_PRESSURE;
-//                    ev.value = 0x0;
-//                    ::write(input_fd, &ev, sizeof(struct input_event));
+                    //sync
+                    ev.type = EV_SYN;
+                    ev.code = SYN_REPORT;
+                    ev.value = 0x0;
+                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
+                   // qDebug() << "UP";
+                }
+                else	//push
+                {
+                    //x axis
+                    ev.type = EV_ABS;
+                    ev.code = ABS_X;
+                    ev.value = x_val;
+                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
+                    if(ret < 0)
+                    {
+                        qDebug() << "write X axis failed";
+                    }
+                    //y axis
+                    ev.type = EV_ABS;
+                    ev.code = ABS_Y;
+                    ev.value = y_val;
+                    ::write(input_fd, &ev, sizeof(struct input_event));
+                    //presure
+                    ev.type = EV_ABS;
+                    ev.code = ABS_PRESSURE;
+                    ev.value = 0xFFF;
+                   ::write(input_fd, &ev, sizeof(struct input_event));
 
-//                    //sync
-//                    ev.type = EV_SYN;
-//                    ev.code = SYN_REPORT;
-//                    ev.value = 0x0;
-//                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
-//                   // qDebug() << "UP";
-//                }
-//                else	//push
-//                {
-//                    //x axis
-//                    ev.type = EV_ABS;
-//                    ev.code = ABS_X;
-//                    ev.value = x_val;
-//                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
-//                    if(ret < 0)
-//                    {
-//                        qDebug() << "write X axis failed";
-//                    }
-//                    //y axis
-//                    ev.type = EV_ABS;
-//                    ev.code = ABS_Y;
-//                    ev.value = y_val;
-//                    ::write(input_fd, &ev, sizeof(struct input_event));
-//                    //presure
-//                    ev.type = EV_ABS;
-//                    ev.code = ABS_PRESSURE;
-//                    ev.value = 0xFFF;
-//                   ::write(input_fd, &ev, sizeof(struct input_event));
+                    //sync
+                    ev.type = EV_SYN;
+                    ev.code = SYN_REPORT;
+                    ev.value = 0x0;
+                    ::write(input_fd, &ev, sizeof(struct input_event));
+                    //qDebug() << "MOVE";
+                }
+                ret = true;
+            }
+        }
+        return ret;
+}
 
-//                    //sync
-//                    ev.type = EV_SYN;
-//                    ev.code = SYN_REPORT;
-//                    ev.value = 0x0;
-//                    ::write(input_fd, &ev, sizeof(struct input_event));
-//                    //qDebug() << "MOVE";
-//                }
-//                ret = true;
-//            }
-//
-//        else
-//        {
-//            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
-//        //	printf("###### x:%d y:%d\n",(buff[2] << 8) | (buff[1] << 0),(buff[4] << 8) | (buff[3] << 0));
-//        }
-//        return ret;
-//}
 /**
  * @brief PortPrivate::SerialPortReadThread 该函数的作用于处理MCU数据，但是在线程中发送带枚举参数的信号会报错
  * @param paramater PortPrivate
@@ -484,6 +480,9 @@ void PortPrivate::SerialPortReadThread(void *paramater)
 {
     qDebug() << "SerialPortReadThread" << paramater;
     PortPrivate* m_Private = (PortPrivate*)paramater;
+    char data = 0x1;
+    m_Private->m_Parent->responseMCU(Port::C_ShowCarplay, &data, 1);
+
     int nwrite,i;
     int n;
     unsigned char buff[256]={0};
@@ -491,46 +490,33 @@ void PortPrivate::SerialPortReadThread(void *paramater)
     int count = 0;
 
     forever{
-        printf("wait data and count=%d.\n", count);
+//        printf("wait data and count=%d.\n", count);
 //        n= m_Private->readData(rbuff, 10);
-        n = read(fd,rbuff + count,10 );
+        n = read(fd,rbuff + count,128 );
 
-        printf("%d data has been read\n ", n);
+//        printf("%d data has been read\n ", n);
         if(n > 0)
                count += n;
-        for(i =0 ; i < count; i++)
-            printf("0x%x, ", rbuff[i]);
-        printf("\n");
-        sleep(1);
-
+//        for(i =0 ; i < count; i++)
+//            printf("0x%x, ", rbuff[i]);
+//        printf("\n");
+//        sleep(1);
 //        emit m_Private->m_Parent->read_port_data(QByteArray());
         while(count >= 6)
         {
-            printf("head data = 0x%x \n",  rbuff[0]);
-            printf("count=%d.\n", count);
+//            printf("head data = 0x%x \n",  rbuff[0]);
+//            printf("count=%d.\n", count);
 //            for(i =0 ; i < count; i++)
 //                printf("0x%x, ", rbuff[i]);
 //            printf("\n");
-
-            //为什么会出现这样的情况,执行了ncpy后变成0.用memcpy就OK了，奇怪。
-            if( rbuff[0]== 0x5c ){
-
-                if(rbuff[2]== 0x1 && m_Private->isLinkCommand(rbuff ,paramater)){
-                    memcpy(rbuff, rbuff+6, count );
-                    count -= 6;
-                }else if(count >= 10 && m_Private->isTouchCommand(rbuff, paramater)){
-                    memcpy(rbuff, rbuff+10, count );
-                    count -= 10;
-                }else{
-                    memcpy(rbuff, rbuff+1, count );
-                    count -= 1;
-                }
+            if(m_Private->isLinkCommand(rbuff) || isCommand(rbuff) ){
+                memcpy(rbuff, rbuff+6, count );
+                count -= 6;
             }else{
                 memcpy(rbuff, rbuff+1, count );
                 count -= 1;
             }
         }
-
     }
 }
 
@@ -660,7 +646,7 @@ static int set_opt(int fd, int nSpeed, int nBits, char nEvent, int nStop)
     newtio.c_oflag  &= ~OPOST;
 
     newtio.c_cc[VTIME] = 0;
-    newtio.c_cc[VMIN] = 1; //至少6个的时候，就得返回了
+    newtio.c_cc[VMIN] = 6; //至少6个的时候，就得返回了
 
     tcflush(fd,TCIFLUSH);
 

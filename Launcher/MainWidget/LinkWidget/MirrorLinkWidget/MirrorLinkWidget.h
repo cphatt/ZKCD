@@ -1,6 +1,7 @@
 #ifndef MIRRORLINKWIDGET_H
 #define MIRRORLINKWIDGET_H
 
+#include  "Port.h"
 #include "Link.h"
 #include "Widget.h"
 #include "MessageBox.h"

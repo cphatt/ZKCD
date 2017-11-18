@@ -109,7 +109,10 @@ void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &sta
     switch (type) {
     case Widget::T_Back: {
         if (isVisible()) {
-            g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
+//            g_Widget->setWidgetType(Widget::T_Home, WidgetStatus::RequestShow);
+            char data = 1;
+            g_Port->responseMCU(Port::C_HideCarplay, &data, 1);
+            g_Port->setMemStatus(Port::IO);
         }
         break;
     }

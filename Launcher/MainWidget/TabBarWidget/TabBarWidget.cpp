@@ -94,13 +94,13 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
     if (WidgetStatus::Show == status)
         switch (type) {
         case Widget::T_Home: {
-            m_Private->initializeOtherWidget();
-            m_Private->m_TurnOffDisplayBtn->setVisible(true);
-            m_Private->m_HomeBtn->setVisible(false);
+//            m_Private->initializeOtherWidget();
+//            m_Private->m_TurnOffDisplayBtn->setVisible(true);
+//            m_Private->m_HomeBtn->setVisible(false);
             m_Private->m_BackBtn->setVisible(false);
-            m_Private->m_FMBtn->setVisible(true);
-            m_Private->m_IRBtn->setVisible(true);
-            m_Private->m_VolumeBtn->setVisible(true);
+//            m_Private->m_FMBtn->setVisible(true);
+//            m_Private->m_IRBtn->setVisible(true);
+//            m_Private->m_VolumeBtn->setVisible(true);
             setVisible(true);
             break;
         }
@@ -121,13 +121,13 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
         case Widget::T_SettingEffect:
         case Widget::T_SettingField:
         case Widget::T_SettingVersion: {
-            m_Private->initializeOtherWidget();
-            m_Private->m_TurnOffDisplayBtn->setVisible(false);
-            m_Private->m_HomeBtn->setVisible(true);
+//            m_Private->initializeOtherWidget();
+//            m_Private->m_TurnOffDisplayBtn->setVisible(false);
+//            m_Private->m_HomeBtn->setVisible(true);
             m_Private->m_BackBtn->setVisible(true);
-            m_Private->m_FMBtn->setVisible(true);
-            m_Private->m_IRBtn->setVisible(true);
-            m_Private->m_VolumeBtn->setVisible(true);
+//            m_Private->m_FMBtn->setVisible(true);
+//            m_Private->m_IRBtn->setVisible(true);
+//            m_Private->m_VolumeBtn->setVisible(true);
             setVisible(true);
             break;
         }
@@ -140,13 +140,13 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
         case Widget::T_Video:
         case Widget::T_VideoFullScreen: {
             setVisible(false);
-            m_Private->m_TurnOffDisplayBtn->setVisible(false);
-            m_Private->m_HomeBtn->setVisible(false);
+//            m_Private->m_TurnOffDisplayBtn->setVisible(false);
+//            m_Private->m_HomeBtn->setVisible(false);
             m_Private->m_BackBtn->setVisible(false);
-            m_Private->m_FMBtn->setVisible(false);
-            m_Private->m_IRBtn->setVisible(false);
-            m_Private->m_VolumeBtn->setVisible(false);
-            break;
+//            m_Private->m_FMBtn->setVisible(false);
+//            m_Private->m_IRBtn->setVisible(false);
+//            m_Private->m_VolumeBtn->setVisible(false);
+//            break;
         }
         default: {
             break;
@@ -157,7 +157,7 @@ void TabBarWidget::ontWidgetTypeChange(const Widget::Type type, const QString &s
 void TabBarWidget::onTabBarButtonRelease()
 {
     const BmpButton* ptr = dynamic_cast<const BmpButton*>(sender());
-    if(ptr == m_Private->m_TurnOffDisplayBtn) {
+/*    if(ptr == m_Private->m_TurnOffDisplayBtn) {
         EventEngine::CustomEvent<QString> event(CustomEventType::IdleWidgetStatus, new QString(WidgetStatus::RequestShow));
         g_EventEngine->sendCustomEvent(event);
     } else if (ptr == m_Private->m_HomeBtn) {
@@ -171,7 +171,7 @@ void TabBarWidget::onTabBarButtonRelease()
     } else if (ptr == m_Private->m_VolumeBtn) {
         EventEngine::CustomEvent<QString> event(CustomEventType::VolumeWidgetStatus, new QString(WidgetStatus::RequestShow));
         g_EventEngine->sendCustomEvent(event);
-    } else if (ptr == m_Private->m_BackBtn) {
+    } else*/ if (ptr == m_Private->m_BackBtn) {
         g_Widget->setWidgetType(Widget::T_Back, WidgetStatus::RequestShow);
     }
 }
@@ -198,34 +198,34 @@ void TabBarWidgetPrivate::initializeBasicWidget()
             m_Background = new QImage(QString(":/Images/Resources/Images/TabBarWidgetBackground.png"));
 //        }
     }
-    if (NULL == m_TurnOffDisplayBtn) {
-        m_TurnOffDisplayBtn = new BmpButton(m_Parent);
-        m_TurnOffDisplayBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetTurnOffDisplayBtnNormal"));
-        m_TurnOffDisplayBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetTurnOffDisplayBtnNormal"));
-        g_Widget->geometryFit(1112 + (1196 - 1112 - width) * 0.5, 0, width, height, m_TurnOffDisplayBtn);
-        m_TurnOffDisplayBtn->setVisible(true);
-    }
-    if (NULL == m_FMBtn) {
-        m_FMBtn = new BmpButton(m_Parent);
-        m_FMBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetFMBtnNormal"));
-        m_FMBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetFMBtnNormal"));
-        g_Widget->geometryFit(608 + (692 - 608 - width) * 0.5, 0, width, height, m_FMBtn);
-        m_FMBtn->setVisible(true);
-    }
-    if (NULL == m_IRBtn) {
-        m_IRBtn = new BmpButton(m_Parent);
-        m_IRBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetIRBtnNormal"));
-        m_IRBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetIRBtnNormal"));
-        g_Widget->geometryFit(776 + (860 - 776 - width) * 0.5, 0, width, height, m_IRBtn);
-        m_IRBtn->setVisible(true);
-    }
-    if (NULL == m_VolumeBtn) {
-        m_VolumeBtn = new BmpButton(m_Parent);
-        m_VolumeBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetVolumeBtnNormal"));
-        m_VolumeBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetVolumeBtnNormal"));
-        g_Widget->geometryFit(944 + (1028 - 944 - width) * 0.5, 0, width, height, m_VolumeBtn);
-        m_VolumeBtn->setVisible(true);
-    }
+//    if (NULL == m_TurnOffDisplayBtn) {
+//        m_TurnOffDisplayBtn = new BmpButton(m_Parent);
+//        m_TurnOffDisplayBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetTurnOffDisplayBtnNormal"));
+//        m_TurnOffDisplayBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetTurnOffDisplayBtnNormal"));
+//        g_Widget->geometryFit(1112 + (1196 - 1112 - width) * 0.5, 0, width, height, m_TurnOffDisplayBtn);
+//        m_TurnOffDisplayBtn->setVisible(true);
+//    }
+//    if (NULL == m_FMBtn) {
+//        m_FMBtn = new BmpButton(m_Parent);
+//        m_FMBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetFMBtnNormal"));
+//        m_FMBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetFMBtnNormal"));
+//        g_Widget->geometryFit(608 + (692 - 608 - width) * 0.5, 0, width, height, m_FMBtn);
+//        m_FMBtn->setVisible(true);
+//    }
+//    if (NULL == m_IRBtn) {
+//        m_IRBtn = new BmpButton(m_Parent);
+//        m_IRBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetIRBtnNormal"));
+//        m_IRBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetIRBtnNormal"));
+//        g_Widget->geometryFit(776 + (860 - 776 - width) * 0.5, 0, width, height, m_IRBtn);
+//        m_IRBtn->setVisible(true);
+//    }
+//    if (NULL == m_VolumeBtn) {
+//        m_VolumeBtn = new BmpButton(m_Parent);
+//        m_VolumeBtn->setNormalBmpPath(QString(":/Images/Resources/Images/TabBarWidgetVolumeBtnNormal"));
+//        m_VolumeBtn->setPressBmpPath(QString(":/Images/Resources/Images/TabBarWidgetVolumeBtnNormal"));
+//        g_Widget->geometryFit(944 + (1028 - 944 - width) * 0.5, 0, width, height, m_VolumeBtn);
+//        m_VolumeBtn->setVisible(true);
+//    }
 }
 
 void TabBarWidgetPrivate::initializeOtherWidget()
@@ -256,31 +256,31 @@ void TabBarWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::AutoConnection);
-    if (NULL != m_TurnOffDisplayBtn) {
-        QObject::connect(m_TurnOffDisplayBtn, SIGNAL(bmpButtonRelease()),
-                         m_Parent,            SLOT(onTabBarButtonRelease()),
-                         type);
-    }
-    if (NULL != m_HomeBtn) {
-        QObject::connect(m_HomeBtn, SIGNAL(bmpButtonRelease()),
-                         m_Parent,  SLOT(onTabBarButtonRelease()),
-                         type);
-    }
-    if (NULL != m_FMBtn) {
-        QObject::connect(m_FMBtn,  SIGNAL(bmpButtonRelease()),
-                         m_Parent, SLOT(onTabBarButtonRelease()),
-                         type);
-    }
-    if (NULL != m_IRBtn) {
-        QObject::connect(m_IRBtn,  SIGNAL(bmpButtonRelease()),
-                         m_Parent, SLOT(onTabBarButtonRelease()),
-                         type);
-    }
-    if (NULL != m_VolumeBtn) {
-        QObject::connect(m_VolumeBtn, SIGNAL(bmpButtonRelease()),
-                         m_Parent,    SLOT(onTabBarButtonRelease()),
-                         type);
-    }
+//    if (NULL != m_TurnOffDisplayBtn) {
+//        QObject::connect(m_TurnOffDisplayBtn, SIGNAL(bmpButtonRelease()),
+//                         m_Parent,            SLOT(onTabBarButtonRelease()),
+//                         type);
+//    }
+//    if (NULL != m_HomeBtn) {
+//        QObject::connect(m_HomeBtn, SIGNAL(bmpButtonRelease()),
+//                         m_Parent,  SLOT(onTabBarButtonRelease()),
+//                         type);
+//    }
+//    if (NULL != m_FMBtn) {
+//        QObject::connect(m_FMBtn,  SIGNAL(bmpButtonRelease()),
+//                         m_Parent, SLOT(onTabBarButtonRelease()),
+//                         type);
+//    }
+//    if (NULL != m_IRBtn) {
+//        QObject::connect(m_IRBtn,  SIGNAL(bmpButtonRelease()),
+//                         m_Parent, SLOT(onTabBarButtonRelease()),
+//                         type);
+//    }
+//    if (NULL != m_VolumeBtn) {
+//        QObject::connect(m_VolumeBtn, SIGNAL(bmpButtonRelease()),
+//                         m_Parent,    SLOT(onTabBarButtonRelease()),
+//                         type);
+//    }
     if (NULL != m_BackBtn) {
         QObject::connect(m_BackBtn, SIGNAL(bmpButtonRelease()),
                          m_Parent,  SLOT(onTabBarButtonRelease()),

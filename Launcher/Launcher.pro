@@ -86,7 +86,9 @@ SOURCES += \
     MainWidget/IRWidget/IRWidget.cpp \
     MainWidget/IRWidget/IRToolWidget/IRToolWidget.cpp \
     MainWidget/SettingWidget/VersionWidget/VersionWidget.cpp \
-    MainWidget/SettingWidget/VersionWidget/VersionListView/VersionListView.cpp
+    MainWidget/SettingWidget/VersionWidget/VersionListView/VersionListView.cpp \
+    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp \
+    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.cpp
 
 HEADERS += \
     MainWidget/HomeWidget/HomeWidget.h \
@@ -155,7 +157,9 @@ HEADERS += \
     MainWidget/IRWidget/IRWidget.h \
     MainWidget/IRWidget/IRToolWidget/IRToolWidget.h \
     MainWidget/SettingWidget/VersionWidget/VersionWidget.h \
-    MainWidget/SettingWidget/VersionWidget/VersionListView/VersionListView.h
+    MainWidget/SettingWidget/VersionWidget/VersionListView/VersionListView.h \
+    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.h \
+    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.h
 
 include(../ArkSdk.pri)
 
