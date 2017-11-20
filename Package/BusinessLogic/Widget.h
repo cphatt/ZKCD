@@ -52,6 +52,7 @@ public:
         T_SettingEffect = 25,
         T_SettingField = 26,
         T_SettingVersion = 27,
+        T_Carlife = 28,
     };
     QRect geometryFit(const int x, const int y, const int w, const int h, QWidget* widget = NULL);
     int baseWindowWidth();

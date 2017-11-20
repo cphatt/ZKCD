@@ -106,6 +106,8 @@ static void initializeRunnableCallback(void *paramater)
     g_DbusService->startService(serviceName);
     serviceName = QString("com.arkmicro.mirror");
     g_DbusService->startService(serviceName);
+    serviceName = QString("com.arkmicro.carlife");
+    g_DbusService->startService(serviceName);
     //    UserInterfaceUtility::elapsed(QString("start ArkMicroMultimediaService<<<<<"));
     QStringList cmd;
     cmd << QString("-t") << MultimediaApplication;

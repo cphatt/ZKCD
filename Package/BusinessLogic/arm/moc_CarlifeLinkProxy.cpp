@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CarlifeLinkProxy.h'
 **
-** Created: Sat Nov 18 11:41:23 2017
+** Created: Mon Nov 20 17:42:49 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,21 +23,20 @@ static const uint qt_meta_data_LocalDbusServerAndroidCarlifeInterface[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       52,   40,   39,   39, 0x05,
+     109,   80,   39,   39, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     100,   39,   80,   39, 0x0a,
-     120,  115,   80,   39, 0x0a,
-     141,   40,   80,   39, 0x0a,
-     203,  168,   80,   39, 0x0a,
+     170,   40,  150,   39, 0x0a,
+     232,  197,  150,   39, 0x0a,
 
        0        // eod
 };
@@ -45,9 +44,9 @@ static const uint qt_meta_data_LocalDbusServerAndroidCarlifeInterface[] = {
 static const char qt_meta_stringdata_LocalDbusServerAndroidCarlifeInterface[] = {
     "LocalDbusServerAndroidCarlifeInterface\0"
     "\0type,status\0onLinkStatusChange(int,int)\0"
-    "QDBusPendingReply<>\0onExitSignal()\0"
-    "type\0requestKeyValue(int)\0"
-    "requestLinkStatus(int,int)\0"
+    "type,x_src,y_src,x_dst,y_dst\0"
+    "onTouchStatusChange(int,int,int,int,int)\0"
+    "QDBusPendingReply<>\0requestLinkStatus(int,int)\0"
     "deviceType,touchType,touchPointXml\0"
     "requestTouchStatus(int,int,QString)\0"
 };
@@ -82,17 +81,14 @@ int LocalDbusServerAndroidCarlifeInterface::qt_metacall(QMetaObject::Call _c, in
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: onLinkStatusChange((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 1: { QDBusPendingReply<> _r = onExitSignal();
+        case 1: onTouchStatusChange((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5]))); break;
+        case 2: { QDBusPendingReply<> _r = requestLinkStatus((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< QDBusPendingReply<>*>(_a[0]) = _r; }  break;
-        case 2: { QDBusPendingReply<> _r = requestKeyValue((*reinterpret_cast< int(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< QDBusPendingReply<>*>(_a[0]) = _r; }  break;
-        case 3: { QDBusPendingReply<> _r = requestLinkStatus((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])));
-            if (_a[0]) *reinterpret_cast< QDBusPendingReply<>*>(_a[0]) = _r; }  break;
-        case 4: { QDBusPendingReply<> _r = requestTouchStatus((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])));
+        case 3: { QDBusPendingReply<> _r = requestTouchStatus((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])));
             if (_a[0]) *reinterpret_cast< QDBusPendingReply<>*>(_a[0]) = _r; }  break;
         default: ;
         }
-        _id -= 5;
+        _id -= 4;
     }
     return _id;
 }
@@ -102,5 +98,12 @@ void LocalDbusServerAndroidCarlifeInterface::onLinkStatusChange(int _t1, int _t2
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void LocalDbusServerAndroidCarlifeInterface::onTouchStatusChange(int _t1, int _t2, int _t3, int _t4, int _t5)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_END_MOC_NAMESPACE

@@ -187,7 +187,7 @@ void CarplayLinkWidget::ontWidgetTypeChange(const Widget::Type type, const QStri
 
 void CarplayLinkWidget::onLinkStatusChange(const Link_Type type, const Link_STATUS status)
 {
-    qDebug() << "CarplayLinkWidget::onLinkStatusChange" << type << status;
+    qWarning() << "CarplayLinkWidget::onLinkStatusChange" << type << status;
     switch (type) {
     case CARPLAY: {
         m_Private->onCarplayLinkStatus(status);

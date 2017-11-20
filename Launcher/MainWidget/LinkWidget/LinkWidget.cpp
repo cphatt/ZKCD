@@ -1,6 +1,7 @@
 #include "LinkWidget.h"
-#include "MirrorLinkWidget/MirrorLinkWidget.h"
+//#include "MirrorLinkWidget/MirrorLinkWidget.h"
 #include "CarplayLinkWidget/CarplayLinkWidget.h"
+#include "CarlifeLinkWidget/CarlifeLinkWidget.h"
 #include "AutoConnect.h"
 #include "BmpButton.h"
 #include "BmpWidget.h"
@@ -32,8 +33,9 @@ public:
     explicit LinkWidgetPrivate(LinkWidget *parent);
     ~LinkWidgetPrivate();
     void initializeLinkWidget();
-    void initializeMirrowWidget();
+//    void initializeMirrowWidget();
     void initializeCarplayWidget();
+    void initializeCarlifeWidget();
     void receiveAllCustomEvent();
     void connectAllSlots();
     BmpWidget* m_Background = NULL;
@@ -44,8 +46,9 @@ public:
     BmpButton* m_CarplayBtn = NULL;
     TextWidget* m_CarplayBtnText = NULL;
     TextWidget* m_CarplayTipText = NULL;
-    MirrorLinkWidget* m_MirrorLinkWidget = NULL;
+//    MirrorLinkWidget* m_MirrorLinkWidget = NULL;
     CarplayLinkWidget* m_CarplayLinkWidget = NULL;
+    CarlifeLinkWidget * m_CarlifeLinkWidget = NULL;
 private:
     LinkWidget* m_Parent = NULL;
 };
@@ -67,7 +70,7 @@ void LinkWidget::resizeEvent(QResizeEvent *event)
 
 void LinkWidget::showEvent(QShowEvent *event)
 {
-    qDebug() << "LinkWidget::showEvent";
+    qWarning() << "LinkWidget::showEvent";
     if (NULL != m_Private) {
         m_Private->connectAllSlots();
         m_Private->receiveAllCustomEvent();
@@ -76,7 +79,7 @@ void LinkWidget::showEvent(QShowEvent *event)
 
 void LinkWidget::customEvent(QEvent *event)
 {
-    qDebug() << "LinkWidget::customEvent";
+    qWarning() << "LinkWidget::customEvent";
     switch (event->type()) {
     case CustomEventType::LinkMessageWidgetAddChild: {
         EventEngine::CustomEvent<QVariant>* ptr = dynamic_cast<EventEngine::CustomEvent<QVariant>*>(event);
@@ -99,8 +102,9 @@ void LinkWidget::customEvent(QEvent *event)
 void LinkWidget::timerEvent(QTimerEvent *event)
 {
     killTimer(event->timerId());
-    m_Private->initializeMirrowWidget();
+//    m_Private->initializeMirrowWidget();
     m_Private->initializeCarplayWidget();
+    m_Private->initializeCarlifeWidget();
 }
 
 void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
@@ -125,13 +129,16 @@ void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &sta
 //                    || (NULL == m_Private->m_CarplayLinkWidget)) {
 //                startTimer(150);
 //            }
+        //            if ( (NULL == m_Private->m_CarplayLinkWidget))
+        //                startTimer(150);
             lower();
             setVisible(true);
         }
         break;
     }
-    case Widget::T_Mirror:
-    case Widget::T_Carplay: {
+//    case Widget::T_Mirror:
+    case Widget::T_Carplay:
+    case Widget::T_Carlife: {
         if (WidgetStatus::Show == status) {
             lower();
             setVisible(true);
@@ -147,10 +154,10 @@ void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &sta
 
 void LinkWidget::onToolButtonRelease()
 {
-    qDebug() << "onToolButtonRelease";
+    qWarning() << "onToolButtonRelease";
     if (sender() == m_Private->m_MirrorBtn) {
-        m_Private->initializeMirrowWidget();
-        g_Widget->setWidgetType(Widget::T_Mirror, WidgetStatus::RequestShow);
+//        m_Private->initializeMirrowWidget();
+        g_Widget->setWidgetType(Widget::T_Carlife, WidgetStatus::RequestShow);
     } else if (sender() == m_Private->m_CarplayBtn) {
 
         g_Widget->setWidgetType(Widget::T_Carplay, WidgetStatus::RequestShow);
@@ -162,6 +169,7 @@ LinkWidgetPrivate::LinkWidgetPrivate(LinkWidget *parent)
 {
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
     initializeCarplayWidget();
+    initializeCarlifeWidget();
 }
 
 LinkWidgetPrivate::~LinkWidgetPrivate()
@@ -231,12 +239,12 @@ void LinkWidgetPrivate::initializeLinkWidget()
     }
 }
 
-void LinkWidgetPrivate::initializeMirrowWidget()
-{
-    if (NULL == m_MirrorLinkWidget) {
-        m_MirrorLinkWidget = new MirrorLinkWidget(m_Parent);
-    }
-}
+//void LinkWidgetPrivate::initializeMirrowWidget()
+//{
+//    if (NULL == m_MirrorLinkWidget) {
+//        m_MirrorLinkWidget = new MirrorLinkWidget(m_Parent);
+//    }
+//}
 
 void LinkWidgetPrivate::initializeCarplayWidget()
 {
@@ -245,6 +253,12 @@ void LinkWidgetPrivate::initializeCarplayWidget()
     }
 }
 
+void LinkWidgetPrivate::initializeCarlifeWidget()
+{
+    if (NULL == m_CarlifeLinkWidget) {
+        m_CarlifeLinkWidget = new CarlifeLinkWidget(m_Parent);
+    }
+}
 void LinkWidgetPrivate::receiveAllCustomEvent()
 {
     g_EventEngine->attachCustomEvent(m_Parent);
@@ -253,7 +267,7 @@ void LinkWidgetPrivate::receiveAllCustomEvent()
 void LinkWidgetPrivate::connectAllSlots()
 {
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
-    qDebug() << "LinkWidgetPrivate::connectAllSlots" << m_MirrorBtn << m_CarplayBtn;
+    qWarning() << "LinkWidgetPrivate::connectAllSlots" << m_MirrorBtn << m_CarplayBtn;
     if (NULL != m_MirrorBtn) {
         QObject::connect(m_MirrorBtn, SIGNAL(bmpButtonRelease()),
                          m_Parent,    SLOT(onToolButtonRelease()),

@@ -26,18 +26,6 @@ public:
     ~LocalDbusServerAndroidCarlifeInterface();
 
 public Q_SLOTS: // METHODS
-    inline QDBusPendingReply<> onExitSignal()
-    {
-        QList<QVariant> argumentList;
-        return asyncCallWithArgumentList(QLatin1String("onExitSignal"), argumentList);
-    }
-
-    inline QDBusPendingReply<> requestKeyValue(int type)
-    {
-        QList<QVariant> argumentList;
-        argumentList << qVariantFromValue(type);
-        return asyncCallWithArgumentList(QLatin1String("requestKeyValue"), argumentList);
-    }
 
     inline QDBusPendingReply<> requestLinkStatus(int type, int status)
     {
@@ -55,6 +43,7 @@ public Q_SLOTS: // METHODS
 
 Q_SIGNALS: // SIGNALS
     void onLinkStatusChange(int type, int status);
+    void onTouchStatusChange(int type, int x_src, int y_src, int x_dst, int y_dst);
 };
 
 namespace Local {

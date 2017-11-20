@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'MusicWidget.h'
 **
-** Created: Sat Nov 18 17:24:42 2017
+** Created: Mon Nov 20 17:43:35 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

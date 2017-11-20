@@ -43,7 +43,7 @@ enum AudioSource {
     AS_Carplay = 4,
     AS_AV1 = 5,
     AS_AV2 = 6,
-    AS_Carlife = 7,
+    AS_Carlife,
 };
 #define AudioSource int
 

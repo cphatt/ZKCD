@@ -2,6 +2,7 @@
 #include "Widget.h"
 #include "MirrorLinkProxy.h"
 #include "CarplayLinkProxy.h"
+#include "CarlifeLinkProxy.h"
 #include "Utility.h"
 #include "AutoConnect.h"
 #include "AudioService.h"
@@ -17,6 +18,9 @@
 #define ArkMicroCarplayService        QString("com.arkmicro.carplay")
 #define ArkMicroCarplayPath           QString("/com/arkmicro/carplay")
 #define ArkMicroCarplayInterface      QString("Local.DbusServer.Carplay")
+#define ArkMicroCarlifeService        QString("com.arkmicro.carlife")
+#define ArkMicroCarlifePath           QString("/com/arkmicro/carlife")
+#define ArkMicroCarlifeInterface      QString("Local.DbusServer.Carlife")
 
 class LinkPrivate
 {
@@ -27,19 +31,22 @@ public:
     void connectAllSlots();
     void linkExit(const AudioSource source);
     void requestMirrorHandler(const Link_STATUS status);
-    void mirrorSourceHandler(const Link_STATUS status);
+    void requestCarlifeHandler(const Link_STATUS status);
     void requestCarplayHandler(const Link_STATUS status);
+    void mirrorSourceHandler(const Link_STATUS status);
     void carplaySourceHandler(const Link_STATUS status);
+    void carlifeSourceHandler(const Link_STATUS status);
     HANDLER m_Callback = NULL;
     Local::DbusServer::Mirror* m_MirrorLinkProxy = NULL;
     Local::DbusServer::Carplay* m_CarplayLinkProxy = NULL;
+	Local::DbusServer::Carlife* m_CarlifeLinkProxy = NULL;
 private:
     Link* m_Parent = NULL;
 };
 
 static void releaseMirrorSource(void* paramater)
 {
-    qDebug() << "releaseMirrorSource" << paramater;
+    qWarning() << "releaseMirrorSource" << paramater;
     LinkPrivate* ptr = static_cast<LinkPrivate*>(paramater);
     if (NULL != ptr) {
         ptr->linkExit(AS_Mirror);
@@ -48,13 +55,21 @@ static void releaseMirrorSource(void* paramater)
 
 static void releaseCarplaySource(void* paramater)
 {
-    qDebug() << "releaseCarplaySource" << paramater;
+    qWarning() << "releaseCarplaySource" << paramater;
     LinkPrivate* ptr = static_cast<LinkPrivate*>(paramater);
     if (NULL != ptr) {
         ptr->linkExit(AS_Carplay);
     }
 }
 
+static void releaseCarlifeSource(void* paramater)
+{
+    qWarning() << "releaseCarlifeSource" << paramater;
+    LinkPrivate* ptr = static_cast<LinkPrivate*>(paramater);
+    if (NULL != ptr) {
+        ptr->linkExit(AS_Carlife);
+    }
+}
 
 static void requestSourceCallback(void* parameter)
 {
@@ -78,7 +93,7 @@ static void requestSourceCallback(void* parameter)
 
 static void releaseSourceCallback(void* parameter)
 {
-    qDebug() << "releaseSourceCallback" << QThread::currentThread();
+    qWarning() << "releaseSourceCallback" << QThread::currentThread();
     QDBusInterface interface(ArkMicroAudioService,
                              ArkMicroAudioPath,
                              ArkMicroAudioInterface,
@@ -87,9 +102,9 @@ static void releaseSourceCallback(void* parameter)
         int* ptr = (int*)parameter;
         QDBusReply<void> reply = interface.call(ArkMicroAudioRelease, *ptr);
         if (reply.isValid()) {
-            qDebug() << "requestSourceCallbakc::ArkMicroAudioRelease ok!";
+            qWarning() << "requestSourceCallbakc::ArkMicroAudioRelease ok!";
         } else {
-            qDebug() << "requestSourceCallbakc::ArkMicroAudioRelease fail!";
+            qWarning() << "requestSourceCallbakc::ArkMicroAudioRelease fail!";
         }
         delete ptr;
         ptr = NULL;
@@ -98,7 +113,7 @@ static void releaseSourceCallback(void* parameter)
 
 void Link::requestLinkStatus(const Link_Type type, const Link_STATUS status)
 {
-    qDebug() << "requestLinkStatus" << type << status;
+    qWarning() << "requestLinkStatus" << type << status;
     initializePrivate();
     switch (type) {
     case ANDROID_MIRROR: {
@@ -109,32 +124,45 @@ void Link::requestLinkStatus(const Link_Type type, const Link_STATUS status)
         m_Private->requestCarplayHandler(status);
         break;
     }
+    case CARLIFE: {
+        m_Private->requestCarlifeHandler(status);
+        break;
+    }
     default: {
-        qDebug() << "unsupport command:" << type << status;
+        qWarning() << "unsupport command:" << type << status;
     }
     }
 }
 
 void Link::requestTouchStatus(const Link_Type deviceType, const TouchType touchType, const QString &touchPointXml)
 {
-    qDebug() << "Link::requestTouchStatus" << deviceType << touchType << touchPointXml;
+    qWarning() << "Link::requestTouchStatus" << deviceType << touchType << touchPointXml;
     initializePrivate();
     switch (deviceType) {
     case ANDROID_MIRROR: {
         QDBusPendingReply<> reply = m_Private->m_MirrorLinkProxy->requestTouchStatus(deviceType, touchType, touchPointXml);
         reply.waitForFinished();
-        qDebug() << "requestTouchStatus" << reply.isFinished();
+        qWarning() << "requestTouchStatus" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call requestTouchStatus failed" << reply.error();
+            qWarning() << "method call requestTouchStatus failed" << reply.error();
         }
         break;
     }
     case CARPLAY: {
         QDBusPendingReply<> reply = m_Private->m_CarplayLinkProxy->requestTouchStatus(deviceType, touchType, touchPointXml);
         reply.waitForFinished();
-        qDebug() << "requestTouchStatus" << reply.isFinished();
+        qWarning() << "requestTouchStatus" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call requestTouchStatus failed" << reply.error();
+            qWarning() << "method call requestTouchStatus failed" << reply.error();
+        }
+        break;
+    }
+    case CARLIFE: {
+        QDBusPendingReply<> reply = m_Private->m_CarlifeLinkProxy->requestTouchStatus(deviceType, touchType, touchPointXml);
+        reply.waitForFinished();
+        qWarning() << "requestTouchStatus" << reply.isFinished();
+        if (reply.isError()) {
+            qWarning() << "method call requestTouchStatus failed" << reply.error();
         }
         break;
     }
@@ -146,29 +174,29 @@ void Link::requestTouchStatus(const Link_Type deviceType, const TouchType touchT
 
 void Link::requestKeyValue(const LinkKeyValue type)
 {
-    qDebug() << "Link::requestKeyValue" << type;
+    qWarning() << "Link::requestKeyValue" << type;
     initializePrivate();
     QDBusPendingReply<> reply = m_Private->m_MirrorLinkProxy->requestKeyValue(type);
     reply.waitForFinished();
-    qDebug() << "requestKeyValue" << reply.isFinished();
+    qWarning() << "requestKeyValue" << reply.isFinished();
     if (reply.isError()) {
-        qDebug() << "method call requestKeyValue failed" << reply.error();
+        qWarning() << "method call requestKeyValue failed" << reply.error();
     }
 }
 
 //void Link::releaseAudioSource(const int source)
 //{
-//    qDebug() << "Link::releaseAudioSource";
+//    qWarning() << "Link::releaseAudioSource";
 //}
 
 void Link::onServiceRegistered(const QString &service)
 {
-    qDebug() << "Link::onServiceRegistered" << service;
+    qWarning() << "Link::onServiceRegistered" << service;
 }
 
 void Link::onServiceUnregistered(const QString &service)
 {
-    qDebug() << "Link::onServiceUnregistered" << service;
+    qWarning() << "Link::onServiceUnregistered" << service;
     if (ArkMicroMirrorService == service) {
         UserInterfaceUtility::elapsed(QString("Attach ArkMicroMirrorService<<<<<<"));
         g_DbusService->startService(ArkMicroMirrorService);
@@ -177,6 +205,9 @@ void Link::onServiceUnregistered(const QString &service)
     } else if (ArkMicroCarplayService == service) {
         g_DbusService->startService(ArkMicroCarplayService);
         //        QDBusPendingReply<> reply = m_Private->m_CarplayLinkProxy->requestLinkStatus(CARPLAY, LINK_START_PROCESS);
+    }else if (ArkMicroCarlifeService == service) {
+        g_DbusService->startService(ArkMicroCarlifeService);
+
     }
 }
 
@@ -192,6 +223,11 @@ void Link::linkStatusChange(const int type, const int status)
         m_Private->carplaySourceHandler(status);
         break;
     }
+    case CARLIFE: {
+        m_Private->carlifeSourceHandler(status);
+        break;
+    }
+
     default: {
         break;
     }
@@ -242,6 +278,12 @@ void LinkPrivate::initialize()
                                                             QDBusConnection::sessionBus(),
                                                             m_Parent);
     }
+    if (NULL == m_CarlifeLinkProxy) {
+        m_CarlifeLinkProxy = new Local::DbusServer::Carlife(ArkMicroCarlifeService,
+                                                            ArkMicroCarlifePath,
+                                                            QDBusConnection::sessionBus(),
+                                                            m_Parent);
+    }
 }
 
 void LinkPrivate::connectAllSlots()
@@ -261,14 +303,22 @@ void LinkPrivate::connectAllSlots()
                          m_Parent,           SLOT(linkStatusChange(int, int)),
                          type);
     }
+    if (NULL != m_CarlifeLinkProxy) {
+        connectSignalAndSignalByNamesake(m_CarlifeLinkProxy, m_Parent);
+        Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
+        QObject::connect(m_CarlifeLinkProxy, SIGNAL(onLinkStatusChange(int, int)),
+                         m_Parent,           SLOT(linkStatusChange(int, int)),
+                         type);
+    }
 }
 
 void LinkPrivate::linkExit(const AudioSource source)
 {
-    qDebug() << "LinkPrivate::linkExit" << source << m_Callback;
-    qDebug() << "releaseMirrorSource == m_Callback" << (releaseMirrorSource == m_Callback);
-    qDebug() << "releaseCarplaySource == m_Callback" << (releaseCarplaySource == m_Callback);
-    qDebug() << "NULL == m_Callback" << (NULL == m_Callback);
+    qWarning() << "LinkPrivate::linkExit" << source << m_Callback;
+    qWarning() << "releaseMirrorSource == m_Callback" << (releaseMirrorSource == m_Callback);
+    qWarning() << "releaseCarplaySource == m_Callback" << (releaseCarplaySource == m_Callback);
+    qWarning() << "releaseCarlifeSource == m_Callback" << (releaseCarlifeSource == m_Callback);
+    qWarning() << "NULL == m_Callback" << (NULL == m_Callback);
     switch (source) {
     case AS_Mirror: {
         if (releaseMirrorSource == m_Callback) {
@@ -284,6 +334,13 @@ void LinkPrivate::linkExit(const AudioSource source)
         }
         break;
     }
+    case AS_Carlife: {
+        if (releaseCarlifeSource == m_Callback) {
+            m_Callback = NULL;
+            g_Link->requestLinkStatus(CARLIFE, LINK_EXITED);
+        }
+        break;
+    }
     default: {
         break;
     }
@@ -292,7 +349,7 @@ void LinkPrivate::linkExit(const AudioSource source)
 
 void LinkPrivate::requestMirrorHandler(const Link_STATUS status)
 {
-    qDebug() << "requestMirrorHandler" << status;
+    qWarning() << "requestMirrorHandler" << status;
     QDBusPendingReply<> reply = m_MirrorLinkProxy->requestLinkStatus(ANDROID_MIRROR, status);
     //    switch (status) {
     //    case LINK_STARTING: {
@@ -311,6 +368,28 @@ void LinkPrivate::requestMirrorHandler(const Link_STATUS status)
     //        break;
     //    }
     //    }
+}
+void LinkPrivate::requestCarlifeHandler(const Link_STATUS status)
+{
+    qWarning() << "requestCarlifeHandler" << status;
+    QDBusPendingReply<> reply = m_CarlifeLinkProxy->requestLinkStatus(CARLIFE, status);
+//    switch (status) {
+//    case LINK_STARTING: {
+//        QDBusPendingReply<> reply = m_CarlifeLinkProxy->requestLinkStatus(CARLIFE, LINK_STARTING);
+//        break;
+//    }
+//    case LINK_EXITING: {
+//        QDBusPendingReply<> reply = m_CarlifeLinkProxy->requestLinkStatus(CARLIFE, LINK_EXITING);
+//        break;
+//    }
+//    case LINK_EXITED: {
+//        QDBusPendingReply<> reply = m_CarlifeLinkProxy->requestLinkStatus(CARLIFE, LINK_EXITED);
+//        break;
+//    }
+//    default: {
+//        break;
+//    }
+//    }
 }
 
 void LinkPrivate::requestCarplayHandler(const Link_STATUS status)
@@ -340,7 +419,7 @@ static void mirrorStarting(void* parameter)
     if (reply.isValid()) {
         qWarning() << "mirrorStarting::synchronize ok!";
     } else {
-        qDebug() << "mirrorStarting::synchronize fail!";
+        qWarning() << "mirrorStarting::synchronize fail!";
     }
 }
 
@@ -396,7 +475,7 @@ static void carplayStarting(void* parameter)
 
 void LinkPrivate::carplaySourceHandler(const Link_STATUS status)
 {
-    qDebug() << " LinkPrivate::carplaySourceHandler" << status;
+    qWarning() << " LinkPrivate::carplaySourceHandler" << status;
     switch (status) {
     case LINK_STARTING: {
         const HANDLER ptr = acquirePreemptiveResource(NULL, NULL);
@@ -437,3 +516,53 @@ void LinkPrivate::carplaySourceHandler(const Link_STATUS status)
     }
     }
 }
+static void carlifeStarting(void* parameter)
+{
+    int* type = new int(AS_Idle);
+    requestSourceCallback(static_cast<void*>(type));
+}
+
+void LinkPrivate::carlifeSourceHandler(const Link_STATUS status)
+{
+    qWarning() << " LinkPrivate::carlifeSourceHandler" << status;
+    switch (status) {
+    case LINK_STARTING: {
+        const HANDLER ptr = acquirePreemptiveResource(NULL, NULL);
+        if (NULL != ptr) {
+            g_Audio->requestAudioSource(AS_Idle);
+        }
+        CustomRunnable* runnable = new CustomRunnable();
+        runnable->setCallbackFunction(carlifeStarting, NULL);
+        QThreadPool::globalInstance()->start(runnable);
+        break;
+    }
+    case LINK_SUCCESS: {
+        const HANDLER ptr = acquirePreemptiveResource(releaseCarlifeSource, static_cast<void*>(this));
+        if (releaseCarlifeSource != ptr) {
+            m_Callback = releaseCarlifeSource;
+            EventEngine::CustomEvent<QString> event(CustomEventType::VolumeWidgetStatus, NULL);
+            g_EventEngine->sendCustomEvent(event);
+            CustomRunnable* runnable = new CustomRunnable();
+            int* type = new int(AS_Carlife);
+            runnable->setCallbackFunction(requestSourceCallback, static_cast<void*>(type));
+            QThreadPool::globalInstance()->start(runnable);
+        }
+        break;
+    }
+    case LINK_EXITED: {
+        if (releaseCarlifeSource == m_Callback) {
+            m_Callback = NULL;
+            clearOwner();
+            CustomRunnable* runnable = new CustomRunnable();
+            int* type = new int(AS_Carlife);
+            runnable->setCallbackFunction(releaseSourceCallback, static_cast<void*>(type));
+            QThreadPool::globalInstance()->start(runnable);
+        }
+        break;
+    }
+    default: {
+        break;
+    }
+    }
+}
+

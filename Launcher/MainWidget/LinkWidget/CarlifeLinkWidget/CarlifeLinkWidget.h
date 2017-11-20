@@ -3,6 +3,7 @@
 
 #include "Link.h"
 #include "Widget.h"
+#include  "Port.h"
 #include "MessageBox.h"
 #include <QWidget>
 #include <QScopedPointer>
@@ -14,26 +15,21 @@ class CarlifeLinkWidget
     Q_OBJECT
     Q_DISABLE_COPY(CarlifeLinkWidget)
 public:
-    explicit CarlifeLinkWidget(QWidget *parent = 0);
+    explicit CarlifeLinkWidget(QWidget *parent = NULL);
     ~CarlifeLinkWidget();
-
-signals:
-
 protected:
-    bool event(QEvent* event);
     void resizeEvent(QResizeEvent* event);
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void customEvent(QEvent* event);
+    void timerEvent(QTimerEvent* event);
+    bool event(QEvent* event);
 protected slots:
-    //Widget::Interface
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);
-    //Link::Interface  //收到来自服务的消息
-    void onLinkStatusChange(const int type, const int status) ;
+    void onLinkStatusChange(const int type, const int status);
     //  void onLinkStatusChange(const Link_Type type, const Link_STATUS status);
-
 private:
     friend class CarlifeLinkWidgetPrivate;
     QScopedPointer<CarlifeLinkWidgetPrivate> m_Private;
