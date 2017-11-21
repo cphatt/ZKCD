@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'VolumeToolWidget.h'
 **
-** Created: Mon Nov 20 17:46:26 2017
+** Created: Tue Nov 21 14:17:26 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -31,7 +31,7 @@ static const uint qt_meta_data_VolumeToolWidget[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      30,   18,   17,   17, 0x09,
+      30,   18,   17,   17, 0x0a,
       54,   17,   17,   17, 0x08,
       74,   17,   17,   17, 0x08,
      104,   93,   17,   17, 0x08,

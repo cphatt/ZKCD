@@ -274,8 +274,8 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
     }
     case LINK_EXITED: {         //退出carplay
 
-         g_Port->setStatus(Port::CarPlayDisConnected);
-        char data = Port::CarPlayDisConnected;
+         g_Port->setStatus(Port::CarlifeDisConnected);
+        char data = Port::CarlifeDisConnected;
         g_Port->responseMCU(Port::C_SoundStatus, &data, 1);
 
         if ((m_Parent->isVisible())
@@ -304,9 +304,9 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
         break;
     }
     case LINK_SUCCESS: {    //链接成功
-        g_Port->setStatus(Port::CarPlayConnected);
+        g_Port->setStatus(Port::CarlifeConnected);
 
-         char data = Port::CarPlayConnected;
+         char data = Port::CarlifeConnected;
         g_Port->responseMCU(Port::C_SoundStatus, &data, 1);
 
         EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));

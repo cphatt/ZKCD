@@ -3,6 +3,8 @@
 #include "RunnableThread.h"
 #include "AutoConnect.h"
 #include "Setting.h"
+#include "Audio.h"
+#include "BusinessLogicUtility.h"
 #include<QTimer>
 #include <QThreadPool>
 #include <stdio.h>
@@ -60,11 +62,12 @@ public:
 
 };
 
-//void Port::handlerMCUData(const Port::Type type, const char *buffer, const int size)
-//{
-//    qDebug() <<"Port::handlerMCUData";
-//    emit onMCUDataRecv(type,buffer,size);
-//}
+//向外传递
+void Port::handlerMCUData( const int size)
+{
+    qWarning() << "Port::handlerMCUData";
+    emit onMCUDataRecv(size);
+}
 
 Port::Port(QObject *parent)
     : QObject(parent)
@@ -335,10 +338,13 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
     unsigned char temp =buff[2] + 4;
     unsigned char type_data =buff[4];
     int i,flag =0;
+
     if(buff[0] != 0x5c)
         return flag;
     for(i = 1; i < temp; i++)
         checksum = checksum ^buff[i];
+
+   m_Parent->handlerMCUData(1);
 //     qWarning() << "isLinkCommand" << checksum << buff[temp];
 //    printf("isLinkCommand 0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",buff[0], buff[1], buff[2], buff[3], buff[4], checksum,buff[temp]);
     if(checksum ==buff[temp])
@@ -392,6 +398,14 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
             }else if(buff[3] == 0x8){       //request carlife status
                 char data = (char)m_Parent->soundStatus;
                 m_Parent->responseMCU(Port::C_SoundStatus, &data , 1);
+            }else if(buff[3] == 0x10){       //set volume
+                //设置底板的声音
+                int data = buff[4];
+//                if(data == 0x1) {//增加声音
+//                    g_Audio->requestIncreaseVolume();
+//                }else if(data = 0x2){
+//                    g_Audio->requestDecreaseVolume();
+//                }
             }
      }
     return  flag;
@@ -417,6 +431,7 @@ bool isCommand(const char *buff){
 
         if(checksum == buff[i])
         {
+
             if(buff[0] == 0x61 || buff[0] == 0xa1 || buff[0] == 0xe1)//header -- touch event
             {
                 x_val = (buff[1] << 8) | (buff[2] << 0);
@@ -471,6 +486,7 @@ bool isCommand(const char *buff){
         }
         return ret;
 }
+
 
 /**
  * @brief PortPrivate::SerialPortReadThread 该函数的作用于处理MCU数据，但是在线程中发送带枚举参数的信号会报错

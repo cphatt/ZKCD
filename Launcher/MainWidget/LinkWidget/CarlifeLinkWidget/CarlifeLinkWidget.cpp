@@ -312,6 +312,7 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
         EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
         g_EventEngine->sendCustomEvent(event2);
         g_Widget->setWidgetType(Widget::T_Carlife, WidgetStatus::Show);
+
         m_Parent->startTimer(250);
         break;
     }

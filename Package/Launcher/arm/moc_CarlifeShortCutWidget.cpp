@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CarlifeShortCutWidget.h'
 **
-** Created: Mon Nov 20 17:46:26 2017
+** Created: Tue Nov 21 14:17:39 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,18 +23,24 @@ static const uint qt_meta_data_CarlifeShortCutWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      35,   23,   22,   22, 0x09,
+      63,   22,   22,   22, 0x08,
+
        0        // eod
 };
 
 static const char qt_meta_stringdata_CarlifeShortCutWidget[] = {
-    "CarlifeShortCutWidget\0"
+    "CarlifeShortCutWidget\0\0type,status\0"
+    "onLinkStatusChange(int,int)\0"
+    "onBmpButtonRelease()\0"
 };
 
 const QMetaObject CarlifeShortCutWidget::staticMetaObject = {
@@ -64,6 +70,14 @@ int CarlifeShortCutWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: onLinkStatusChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
+        case 1: onBmpButtonRelease(); break;
+        default: ;
+        }
+        _id -= 2;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE

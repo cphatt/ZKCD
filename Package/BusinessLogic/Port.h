@@ -65,10 +65,9 @@ public:
     protected:
         Interface() {}
         virtual ~Interface() {}
-//        virtual void onMCUDataRecv(const Port::Type type, const char *buffer, const int size) = 0;
     };
 
-//    void handlerMCUData(const Port::Type type, const char *buffer, const int size);
+    void handlerMCUData(const int size);
     int  responseMCU(const Port::CarlifeResponse type, char * buf, int len);
     void setStatus(Port::SoundStatus status);
     void setMemStatus(Port::MemStatus);
@@ -78,7 +77,7 @@ public:
         return port;
     }
 signals:
-    void onMCUDataRecv(const int type, const char *buffer, const int size);
+    void onMCUDataRecv( int size);
     void read_port_data(const int type);
 protected:
 //    void customEvent(QEvent* event);

@@ -175,6 +175,7 @@ void MainWidget::resizeEvent(QResizeEvent *event)
 
 void MainWidget::customEvent(QEvent* event)
 {
+    qWarning() << " MainWidget::customEvent" << event->type();
     switch (event->type()) {
     case CustomEventType::MainWidgetShow: {
         static bool flag(false);
@@ -197,6 +198,8 @@ void MainWidget::customEvent(QEvent* event)
             runnable->setCallbackFunction(initializeRunnableCallback, this);
             QThreadPool::globalInstance()->start(runnable);
             UserInterfaceUtility::elapsed(QString("initializeRunnableCallback"));
+
+            m_Private->initializeVolumeWidget();
         }
         break;
     }
@@ -209,7 +212,7 @@ void MainWidget::customEvent(QEvent* event)
         break;
     }
     case CustomEventType::VolumeWidgetStatus: {
-        m_Private->initializeVolumeWidget();
+
         break;
     }
     case CustomEventType::IdleWidgetStatus: {
@@ -365,6 +368,7 @@ void MainWidgetPrivate::initializeBasicWidget()
     UserInterfaceUtility::elapsed("HomeWidget>>");
     m_TabBarWidget = new TabBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("TabBarWidget>>");
+
 
     g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
     //    QStringList cmd;

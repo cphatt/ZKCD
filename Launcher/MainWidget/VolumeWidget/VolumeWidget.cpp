@@ -48,16 +48,17 @@ void VolumeWidget::resizeEvent(QResizeEvent *event)
 
 void VolumeWidget::customEvent(QEvent *event)
 {
-    qDebug() << "VolumeWidget::customEvent" << event->type() << CustomEventType::VolumeWidgetStatus;
+    qWarning() << "VolumeWidget::customEvent" << event->type() << CustomEventType::VolumeWidgetStatus;
     switch (event->type()) {
+    case CustomEventType::MainWidgetShow:
     case CustomEventType::VolumeWidgetStatus: {
         m_Private->connectAllSlots();
         m_Private->initializeToolWidget();
         QString* temp = static_cast<EventEngine::CustomEvent<QString>*>(event)->m_Data;
+        m_Private->initializeTimer(); //定时器初始化
         if (NULL != temp) {
             if (WidgetStatus::RequestShow == *temp) {
-                setVisible(true);
-                m_Private->initializeTimer();
+                setVisible(true);                
                 m_Private->m_Timer->start();
             } else if (WidgetStatus::RequestHide == *temp) {
                 m_Private->m_Timer->stop();
@@ -134,6 +135,15 @@ void VolumeWidget::onVolumeChange(OutPutSource type, const int volume)
     m_Private->m_VolumeStatusTip->setVisible(true);
 }
 
+void VolumeWidget::onMCUDataRecv(int i)
+{
+    qWarning() << "VolumeToolWidget::onMCUDataRecv" << i;
+    if(!isVisible())
+        setVisible(true);
+    m_Private->m_Timer->start();
+    m_Private->m_VolumeToolWidget->onVolumeChange(1,i);
+}
+
 void VolumeWidget::onTimeout()
 {
     m_Private->m_Timer->stop();
@@ -180,6 +190,9 @@ void VolumeWidgetPrivate::initializeTimer()
         QObject::connect(m_Timer,  SIGNAL(timeout()),
                          m_Parent, SLOT(onTimeout()),
                          type);
+            QObject::connect(g_Port, SIGNAL(onMCUDataRecv(int)),
+                             m_Parent, SLOT(onMCUDataRecv(int)),
+                             type);
     }
 }
 
@@ -191,4 +204,5 @@ void VolumeWidgetPrivate::receiveAllCustomEvent()
 void VolumeWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Audio, m_Parent);
+    connectSignalAndSlotByNamesake(g_Port, m_Parent);
 }

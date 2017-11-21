@@ -2,6 +2,7 @@
 #define VOLUMEWIDGET_H
 
 #include "Audio.h"
+#include "Port.h"
 #include <QWidget>
 #include <QScopedPointer>
 
@@ -20,10 +21,13 @@ protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);
     void paintEvent(QPaintEvent* event);
+
 protected slots:
     void onVolumeChange(int type, const int volume);
 //    void onVolumeChange(OutPutSource type, const int volume);
+
 private slots:
+     void onMCUDataRecv( int size);
     void onTimeout();
 private:
     friend class VolumeWidgetPrivate;

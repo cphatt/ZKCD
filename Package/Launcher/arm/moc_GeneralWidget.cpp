@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'GeneralWidget.h'
 **
-** Created: Mon Nov 20 17:46:24 2017
+** Created: Tue Nov 21 14:17:01 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

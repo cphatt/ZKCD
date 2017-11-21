@@ -17,7 +17,8 @@ public:
 protected:
     void resizeEvent(QResizeEvent* event);
     void changeEvent(QEvent* event);
-protected slots:
+    void setVolume(int volume);
+public slots:
     void onVolumeChange(int type, const int volume);
 //    void onVolumeChange(OutPutSource type, const int volume);
 private slots:
