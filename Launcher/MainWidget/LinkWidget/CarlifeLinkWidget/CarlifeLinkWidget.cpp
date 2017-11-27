@@ -272,6 +272,8 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
         break;
     }
+
+    case LINK_REMOVED:
     case LINK_EXITED: {         //退出Carlife
 
          g_Port->setStatus(Port::CarlifeDisConnected);
@@ -314,6 +316,16 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
         g_Widget->setWidgetType(Widget::T_Carlife, WidgetStatus::Show);
 
         m_Parent->startTimer(250);
+        break;
+    }
+    case LINK_CALL_PHONE: {    //来电
+         char data = 0x01;
+        g_Port->responseMCU(Port::C_BTCall, &data, 1);
+        break;
+    }
+    case LINK_CALL_PHONE_EXITED: {    //去电
+        char data = 0x02;
+        g_Port->responseMCU(Port::C_BTCall, &data, 1);
         break;
     }
     default: {

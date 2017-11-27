@@ -344,7 +344,6 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
     for(i = 1; i < temp; i++)
         checksum = checksum ^buff[i];
 
-   m_Parent->handlerMCUData(1);
 //     qWarning() << "isLinkCommand" << checksum << buff[temp];
 //    printf("isLinkCommand 0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",buff[0], buff[1], buff[2], buff[3], buff[4], checksum,buff[temp]);
     if(checksum ==buff[temp])
@@ -400,12 +399,14 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
                 m_Parent->responseMCU(Port::C_SoundStatus, &data , 1);
             }else if(buff[3] == 0x10){       //set volume
                 //设置底板的声音
-                int data = buff[4];
+                int data = buff[4];\
+                m_Parent->handlerMCUData(data);
 //                if(data == 0x1) {//增加声音
 //                    g_Audio->requestIncreaseVolume();
 //                }else if(data = 0x2){
 //                    g_Audio->requestDecreaseVolume();
 //                }
+                g_Audio->requestSetVolume(38);
             }
      }
     return  flag;
@@ -714,8 +715,8 @@ void DWLUnmapRegisters(const void *io, unsigned int regSize)
     const int pageSize = getpagesize();
     const int pageAlignment = pageSize - 1;
 
-    munmap((void *) ((int) io & (~pageAlignment)),
-           regSize + ((int) io & pageAlignment));
+//    munmap((void *) ((int) io & (~pageAlignment)),
+//           regSize + ((int) io & pageAlignment));
 }
 
 

@@ -30,6 +30,7 @@
 #include <QPaintEvent>
 #include <QPainter>
 #include <QEvent>
+#include <QTimer>
 //#include <QWSServer>
 //#include <QWSCalibratedMouseHandler>
 #include <QDomDocument>
@@ -66,6 +67,7 @@ public:
     MessageBoxWidget* m_MessageBoxWidget = NULL;
     IdleWidget* m_IdleWidget = NULL;
     bool m_DisplayVisible = false;
+    QTimer *m_Timer;
 private:
     MainWidget* m_Parent = NULL;
 };
@@ -96,6 +98,7 @@ void MainWidget::timerEvent(QTimerEvent *event)
 static void initializeRunnableCallback(void *paramater)
 {
     qDebug() << "initializeRunnableCallback111" << paramater;
+    MainWidget *m = ( MainWidget *)paramater;
     UserInterfaceUtility::elapsed(QString("<<<<<<<<<<<1111111111111111111"));
     initializeArkVideoResources();
 //    ret = QProcess::startDetached(QString("/usr/bin/mirrordemo"));
@@ -119,6 +122,7 @@ static void initializeRunnableCallback(void *paramater)
 //    ret = QProcess::startDetached(ArkApp->applicationFilePath(), cmd);
 //    qDebug() << "start" << SettingApplication << ret;
     UserInterfaceUtility::elapsed(QString(">>>>>>>>>>>>222222222222222222"));
+    m->m_Private->m_Timer->start();
 }
 
 bool MainWidget::event(QEvent* event)
@@ -182,7 +186,7 @@ void MainWidget::customEvent(QEvent* event)
         if (!flag) {
             flag = true;
             m_Private->initializeDiskWidget();
-            m_Private->initializeLinkWidget();
+//            m_Private->initializeLinkWidget();
             m_Private->initializeAVWidget();
             m_Private->connectAllSlots();
             ArkApp->processEvents();
@@ -278,7 +282,11 @@ void MainWidget::onStartCalibrate()
     qDebug() << "MainWidget::onStartCalibrate";
     setVisible(false);
 }
-
+void MainWidget::onTimeout()
+{
+    m_Private->initializeLinkWidget();
+    g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
+}
 void MainWidget::onFinishCalibrate(const QString& xml)
 {
     qDebug() << "MainWidget::onFinishCalibrate" << xml;
@@ -360,7 +368,7 @@ void MainWidgetPrivate::initializeBasicWidget()
 {
 
     ArkApp->installTranslatorPath(SettingPersistent::getLanguageResources());
-    m_LinkWidget = new LinkWidget(m_Parent);
+//    m_LinkWidget = new LinkWidget(m_Parent);
 
     m_StatusBarWidget = new StatusBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("StatusBarWidget>>");
@@ -368,9 +376,11 @@ void MainWidgetPrivate::initializeBasicWidget()
     UserInterfaceUtility::elapsed("HomeWidget>>");
     m_TabBarWidget = new TabBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("TabBarWidget>>");
+    m_Timer = new QTimer(m_Parent);
+    m_Timer->setSingleShot(true);
+    m_Timer->setInterval(1000);
 
-
-    g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
+//    g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
     //    QStringList cmd;
     //    cmd << QString("-t") << QString("-qws") << QString("-calibrate");
     //    QDBusConnection::sessionBus().connect(QString(),
@@ -482,4 +492,8 @@ void MainWidgetPrivate::receiveAllCustomEvent()
 void MainWidgetPrivate::connectAllSlots()
 {
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
+    Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
+    QObject::connect(m_Timer,  SIGNAL(timeout()),
+                     m_Parent, SLOT(onTimeout()),
+                     type);
 }

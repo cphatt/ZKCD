@@ -9,9 +9,11 @@
 typedef enum
 {
     CARPLAY = 0X00,
-    CARLIFE,
-    CARLIFE1,
-    ANDROID_MIRROR,
+    CARLIFE = 0x01,
+    ANDROID_MIRROR = 0x02,
+    ANDROID_CARLIFE = 0x03,
+    IOS_CARLIFE = 0x04,
+
 }Link_Type;
 #define Link_Type int
 
@@ -59,7 +61,12 @@ typedef enum
     LINK_FAIL,
     LINK_EXITING,
     LINK_EXITED,
-    LINK_START_PROCESS,
+    LINK_REMOVED,
+    LINK_INSERTED,
+    LINK_NOT_INSERTED,
+    LINK_NOT_INSTALL,
+    LINK_CALL_PHONE,
+    LINK_CALL_PHONE_EXITED,
 }Link_STATUS;
 #define Link_STATUS int
 

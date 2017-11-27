@@ -272,10 +272,11 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
         break;
     }
+    case LINK_REMOVED:
     case LINK_EXITED: {         //退出carplay
 
-         g_Port->setStatus(Port::CarlifeDisConnected);
-        char data = Port::CarlifeDisConnected;
+         g_Port->setStatus(Port::CarPlayDisConnected);
+        char data = Port::CarPlayDisConnected;
         g_Port->responseMCU(Port::C_SoundStatus, &data, 1);
 
         if ((m_Parent->isVisible())
@@ -304,15 +305,25 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
         break;
     }
     case LINK_SUCCESS: {    //链接成功
-        g_Port->setStatus(Port::CarlifeConnected);
+        g_Port->setStatus(Port::CarPlayConnected);
 
-         char data = Port::CarlifeConnected;
+         char data = Port::CarPlayConnected;
         g_Port->responseMCU(Port::C_SoundStatus, &data, 1);
 
         EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
         g_EventEngine->sendCustomEvent(event2);
         g_Widget->setWidgetType(Widget::T_Carplay, WidgetStatus::Show);
         m_Parent->startTimer(250);
+        break;
+    }
+    case LINK_CALL_PHONE: {    //来电
+         char data = 0x01;
+        g_Port->responseMCU(Port::C_BTCall, &data, 1);
+        break;
+    }
+    case LINK_CALL_PHONE_EXITED: {    //去电
+        char data = 0x02;
+        g_Port->responseMCU(Port::C_BTCall, &data, 1);
         break;
     }
     default: {
