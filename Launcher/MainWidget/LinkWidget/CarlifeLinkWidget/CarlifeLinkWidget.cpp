@@ -273,8 +273,8 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
         break;
     }
 
-    case LINK_REMOVED:
-    case LINK_EXITED: {         //退出Carlife
+    case LINK_REMOVED:{
+//    case LINK_EXITED: {         //退出Carlife
 
          g_Port->setStatus(Port::CarlifeDisConnected);
         char data = Port::CarlifeDisConnected;

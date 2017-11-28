@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'SettingServiceProxy.h'
 **
-** Created: Sat Nov 25 15:27:58 2017
+** Created: Tue Nov 28 09:50:07 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

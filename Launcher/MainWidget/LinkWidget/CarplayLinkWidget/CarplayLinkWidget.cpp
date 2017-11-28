@@ -272,8 +272,8 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
         g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
         break;
     }
-    case LINK_REMOVED:
-    case LINK_EXITED: {         //退出carplay
+    case LINK_REMOVED:{
+//    case LINK_EXITED: {         //退出carplay
 
          g_Port->setStatus(Port::CarPlayDisConnected);
         char data = Port::CarPlayDisConnected;

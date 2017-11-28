@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 //volume
 //kmem 0xe4000008 0x7878
 //kernel message

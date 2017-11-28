@@ -35,6 +35,8 @@ u32 *sysio = (u32 *)MAP_FAILED, *gpio =(u32 *) MAP_FAILED;
 bool isUSBAlive;
 bool isSDAlive;
 
+
+
 class PortPrivate
 {
     Q_DISABLE_COPY(PortPrivate)
@@ -406,7 +408,6 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
 //                }else if(data = 0x2){
 //                    g_Audio->requestDecreaseVolume();
 //                }
-                g_Audio->requestSetVolume(38);
             }
      }
     return  flag;
@@ -505,7 +506,7 @@ void PortPrivate::SerialPortReadThread(void *paramater)
     unsigned char buff[256]={0};
     char rbuff[1024+128]={0};
     int count = 0;
-
+    g_Audio->requestSetVolume(38);
     forever{
 //        printf("wait data and count=%d.\n", count);
 //        n= m_Private->readData(rbuff, 10);
@@ -780,6 +781,10 @@ void PortPrivate::initialize()
 
    //初始化线程
     m_Parent->soundStatus = Port::CarPlayDisConnected;
+
+    qWarning() << QThreadPool::globalInstance()->maxThreadCount() << "maxThreadCount";
+
+    QThreadPool::globalInstance()->setMaxThreadCount(2);
     CustomRunnable* runnable = new CustomRunnable();
     runnable->setCallbackFunction(SerialPortReadThread, this);
     QThreadPool::globalInstance()->start(runnable);

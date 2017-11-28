@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'SDDiskImageListViewWidget.h'
 **
-** Created: Sat Nov 25 15:30:05 2017
+** Created: Tue Nov 28 09:52:59 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

@@ -93,6 +93,7 @@ static void requestSourceCallback(void* parameter)
 
 static void releaseSourceCallback(void* parameter)
 {
+
     qWarning() << "releaseSourceCallback" << QThread::currentThread();
     QDBusInterface interface(ArkMicroAudioService,
                              ArkMicroAudioPath,
@@ -450,6 +451,7 @@ void LinkPrivate::mirrorSourceHandler(const Link_STATUS status)
         }
         break;
     }
+    case LINK_REMOVED:
     case LINK_EXITED: {
         if (releaseMirrorSource == m_Callback) {
             m_Callback = NULL;
@@ -500,6 +502,7 @@ void LinkPrivate::carplaySourceHandler(const Link_STATUS status)
         }
         break;
     }
+    case LINK_REMOVED:
     case LINK_EXITED: {
         if (releaseCarplaySource == m_Callback) {
             m_Callback = NULL;
@@ -549,7 +552,8 @@ void LinkPrivate::carlifeSourceHandler(const Link_STATUS status)
         }
         break;
     }
-    case LINK_EXITED: {
+    case LINK_REMOVED:{
+//    case LINK_EXITED: {
         if (releaseCarlifeSource == m_Callback) {
             m_Callback = NULL;
             clearOwner();
