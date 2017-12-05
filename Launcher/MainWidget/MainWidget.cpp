@@ -122,7 +122,7 @@ static void initializeRunnableCallback(void *paramater)
 //    ret = QProcess::startDetached(ArkApp->applicationFilePath(), cmd);
 //    qDebug() << "start" << SettingApplication << ret;
     UserInterfaceUtility::elapsed(QString(">>>>>>>>>>>>222222222222222222"));
-    m->m_Private->m_Timer->start();
+//    m->m_Private->m_Timer->start();
 }
 
 bool MainWidget::event(QEvent* event)
@@ -368,19 +368,19 @@ void MainWidgetPrivate::initializeBasicWidget()
 {
 
     ArkApp->installTranslatorPath(SettingPersistent::getLanguageResources());
-//    m_LinkWidget = new LinkWidget(m_Parent);
+    m_LinkWidget = new LinkWidget(m_Parent);
 
-    m_StatusBarWidget = new StatusBarWidget(m_Parent);
+//    m_StatusBarWidget = new StatusBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("StatusBarWidget>>");
     m_HomeWidget = new HomeWidget(m_Parent);
     UserInterfaceUtility::elapsed("HomeWidget>>");
-    m_TabBarWidget = new TabBarWidget(m_Parent);
+//    m_TabBarWidget = new TabBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("TabBarWidget>>");
     m_Timer = new QTimer(m_Parent);
     m_Timer->setSingleShot(true);
     m_Timer->setInterval(1000);
 
-//    g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
+    g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
     //    QStringList cmd;
     //    cmd << QString("-t") << QString("-qws") << QString("-calibrate");
     //    QDBusConnection::sessionBus().connect(QString(),

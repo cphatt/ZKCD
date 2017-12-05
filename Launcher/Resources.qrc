@@ -113,5 +113,7 @@
         <file>Resources/Images/HomeWidgetSettingNormal.png</file>
         <file>Resources/Images/HomeWidgetUSBDiskNormall.png</file>
         <file>Resources/Images/StatusBarWidgetBackground.png</file>
+        <file>Resources/Images/LinkWidgetBackground1.png</file>
+        <file>Resources/Images/LinkWidgetBackground2.png</file>
     </qresource>
 </RCC>

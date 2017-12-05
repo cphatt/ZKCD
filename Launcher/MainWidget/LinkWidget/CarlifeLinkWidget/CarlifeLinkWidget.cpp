@@ -318,16 +318,16 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
         m_Parent->startTimer(250);
         break;
     }
-    case LINK_CALL_PHONE: {    //来电
-         char data = 0x01;
-        g_Port->responseMCU(Port::C_BTCall, &data, 1);
-        break;
-    }
-    case LINK_CALL_PHONE_EXITED: {    //去电
-        char data = 0x02;
-        g_Port->responseMCU(Port::C_BTCall, &data, 1);
-        break;
-    }
+//    case LINK_CALL_PHONE: {    //来电
+//         char data = 0x01;
+//        g_Port->responseMCU(Port::C_BTCall, &data, 1);
+//        break;
+//    }
+//    case LINK_CALL_PHONE_EXITED: {    //去电
+//        char data = 0x02;
+//        g_Port->responseMCU(Port::C_BTCall, &data, 1);
+//        break;
+//    }
     default: {
         break;
     }

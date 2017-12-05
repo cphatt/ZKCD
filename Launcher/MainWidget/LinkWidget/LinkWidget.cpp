@@ -11,21 +11,29 @@
 #include "TextWidget.h"
 #include "EventEngine.h"
 #include <QVariant>
-
+#include "FaderWidget.h"
+#include <QPainter>
+#include <QMouseEvent>
+//namespace SourceString {
+//static const QString Select_Connect_Mode = QString(QObject::tr("Select connect mode!"));
+//static const QString AndroidMirror = QString(QObject::tr("Android Mirror"));
+//static const QString AndroidMirrorTip = QString(QObject::tr("1:Enable developer USB debugging options!\n"
+//                                                            "2:Connect to bluetooth devices!\n"
+//                                                            "3:Connect usb cable!\n"
+//                                                            "4:Press Mirror icon!"));
+//static const QString AppleCarPlay = QString(QObject::tr("Apple CarPlay"));
+//static const QString AppleCarPlayTip = QString(QObject::tr(" \n"
+//                                                           "1:Connect usb cable!\n"
+//                                                           "2:Press Carplay icon!\n"
+//                                                           " "));
+//}
 namespace SourceString {
-static const QString Select_Connect_Mode = QString(QObject::tr("Select connect mode!"));
-static const QString AndroidMirror = QString(QObject::tr("Android Mirror"));
-static const QString AndroidMirrorTip = QString(QObject::tr("1:Enable developer USB debugging options!\n"
-                                                            "2:Connect to bluetooth devices!\n"
-                                                            "3:Connect usb cable!\n"
-                                                            "4:Press Mirror icon!"));
-static const QString AppleCarPlay = QString(QObject::tr("Apple CarPlay"));
-static const QString AppleCarPlayTip = QString(QObject::tr(" \n"
-                                                           "1:Connect usb cable!\n"
-                                                           "2:Press Carplay icon!\n"
-                                                           " "));
+static const QString Select_Connect_Mode = QString(QObject::tr(""));
+static const QString AndroidMirror = QString(QObject::tr(""));
+static const QString AndroidMirrorTip = QString(QObject::tr(""));
+static const QString AppleCarPlay = QString(QObject::tr(""));
+static const QString AppleCarPlayTip = QString(QObject::tr(""));
 }
-
 class LinkWidgetPrivate
 {
     Q_DISABLE_COPY(LinkWidgetPrivate)
@@ -106,7 +114,21 @@ void LinkWidget::timerEvent(QTimerEvent *event)
     m_Private->initializeCarplayWidget();
     m_Private->initializeCarlifeWidget();
 }
+void LinkWidget::paintEvent(QPaintEvent *event){
+    QPainter painter(this);
+    int currentAlpha = 10;
+    QColor color = Qt::white;
+    color.setAlpha(currentAlpha);
 
+    painter.fillRect(rect(), color);
+}
+void LinkWidget::mouseReleaseEvent(QMouseEvent *e){
+//    qWarning() << e->x() << e->y();
+    if(e->x() >= 400)
+        emit clickCarplay();
+    else
+        emit clickCarlife();
+}
 void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
 {
     qWarning() << "LinkWidget::ontWidgetTypeChange" << type << status;
@@ -133,6 +155,8 @@ void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &sta
         //                startTimer(150);
             lower();
             setVisible(true);
+            FaderWidget *fader = new FaderWidget(this);
+//            fader->start();
         }
         break;
     }
@@ -180,7 +204,7 @@ void LinkWidgetPrivate::initializeLinkWidget()
 {
     if (NULL == m_Background) {
         m_Background = new BmpWidget(m_Parent);
-        m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/LinkWidgetBackground"));
+        m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/LinkWidgetBackground2"));
         g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Background);
         m_Background->setVisible(true);
     }
@@ -268,6 +292,12 @@ void LinkWidgetPrivate::connectAllSlots()
 {
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
     qWarning() << "LinkWidgetPrivate::connectAllSlots" << m_MirrorBtn << m_CarplayBtn;
+    QObject::connect(m_Parent, SIGNAL(clickCarplay()),
+                     m_CarplayBtn,SIGNAL(bmpButtonRelease()),
+                     type);
+    QObject::connect(m_Parent, SIGNAL(clickCarlife()),
+                     m_MirrorBtn,SIGNAL(bmpButtonRelease()),
+                     type);
     if (NULL != m_MirrorBtn) {
         QObject::connect(m_MirrorBtn, SIGNAL(bmpButtonRelease()),
                          m_Parent,    SLOT(onToolButtonRelease()),
@@ -278,4 +308,5 @@ void LinkWidgetPrivate::connectAllSlots()
                          m_Parent,     SLOT(onToolButtonRelease()),
                          type);
     }
+
 }

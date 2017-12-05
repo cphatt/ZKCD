@@ -88,7 +88,8 @@ SOURCES += \
     MainWidget/SettingWidget/VersionWidget/VersionWidget.cpp \
     MainWidget/SettingWidget/VersionWidget/VersionListView/VersionListView.cpp \
     MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp \
-    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.cpp
+    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.cpp \
+    MainWidget/LinkWidget/FaderWidget.cpp
 
 HEADERS += \
     MainWidget/HomeWidget/HomeWidget.h \
@@ -159,7 +160,8 @@ HEADERS += \
     MainWidget/SettingWidget/VersionWidget/VersionWidget.h \
     MainWidget/SettingWidget/VersionWidget/VersionListView/VersionListView.h \
     MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.h \
-    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.h
+    MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeShortCutWidget/CarlifeShortCutWidget.h \
+    MainWidget/LinkWidget/FaderWidget.h
 
 include(../ArkSdk.pri)
 

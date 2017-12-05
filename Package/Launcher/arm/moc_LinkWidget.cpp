@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'LinkWidget.h'
 **
-** Created: Sat Nov 25 16:15:20 2017
+** Created: Mon Dec 4 20:47:31 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,23 +23,27 @@ static const uint qt_meta_data_LinkWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       2,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+      12,   11,   11,   11, 0x05,
+      27,   11,   11,   11, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      24,   12,   11,   11, 0x09,
-      66,   11,   11,   11, 0x08,
+      54,   42,   11,   11, 0x09,
+      96,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_LinkWidget[] = {
-    "LinkWidget\0\0type,status\0"
-    "ontWidgetTypeChange(Widget::Type,QString)\0"
+    "LinkWidget\0\0clickCarlife()\0clickCarplay()\0"
+    "type,status\0ontWidgetTypeChange(Widget::Type,QString)\0"
     "onToolButtonRelease()\0"
 };
 
@@ -72,12 +76,26 @@ int LinkWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 1: onToolButtonRelease(); break;
+        case 0: clickCarlife(); break;
+        case 1: clickCarplay(); break;
+        case 2: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 3: onToolButtonRelease(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
+}
+
+// SIGNAL 0
+void LinkWidget::clickCarlife()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
+}
+
+// SIGNAL 1
+void LinkWidget::clickCarplay()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, 0);
 }
 QT_END_MOC_NAMESPACE

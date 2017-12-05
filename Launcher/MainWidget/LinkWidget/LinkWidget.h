@@ -20,6 +20,11 @@ protected:
     void showEvent(QShowEvent* event);
     void customEvent(QEvent* event);
     void timerEvent(QTimerEvent* event);
+    void paintEvent(QPaintEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+signals:
+    void clickCarlife();
+    void clickCarplay();
 protected slots:
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);
 private slots:

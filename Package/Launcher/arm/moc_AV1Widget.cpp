@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'AV1Widget.h'
 **
-** Created: Tue Nov 28 09:52:57 2017
+** Created: Mon Dec 4 19:38:22 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

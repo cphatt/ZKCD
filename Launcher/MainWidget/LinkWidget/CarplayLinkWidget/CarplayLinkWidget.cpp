@@ -34,6 +34,7 @@ public:
     MessageBox* m_DeviceMessageBox = NULL;
     QPoint m_Src = QPoint(0, 0);
     QPoint m_Dest = QPoint(0, 0);
+    bool onPhone = FALSE;
 private:
     CarplayLinkWidget* m_Parent = NULL;
 };
@@ -319,11 +320,14 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
     case LINK_CALL_PHONE: {    //来电
          char data = 0x01;
         g_Port->responseMCU(Port::C_BTCall, &data, 1);
+        onPhone = TRUE;
         break;
     }
     case LINK_CALL_PHONE_EXITED: {    //去电
         char data = 0x02;
-        g_Port->responseMCU(Port::C_BTCall, &data, 1);
+        if(onPhone)
+            g_Port->responseMCU(Port::C_BTCall, &data, 1);
+        onPhone = FALSE;
         break;
     }
     default: {

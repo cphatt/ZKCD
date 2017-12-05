@@ -432,29 +432,11 @@ bool isCommand(const char *buff){
 //                    printf("\n");
 
         if(checksum == buff[i])
-        {
+        {           
+                x_val = (buff[1] << 8) | (buff[2] );
+                y_val = (buff[3] << 8) | (buff[4] );
 
-            if(buff[0] == 0x61 || buff[0] == 0xa1 || buff[0] == 0xe1)//header -- touch event
-            {
-                x_val = (buff[1] << 8) | (buff[2] << 0);
-                y_val = (buff[3] << 8) | (buff[4] << 0);
-
-                if(buff[0] == 0xe1) //release
-                {
-                    //presure
-                    ev.type = EV_ABS;
-                    ev.code = ABS_PRESSURE;
-                    ev.value = 0x0;
-                    ::write(input_fd, &ev, sizeof(struct input_event));
-
-                    //sync
-                    ev.type = EV_SYN;
-                    ev.code = SYN_REPORT;
-                    ev.value = 0x0;
-                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
-                   // qDebug() << "UP";
-                }
-                else	//push
+                if(buff[0] == 0x61)	//push
                 {
                     //x axis
                     ev.type = EV_ABS;
@@ -483,9 +465,24 @@ bool isCommand(const char *buff){
                     ::write(input_fd, &ev, sizeof(struct input_event));
                     //qDebug() << "MOVE";
                 }
+                if(buff[0] == 0xe1) //release
+                {
+                    //presure
+                    ev.type = EV_ABS;
+                    ev.code = ABS_PRESSURE;
+                    ev.value = 0x0;
+                    ::write(input_fd, &ev, sizeof(struct input_event));
+
+                    //sync
+                    ev.type = EV_SYN;
+                    ev.code = SYN_REPORT;
+                    ev.value = 0x0;
+                    ret = ::write(input_fd, &ev, sizeof(struct input_event));
+                   // qDebug() << "UP";
+                }
+
                 ret = true;
-            }
-        }
+            }       
         return ret;
 }
 
@@ -500,10 +497,8 @@ void PortPrivate::SerialPortReadThread(void *paramater)
     PortPrivate* m_Private = (PortPrivate*)paramater;
     char data = 0x1;
     m_Private->m_Parent->responseMCU(Port::C_ShowCarplay, &data, 1);
-
-    int nwrite,i;
     int n;
-    unsigned char buff[256]={0};
+
     char rbuff[1024+128]={0};
     int count = 0;
     g_Audio->requestSetVolume(38);
@@ -511,7 +506,7 @@ void PortPrivate::SerialPortReadThread(void *paramater)
 //        printf("wait data and count=%d.\n", count);
 //        n= m_Private->readData(rbuff, 10);
         n = read(fd,rbuff + count,128 );
-
+        qWarning() << n;
 //        printf("%d data has been read\n ", n);
         if(n > 0)
                count += n;
@@ -527,7 +522,7 @@ void PortPrivate::SerialPortReadThread(void *paramater)
 //            for(i =0 ; i < count; i++)
 //                printf("0x%x, ", rbuff[i]);
 //            printf("\n");
-            if(m_Private->isLinkCommand(rbuff) || isCommand(rbuff) ){
+            if( isCommand(rbuff) || m_Private->isLinkCommand(rbuff)  ){
                 memcpy(rbuff, rbuff+6, count );
                 count -= 6;
             }else{
@@ -783,8 +778,9 @@ void PortPrivate::initialize()
     m_Parent->soundStatus = Port::CarPlayDisConnected;
 
     qWarning() << QThreadPool::globalInstance()->maxThreadCount() << "maxThreadCount";
-
+    //set MaxThreadCount
     QThreadPool::globalInstance()->setMaxThreadCount(2);
+    qWarning() << QThreadPool::globalInstance()->maxThreadCount() << "maxThreadCount";
     CustomRunnable* runnable = new CustomRunnable();
     runnable->setCallbackFunction(SerialPortReadThread, this);
     QThreadPool::globalInstance()->start(runnable);

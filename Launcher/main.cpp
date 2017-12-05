@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
 
 void customMessageOutput(QtMsgType type, const char *msg)
 {
+
     switch (type) {
     case QtDebugMsg: {
 //        fprintf(stderr, "Debug: %s\n", msg);   //那绝对是在这里吧打印消除了
