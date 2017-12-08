@@ -9,9 +9,10 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QDomElement>
-
+#include <QApplication>
 namespace SourceString {
 static const QString No_Carplay_Device = QString(QObject::tr("No Carplay Device..."));
+static const QString Fail_Carplay_Device = QString(QObject::tr("Conneting Carplay Fail..."));
 static const QString Conneting_Carplay_Device = QString(QObject::tr("Conneting Carplay Device..."));
 static const QString Remove_Carplay_Device = QString(QObject::tr("Remove Carplay Device..."));
 }
@@ -199,6 +200,32 @@ void CarplayLinkWidget::onLinkStatusChange(const Link_Type type, const Link_STAT
     }
     }
 }
+//传入一个点，发送到ｃａｒｐｌａｙ界面
+void CarplayLinkWidget::sendPoint(QPoint &pos){
+    QMouseEvent event0(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    QApplication::sendEvent(this, &event0);
+
+    QMouseEvent event1(QEvent::MouseButtonRelease, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+    QApplication::sendEvent(this, &event1);
+}
+
+void CarplayLinkWidget::onMCUDataRecv(int type, int data)
+{
+    qWarning() << "CarplayLinkWidget::onMCUDataRecv" << data;
+    if(type == 1 && m_Private->onPhone){
+        if( data == 1){ //接听
+            QPoint pos(100,100);
+            sendPoint(pos);
+             qWarning() << "--------------------jieting";
+        }else if(data == 2){    //挂断
+            QPoint pos(200,200);
+            sendPoint(pos);
+             qWarning() << "--------------------guaduan";
+        }else if(data == 3){
+
+        }
+    }
+}
 
 CarplayLinkWidgetPrivate::CarplayLinkWidgetPrivate(CarplayLinkWidget* parent)
     : m_Parent(parent)
@@ -267,6 +294,23 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
         m_DeviceMessageBox->setAutoHide(true);
         m_DeviceMessageBox->setText(SourceString::No_Carplay_Device);
         g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
+        break;
+    }
+        //新增ｆａｉｌ状态
+    case LINK_FAIL:{
+        g_Port->setStatus(Port::CarPlayDisConnected);
+
+        g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
+        EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
+        g_EventEngine->sendCustomEvent(event2);
+        QVariant* variant = new QVariant();
+        variant->setValue(static_cast<QWidget*>(m_DeviceMessageBox));
+        EventEngine::CustomEvent<QVariant> event(static_cast<QEvent::Type>(CustomEventType::LinkMessageWidgetAddChild), variant);
+        g_EventEngine->sendCustomEvent(event);
+        m_DeviceMessageBox->setAutoHide(true);
+        m_DeviceMessageBox->setText(SourceString::Fail_Carplay_Device);
+        g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
+        break;
         break;
     }
     case LINK_EXITING: {       //Home键  ,这里可能要切换低阻

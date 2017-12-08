@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'VolumeWidget.h'
 **
-** Created: Mon Dec 4 19:38:22 2017
+** Created: Fri Dec 8 17:27:00 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -32,16 +32,16 @@ static const uint qt_meta_data_VolumeWidget[] = {
 
  // slots: signature, parameters, type, tag, flags
       26,   14,   13,   13, 0x09,
-      55,   50,   13,   13, 0x08,
-      74,   13,   13,   13, 0x08,
+      60,   50,   13,   13, 0x08,
+      83,   13,   13,   13, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_VolumeWidget[] = {
     "VolumeWidget\0\0type,volume\0"
-    "onVolumeChange(int,int)\0size\0"
-    "onMCUDataRecv(int)\0onTimeout()\0"
+    "onVolumeChange(int,int)\0type,size\0"
+    "onMCUDataRecv(int,int)\0onTimeout()\0"
 };
 
 const QMetaObject VolumeWidget::staticMetaObject = {
@@ -74,7 +74,7 @@ int VolumeWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: onVolumeChange((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
-        case 1: onMCUDataRecv((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: onMCUDataRecv((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 2: onTimeout(); break;
         default: ;
         }

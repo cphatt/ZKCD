@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CarplayLinkWidget.h'
 **
-** Created: Mon Dec 4 19:38:21 2017
+** Created: Fri Dec 8 17:39:49 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_CarplayLinkWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,6 +33,7 @@ static const uint qt_meta_data_CarplayLinkWidget[] = {
  // slots: signature, parameters, type, tag, flags
       31,   19,   18,   18, 0x09,
       73,   19,   18,   18, 0x09,
+     111,  101,   18,   18, 0x08,
 
        0        // eod
 };
@@ -40,7 +41,8 @@ static const uint qt_meta_data_CarplayLinkWidget[] = {
 static const char qt_meta_stringdata_CarplayLinkWidget[] = {
     "CarplayLinkWidget\0\0type,status\0"
     "ontWidgetTypeChange(Widget::Type,QString)\0"
-    "onLinkStatusChange(int,int)\0"
+    "onLinkStatusChange(int,int)\0type,size\0"
+    "onMCUDataRecv(int,int)\0"
 };
 
 const QMetaObject CarplayLinkWidget::staticMetaObject = {
@@ -74,9 +76,10 @@ int CarplayLinkWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         switch (_id) {
         case 0: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: onLinkStatusChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
+        case 2: onMCUDataRecv((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

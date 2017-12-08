@@ -20,8 +20,8 @@ protected:
     void showEvent(QShowEvent* event);
     void customEvent(QEvent* event);
     void timerEvent(QTimerEvent* event);
-    void paintEvent(QPaintEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
+//    void paintEvent(QPaintEvent *);
+//    void mouseReleaseEvent(QMouseEvent *);
 signals:
     void clickCarlife();
     void clickCarplay();

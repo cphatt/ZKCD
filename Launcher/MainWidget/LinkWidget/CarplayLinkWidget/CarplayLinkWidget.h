@@ -17,6 +17,8 @@ class CarplayLinkWidget
 public:
     explicit CarplayLinkWidget(QWidget *parent = NULL);
     ~CarplayLinkWidget();
+
+       void sendPoint(QPoint &pos);
 protected:
     void resizeEvent(QResizeEvent* event);
     void paintEvent(QPaintEvent *event);
@@ -30,6 +32,9 @@ protected slots:
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);
     void onLinkStatusChange(const int type, const int status);
     //  void onLinkStatusChange(const Link_Type type, const Link_STATUS status);
+
+private slots:
+    void onMCUDataRecv( int type, int size);
 private:
     friend class CarplayLinkWidgetPrivate;
     QScopedPointer<CarplayLinkWidgetPrivate> m_Private;

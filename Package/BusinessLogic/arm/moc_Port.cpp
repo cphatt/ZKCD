@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Port.h'
 **
-** Created: Mon Dec 4 19:37:17 2017
+** Created: Fri Dec 8 17:26:18 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -31,20 +31,20 @@ static const uint qt_meta_data_Port[] = {
        2,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-      11,    6,    5,    5, 0x05,
-      35,   30,    5,    5, 0x05,
+      16,    6,    5,    5, 0x05,
+      44,   39,    5,    5, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      55,   30,    5,    5, 0x09,
-      72,    5,    5,    5, 0x09,
-      96,   84,    5,    5, 0x09,
+      64,   39,    5,    5, 0x09,
+      81,    5,    5,    5, 0x09,
+     105,   93,    5,    5, 0x09,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Port[] = {
-    "Port\0\0size\0onMCUDataRecv(int)\0type\0"
-    "read_port_data(int)\0handlerData(int)\0"
+    "Port\0\0type,data\0onMCUDataRecv(int,int)\0"
+    "type\0read_port_data(int)\0handlerData(int)\0"
     "onTimeOut()\0type,status\0"
     "onDeviceWatcherStatus(int,int)\0"
 };
@@ -78,7 +78,7 @@ int Port::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: onMCUDataRecv((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 0: onMCUDataRecv((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 1: read_port_data((*reinterpret_cast< const int(*)>(_a[1]))); break;
         case 2: handlerData((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: onTimeOut(); break;
@@ -91,9 +91,9 @@ int Port::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Port::onMCUDataRecv(int _t1)
+void Port::onMCUDataRecv(int _t1, int _t2)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 

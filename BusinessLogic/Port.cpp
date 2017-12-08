@@ -65,10 +65,10 @@ public:
 };
 
 //向外传递
-void Port::handlerMCUData( const int size)
+void Port::handlerMCUData(const int type, const int size)
 {
-    qWarning() << "Port::handlerMCUData";
-    emit onMCUDataRecv(size);
+    qWarning() << "Port::handlerMCUData" <<type << size ;
+    emit onMCUDataRecv(type, size);
 }
 
 Port::Port(QObject *parent)
@@ -401,13 +401,14 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
                 m_Parent->responseMCU(Port::C_SoundStatus, &data , 1);
             }else if(buff[3] == 0x10){       //set volume
                 //设置底板的声音
-                int data = buff[4];\
-                m_Parent->handlerMCUData(data);
+                m_Parent->handlerMCUData(0,type_data);
 //                if(data == 0x1) {//增加声音
 //                    g_Audio->requestIncreaseVolume();
 //                }else if(data = 0x2){
 //                    g_Audio->requestDecreaseVolume();
 //                }
+            }else if(buff[3] == 0x11){      //answer phone
+                m_Parent->handlerMCUData(1,type_data);
             }
      }
     return  flag;
@@ -464,8 +465,8 @@ bool isCommand(const char *buff){
                     ev.value = 0x0;
                     ::write(input_fd, &ev, sizeof(struct input_event));
                     //qDebug() << "MOVE";
-                }
-                if(buff[0] == 0xe1) //release
+                    ret = true;
+                }else if(buff[0] == 0xe1) //release
                 {
                     //presure
                     ev.type = EV_ABS;
@@ -479,9 +480,8 @@ bool isCommand(const char *buff){
                     ev.value = 0x0;
                     ret = ::write(input_fd, &ev, sizeof(struct input_event));
                    // qDebug() << "UP";
-                }
-
-                ret = true;
+                    ret = true;
+                }                
             }       
         return ret;
 }

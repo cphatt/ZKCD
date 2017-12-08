@@ -135,13 +135,15 @@ void VolumeWidget::onVolumeChange(OutPutSource type, const int volume)
     m_Private->m_VolumeStatusTip->setVisible(true);
 }
 
-void VolumeWidget::onMCUDataRecv(int i)
+void VolumeWidget::onMCUDataRecv(int type, int i)
 {
-    qWarning() << "VolumeToolWidget::onMCUDataRecv" << i;
-    if(!isVisible())
-        setVisible(true);
-    m_Private->m_Timer->start();
-    m_Private->m_VolumeToolWidget->onVolumeChange(1,i);
+    if(type == 0){
+        qWarning() << "VolumeToolWidget::onMCUDataRecv" << i;
+        if(!isVisible())
+            setVisible(true);
+        m_Private->m_Timer->start();
+        m_Private->m_VolumeToolWidget->onVolumeChange(1,i);
+    }
 }
 
 void VolumeWidget::onTimeout()
@@ -190,8 +192,8 @@ void VolumeWidgetPrivate::initializeTimer()
         QObject::connect(m_Timer,  SIGNAL(timeout()),
                          m_Parent, SLOT(onTimeout()),
                          type);
-            QObject::connect(g_Port, SIGNAL(onMCUDataRecv(int)),
-                             m_Parent, SLOT(onMCUDataRecv(int)),
+            QObject::connect(g_Port, SIGNAL(onMCUDataRecv(int, int)),
+                             m_Parent, SLOT(onMCUDataRecv(int,int )),
                              type);
     }
 }

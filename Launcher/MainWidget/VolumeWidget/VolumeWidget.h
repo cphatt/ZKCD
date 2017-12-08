@@ -27,7 +27,7 @@ protected slots:
 //    void onVolumeChange(OutPutSource type, const int volume);
 
 private slots:
-     void onMCUDataRecv( int size);
+     void onMCUDataRecv( int type, int size);
     void onTimeout();
 private:
     friend class VolumeWidgetPrivate;

@@ -374,7 +374,7 @@ void MainWidgetPrivate::initializeBasicWidget()
     UserInterfaceUtility::elapsed("StatusBarWidget>>");
     m_HomeWidget = new HomeWidget(m_Parent);
     UserInterfaceUtility::elapsed("HomeWidget>>");
-//    m_TabBarWidget = new TabBarWidget(m_Parent);
+    m_TabBarWidget = new TabBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("TabBarWidget>>");
     m_Timer = new QTimer(m_Parent);
     m_Timer->setSingleShot(true);

@@ -114,21 +114,21 @@ void LinkWidget::timerEvent(QTimerEvent *event)
     m_Private->initializeCarplayWidget();
     m_Private->initializeCarlifeWidget();
 }
-void LinkWidget::paintEvent(QPaintEvent *event){
-    QPainter painter(this);
-    int currentAlpha = 10;
-    QColor color = Qt::white;
-    color.setAlpha(currentAlpha);
+//void LinkWidget::paintEvent(QPaintEvent *event){
+//    QPainter painter(this);
+//    int currentAlpha = 10;
+//    QColor color = Qt::white;
+//    color.setAlpha(currentAlpha);
 
-    painter.fillRect(rect(), color);
-}
-void LinkWidget::mouseReleaseEvent(QMouseEvent *e){
+//    painter.fillRect(rect(), color);
+//}
+//void LinkWidget::mouseReleaseEvent(QMouseEvent *e){
 //    qWarning() << e->x() << e->y();
-    if(e->x() >= 400)
-        emit clickCarplay();
-    else
-        emit clickCarlife();
-}
+//    if(e->x() >= 400)
+//        emit clickCarplay();
+//    else
+//        emit clickCarlife();
+//}
 void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &status)
 {
     qWarning() << "LinkWidget::ontWidgetTypeChange" << type << status;
@@ -155,7 +155,7 @@ void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &sta
         //                startTimer(150);
             lower();
             setVisible(true);
-            FaderWidget *fader = new FaderWidget(this);
+//            FaderWidget *fader = new FaderWidget(this);
 //            fader->start();
         }
         break;
