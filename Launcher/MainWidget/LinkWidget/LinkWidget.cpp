@@ -14,26 +14,26 @@
 #include "FaderWidget.h"
 #include <QPainter>
 #include <QMouseEvent>
-//namespace SourceString {
-//static const QString Select_Connect_Mode = QString(QObject::tr("Select connect mode!"));
-//static const QString AndroidMirror = QString(QObject::tr("Android Mirror"));
-//static const QString AndroidMirrorTip = QString(QObject::tr("1:Enable developer USB debugging options!\n"
-//                                                            "2:Connect to bluetooth devices!\n"
-//                                                            "3:Connect usb cable!\n"
-//                                                            "4:Press Mirror icon!"));
-//static const QString AppleCarPlay = QString(QObject::tr("Apple CarPlay"));
-//static const QString AppleCarPlayTip = QString(QObject::tr(" \n"
-//                                                           "1:Connect usb cable!\n"
-//                                                           "2:Press Carplay icon!\n"
-//                                                           " "));
-//}
 namespace SourceString {
-static const QString Select_Connect_Mode = QString(QObject::tr(""));
-static const QString AndroidMirror = QString(QObject::tr(""));
-static const QString AndroidMirrorTip = QString(QObject::tr(""));
-static const QString AppleCarPlay = QString(QObject::tr(""));
-static const QString AppleCarPlayTip = QString(QObject::tr(""));
+static const QString Select_Connect_Mode = QString(QObject::tr("Select connect mode!"));
+static const QString AndroidMirror = QString(QObject::tr("Carlife"));
+static const QString AndroidMirrorTip = QString(QObject::tr("1:Enable developer USB debugging options!\n"
+                                                            "2:Connect to bluetooth devices!\n"
+                                                            "3:Connect usb cable!\n"
+                                                            "4:Press Carlife icon!"));
+static const QString AppleCarPlay = QString(QObject::tr("CarPlay"));
+static const QString AppleCarPlayTip = QString(QObject::tr(" \n"
+                                                           "1:Connect usb cable!\n"
+                                                           "2:Press Carplay icon!\n"
+                                                           " "));
 }
+//namespace SourceString {
+//static const QString Select_Connect_Mode = QString(QObject::tr(""));
+//static const QString AndroidMirror = QString(QObject::tr(""));
+//static const QString AndroidMirrorTip = QString(QObject::tr(""));
+//static const QString AppleCarPlay = QString(QObject::tr(""));
+//static const QString AppleCarPlayTip = QString(QObject::tr(""));
+//}
 class LinkWidgetPrivate
 {
     Q_DISABLE_COPY(LinkWidgetPrivate)
@@ -210,7 +210,7 @@ void LinkWidgetPrivate::initializeLinkWidget()
     }
     if (NULL == m_TitleText) {
         m_TitleText = new TextWidget(m_Parent);
-        m_TitleText->setFontPointSize(26 * g_Widget->widthScalabilityFactor());
+        m_TitleText->setFontPointSize(28 * g_Widget->widthScalabilityFactor());
         m_TitleText->setText(SourceString::Select_Connect_Mode);
         g_Widget->geometryFit(0, 78, g_Widget->baseWindowWidth(), 64, m_TitleText);
         m_TitleText->setVisible(true);
@@ -219,46 +219,46 @@ void LinkWidgetPrivate::initializeLinkWidget()
     int height(197);
     if (NULL == m_MirrorBtn) {
         m_MirrorBtn = new BmpButton(m_Parent);
-        m_MirrorBtn->setNormalBmpPath(QString(":/Images/Resources/Images/LinkWidgetMirrorBtnNormal"));
-        m_MirrorBtn->setPressBmpPath(QString(":/Images/Resources/Images/LinkWidgetMirrorBtnNormal"));
-        g_Widget->geometryFit((g_Widget->baseWindowWidth() * 0.5 - width) * 0.5, (g_Widget->baseWindowHeight() - height) * 0.4, width, height, m_MirrorBtn);
+        m_MirrorBtn->setNormalBmpPath(QString(":/Images/Resources/Images/LinkWidgetCarlifeBtnNormal"));
+        m_MirrorBtn->setPressBmpPath(QString(":/Images/Resources/Images/LinkWidgetCarlifeBtnNormal"));
+        g_Widget->geometryFit((g_Widget->baseWindowWidth() * 0.5 - width) * 0.5 + 50, (g_Widget->baseWindowHeight() - height) * 0.4, width, height, m_MirrorBtn);
         m_MirrorBtn->setVisible(true);
     }
     if (NULL == m_MirrorBtnText) {
         m_MirrorBtnText = new TextWidget(m_Parent);
         m_MirrorBtnText->setText(SourceString::AndroidMirror);
-        m_MirrorBtnText->setFontPointSize(18 * g_Widget->widthScalabilityFactor());
-        g_Widget->geometryFit((g_Widget->baseWindowWidth() * 0.5 - width) * 0.5, (g_Widget->baseWindowHeight() - height) * 0.4 + height, width, 29, m_MirrorBtnText);
+        m_MirrorBtnText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+        g_Widget->geometryFit((g_Widget->baseWindowWidth() * 0.5 - width) * 0.5 + 50, (g_Widget->baseWindowHeight() - height) * 0.4 + height, width, 29, m_MirrorBtnText);
         m_MirrorBtnText->setVisible(true);
     }
     if (NULL == m_MirrorTipText) {
         m_MirrorTipText = new TextWidget(m_Parent);
         m_MirrorTipText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
         m_MirrorTipText->setText(SourceString::AndroidMirrorTip);
-        m_MirrorTipText->setFontPointSize(18 * g_Widget->widthScalabilityFactor());
-        g_Widget->geometryFit(30, (g_Widget->baseWindowHeight() - height) * 0.5 + height, 572, 120, m_MirrorTipText);
+        m_MirrorTipText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+        g_Widget->geometryFit(180, (g_Widget->baseWindowHeight() - height) * 0.5 + height, 572, 120, m_MirrorTipText);
         m_MirrorTipText->setVisible(true);
     }
     if (NULL == m_CarplayBtn) {
         m_CarplayBtn = new BmpButton(m_Parent);
         m_CarplayBtn->setNormalBmpPath(QString(":/Images/Resources/Images/LinkWidgetCarplayBtnNormal"));
         m_CarplayBtn->setPressBmpPath(QString(":/Images/Resources/Images/LinkWidgetCarplayBtnNormal"));
-        g_Widget->geometryFit(g_Widget->baseWindowWidth() * 0.5 + (g_Widget->baseWindowWidth() * 0.5 - width) * 0.5, (g_Widget->baseWindowHeight() - height) * 0.4, width, height, m_CarplayBtn);
+        g_Widget->geometryFit(g_Widget->baseWindowWidth() * 0.5 + (g_Widget->baseWindowWidth() * 0.5 - width) * 0.5 - 50, (g_Widget->baseWindowHeight() - height) * 0.4, width, height, m_CarplayBtn);
         m_CarplayBtn->setVisible(true);
     }
     if (NULL == m_CarplayBtnText) {
         m_CarplayBtnText = new TextWidget(m_Parent);
-        m_CarplayBtnText->setFontPointSize(18 * g_Widget->widthScalabilityFactor());
+        m_CarplayBtnText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
         m_CarplayBtnText->setText(SourceString::AppleCarPlay);
-        g_Widget->geometryFit(g_Widget->baseWindowWidth() * 0.5 + (g_Widget->baseWindowWidth() * 0.5 - width) * 0.5, (g_Widget->baseWindowHeight() - height) * 0.4 + height, width, 29, m_CarplayBtnText);
+        g_Widget->geometryFit(g_Widget->baseWindowWidth() * 0.5 + (g_Widget->baseWindowWidth() * 0.5 - width) * 0.5 - 50, (g_Widget->baseWindowHeight() - height) * 0.4 + height, width, 29, m_CarplayBtnText);
         m_CarplayBtnText->setVisible(true);
     }
     if (NULL == m_CarplayTipText) {
         m_CarplayTipText = new TextWidget(m_Parent);
         m_CarplayTipText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
         m_CarplayTipText->setText(SourceString::AppleCarPlayTip);
-        m_CarplayTipText->setFontPointSize(18 * g_Widget->widthScalabilityFactor());
-        g_Widget->geometryFit(678, (g_Widget->baseWindowHeight() - height) * 0.5 + height, 572, 120, m_CarplayTipText);
+        m_CarplayTipText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+        g_Widget->geometryFit(678 + 50, (g_Widget->baseWindowHeight() - height) * 0.5 + height - 50, 572, 120, m_CarplayTipText);
         m_CarplayTipText->setVisible(true);
     }
 }

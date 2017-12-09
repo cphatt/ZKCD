@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'AudioServiceProxy.h'
 **
-** Created: Mon Dec 4 19:35:46 2017
+** Created: Sat Dec 9 17:32:13 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

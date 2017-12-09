@@ -71,6 +71,7 @@ void VolumeSliderWidgetPrivate::initialize()
     m_Slider->setTickMarksSize(QSize(40 * g_Widget->widthScalabilityFactor(), 40 * g_Widget->heightScalabilityFactor()));
     m_Slider->setBackgroundBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderBackground"));
     m_Slider->setTickMarkTickMarkslBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderTickMarksBackground"));
+    m_Slider->setAllowPress(false);
     m_Slider->setVisible(true);
 }
 

@@ -105,8 +105,8 @@ void CarplayShortCutWidgetPrivate::initialize()
 {
     m_Background = new BmpButton(m_Parent);
     m_Background->show();
-    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/CarplayShortCutWidgetBackground"));
-    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/CarplayShortCutWidgetBackground"));
+//    m_Background->setNormalBmpPath(QString(":/Images/Resources/Images/CarplayShortCutWidgetBackground"));
+//    m_Background->setPressBmpPath(QString(":/Images/Resources/Images/CarplayShortCutWidgetBackground"));
 }
 
 void CarplayShortCutWidgetPrivate::receiveAllCustomEvent()

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'LinkWidget.h'
 **
-** Created: Wed Dec 6 17:09:54 2017
+** Created: Sat Dec 9 17:33:37 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'PixmapWidget.h'
 **
-** Created: Mon Dec 4 19:38:22 2017
+** Created: Sat Dec 9 17:33:38 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!

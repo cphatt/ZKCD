@@ -291,6 +291,7 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
             g_EventEngine->sendCustomEvent(event);
             m_DeviceMessageBox->setAutoHide(true);
             m_DeviceMessageBox->setText(SourceString::Remove_Carlife_Device);
+            m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
             g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
             //            EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
             //            g_EventEngine->sendCustomEvent(event2);

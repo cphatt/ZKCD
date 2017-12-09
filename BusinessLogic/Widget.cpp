@@ -20,7 +20,7 @@ public:
     int m_BaseWindowHeight = 720;
     float m_HeightScalabilityFactor = 1.0f;
     int m_BaseStatusBarHeight = 60;
-    int m_BaseTabBarHeight = 84;
+    int m_BaseTabBarHeight = 226;
 private:
     Widget* m_Parent = NULL;
 };

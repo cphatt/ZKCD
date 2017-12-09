@@ -11,16 +11,12 @@
         <file>Resources/Languages/Launcher_EN.qm</file>
     </qresource>
     <qresource prefix="/Images">
-        <file>Resources/Images/HomeWidgetAVPress.png</file>
-        <file>Resources/Images/HomeWidgetLinkPress.png</file>
-        <file>Resources/Images/HomeWidgetSDDiskPress.png</file>
-        <file>Resources/Images/HomeWidgetSettingPress.png</file>
-        <file>Resources/Images/HomeWidgetUSBDiskPress.png</file>
-        <file>Resources/Images/CarplayShortCutWidgetBackground.png</file>
+        <file>Resources/Images/BluetoothConnectTipNormal.png</file>
         <file>Resources/Images/EffectSoundSliderBackground.png</file>
         <file>Resources/Images/EffectSoundSliderMinusNormal.png</file>
         <file>Resources/Images/EffectSoundSliderPlusNormal.png</file>
         <file>Resources/Images/EffectSoundSliderTickMarksBackground.png</file>
+        <file>Resources/Images/EffectSoundWidgetBackground.png</file>
         <file>Resources/Images/EffectWidgetCustomBtnNormal.png</file>
         <file>Resources/Images/EffectWidgetCustomBtnPress.png</file>
         <file>Resources/Images/EffectWidgetToolBtnNormal.png</file>
@@ -30,6 +26,24 @@
         <file>Resources/Images/GeneralSliderMinusNormal.png</file>
         <file>Resources/Images/GeneralSliderPlusNormal.png</file>
         <file>Resources/Images/GeneralSliderTickMarksBackground.png</file>
+        <file>Resources/Images/HomeWidgetAVNormall.dat</file>
+        <file>Resources/Images/HomeWidgetAVNormall.png</file>
+        <file>Resources/Images/HomeWidgetAVPress.png</file>
+        <file>Resources/Images/HomeWidgetBackground.dat</file>
+        <file>Resources/Images/HomeWidgetBackground.png</file>
+        <file>Resources/Images/HomeWidgetLinkNormall.dat</file>
+        <file>Resources/Images/HomeWidgetLinkNormall.png</file>
+        <file>Resources/Images/HomeWidgetLinkPress.png</file>
+        <file>Resources/Images/HomeWidgetSDDiskNormall.dat</file>
+        <file>Resources/Images/HomeWidgetSDDiskNormall.png</file>
+        <file>Resources/Images/HomeWidgetSDDiskPress.png</file>
+        <file>Resources/Images/HomeWidgetSettingNormal.dat</file>
+        <file>Resources/Images/HomeWidgetSettingNormal.png</file>
+        <file>Resources/Images/HomeWidgetSettingPress.png</file>
+        <file>Resources/Images/HomeWidgetUSBDiskNormall.dat</file>
+        <file>Resources/Images/HomeWidgetUSBDiskNormall.png</file>
+        <file>Resources/Images/HomeWidgetUSBDiskPress.png</file>
+        <file>Resources/Images/ImageLoadFailedBackground.png</file>
         <file>Resources/Images/ImageShortCutWidgetBackground.png</file>
         <file>Resources/Images/ImageStatusWidgetListNormal.png</file>
         <file>Resources/Images/ImageToolBarWidgetNextNormal.png</file>
@@ -40,6 +54,9 @@
         <file>Resources/Images/ImageToolBarWidgetZoomOutNormal.png</file>
         <file>Resources/Images/LanguageWidgetBackground.png</file>
         <file>Resources/Images/LinkWidgetBackground.png</file>
+        <file>Resources/Images/LinkWidgetBackground1.png</file>
+        <file>Resources/Images/LinkWidgetBackground2.png</file>
+        <file>Resources/Images/LinkWidgetCarlifeBtnNormal.png</file>
         <file>Resources/Images/LinkWidgetCarplayBtnNormal.png</file>
         <file>Resources/Images/LinkWidgetMirrorBlueToothNormal.png</file>
         <file>Resources/Images/LinkWidgetMirrorBtnNormal.png</file>
@@ -75,18 +92,25 @@
         <file>Resources/Images/SettingToolEffectBtnNormal.png</file>
         <file>Resources/Images/SettingToolEffectBtnPress.png</file>
         <file>Resources/Images/SettingToolFieldBtnNormal.png</file>
+        <file>Resources/Images/SettingToolFieldBtnNormal (copy).png</file>
         <file>Resources/Images/SettingToolFieldBtnPress.png</file>
+        <file>Resources/Images/SettingToolFieldBtnPress (copy).png</file>
         <file>Resources/Images/SettingToolLanguageBtnNormal.png</file>
         <file>Resources/Images/SettingToolLanguageBtnPress.png</file>
         <file>Resources/Images/SettingToolSettingBtnNormal.png</file>
         <file>Resources/Images/SettingToolSettingBtnPress.png</file>
+        <file>Resources/Images/StatusBarWidgetBackground.dat</file>
+        <file>Resources/Images/StatusBarWidgetBackground.png</file>
         <file>Resources/Images/TabBarWidgetBackBtnNormal.png</file>
+        <file>Resources/Images/TabBarWidgetBackground.dat</file>
+        <file>Resources/Images/TabBarWidgetBackground.png</file>
         <file>Resources/Images/TabBarWidgetEffectBtnNormal.png</file>
         <file>Resources/Images/TabBarWidgetFMBtnNormal.png</file>
         <file>Resources/Images/TabBarWidgetHomeBtnNormal.png</file>
         <file>Resources/Images/TabBarWidgetIRBtnNormal.png</file>
         <file>Resources/Images/TabBarWidgetTurnOffDisplayBtnNormal.png</file>
         <file>Resources/Images/TabBarWidgetVolumeBtnNormal.png</file>
+        <file>Resources/Images/USBDiskWidgetDisableTipNormal.png</file>
         <file>Resources/Images/USBDiskWidgetTipNormal.png</file>
         <file>Resources/Images/VideoShortCutWidgetBackground.png</file>
         <file>Resources/Images/VideoToolBarWidgetListNormal.png</file>
@@ -103,17 +127,6 @@
         <file>Resources/Images/VolumeIRWidgetTipNormal.png</file>
         <file>Resources/Images/VolumeMuteWidgetTipNormal.png</file>
         <file>Resources/Images/VolumeSpeakWidgetTipNormal.png</file>
-        <file>Resources/Images/BluetoothConnectTipNormal.png</file>
-        <file>Resources/Images/ImageLoadFailedBackground.png</file>
-        <file>Resources/Images/HomeWidgetAVNormall.png</file>
-        <file>Resources/Images/HomeWidgetBackground.png</file>
-        <file>Resources/Images/HomeWidgetLinkNormall.png</file>
-        <file>Resources/Images/TabBarWidgetBackground.png</file>
-        <file>Resources/Images/HomeWidgetSDDiskNormall.png</file>
-        <file>Resources/Images/HomeWidgetSettingNormal.png</file>
-        <file>Resources/Images/HomeWidgetUSBDiskNormall.png</file>
-        <file>Resources/Images/StatusBarWidgetBackground.png</file>
-        <file>Resources/Images/LinkWidgetBackground1.png</file>
-        <file>Resources/Images/LinkWidgetBackground2.png</file>
+        <file>Resources/Images/newReturn.png</file>
     </qresource>
 </RCC>

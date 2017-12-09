@@ -134,9 +134,9 @@ bool MainWidget::event(QEvent* event)
             if ((NULL != m_Private)
                     && (!m_Private->m_DisplayVisible)) {
                 m_Private->m_DisplayVisible = true;
-                SettingPersistent::restoreBrightness();
-                SettingPersistent::restoreContrast();
-                SettingPersistent::restoreSaturation();
+//                SettingPersistent::restoreBrightness();
+//                SettingPersistent::restoreContrast();
+//                SettingPersistent::restoreSaturation();
                 if (hideArkStartupLogo()) {
                     qDebug() << "Hide ArkLogo!";
                 } else {
@@ -149,17 +149,17 @@ bool MainWidget::event(QEvent* event)
                 }
                 UserInterfaceUtility::elapsed(QString("vvvvvvvvvvvvvvvvvvvvvvvvvvv"));
                 qDebug() << SettingPersistent::getCalibrate();
-                if (qgetenv("QWS_ARK_MT_DEVICE").isEmpty()) {
-                    if (!SettingPersistent::getCalibrate()) {
-                        system("ts_calibrate");
-                        SettingPersistent::setCalibrate(true);
-                        system("sync");
-                        system("reboot");
-                        //                    exit(EXIT_SUCCESS);
-                        ArkApp->quit();
-                        break;
-                    }
-                }
+//                if (qgetenv("QWS_ARK_MT_DEVICE").isEmpty()) {
+//                    if (!SettingPersistent::getCalibrate()) {
+//                        system("ts_calibrate");
+//                        SettingPersistent::setCalibrate(true);
+//                        system("sync");
+//                        system("reboot");
+//                        //                    exit(EXIT_SUCCESS);
+//                        ArkApp->quit();
+//                        break;
+//                    }
+//                }
                 startTimer(0);
             }
             break;
