@@ -128,5 +128,8 @@
         <file>Resources/Images/VolumeMuteWidgetTipNormal.png</file>
         <file>Resources/Images/VolumeSpeakWidgetTipNormal.png</file>
         <file>Resources/Images/newReturn.png</file>
+        <file>Resources/Images/VolumeToolWidgetBackgroud.png</file>
+        <file>Resources/Images/go_back.png</file>
+        <file>Resources/Images/test.png</file>
     </qresource>
 </RCC>

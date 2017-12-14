@@ -105,12 +105,16 @@ static void initializeRunnableCallback(void *paramater)
 //    qDebug() << "startDetached mirrordemo" << ret;
     QString serviceName("com.arkmicro.carplay");
     g_DbusService->startService(serviceName);
+
     serviceName = QString("com.arkmicro.bluetooth");
     g_DbusService->startService(serviceName);
-    serviceName = QString("com.arkmicro.mirror");
-    g_DbusService->startService(serviceName);
+
+//    serviceName = QString("com.arkmicro.mirror");
+//    g_DbusService->startService(serviceName);
+
     serviceName = QString("com.arkmicro.carlife");
     g_DbusService->startService(serviceName);
+
     //    UserInterfaceUtility::elapsed(QString("start ArkMicroMultimediaService<<<<<"));
     QStringList cmd;
     cmd << QString("-t") << MultimediaApplication;
@@ -369,17 +373,16 @@ void MainWidgetPrivate::initializeBasicWidget()
 
     ArkApp->installTranslatorPath(SettingPersistent::getLanguageResources());
     m_LinkWidget = new LinkWidget(m_Parent);
-
 //    m_StatusBarWidget = new StatusBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("StatusBarWidget>>");
     m_HomeWidget = new HomeWidget(m_Parent);
     UserInterfaceUtility::elapsed("HomeWidget>>");
-    m_TabBarWidget = new TabBarWidget(m_Parent);
+//    m_TabBarWidget = new TabBarWidget(m_Parent);
     UserInterfaceUtility::elapsed("TabBarWidget>>");
     m_Timer = new QTimer(m_Parent);
     m_Timer->setSingleShot(true);
     m_Timer->setInterval(1000);
-
+//    initializeIdleWidget();
     g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::RequestShow);
     //    QStringList cmd;
     //    cmd << QString("-t") << QString("-qws") << QString("-calibrate");

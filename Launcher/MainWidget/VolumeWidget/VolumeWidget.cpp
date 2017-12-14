@@ -43,7 +43,7 @@ VolumeWidget::~VolumeWidget()
 
 void VolumeWidget::resizeEvent(QResizeEvent *event)
 {
-    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), this);
+    g_Widget->geometryFit(0, 600, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), this);
 }
 
 void VolumeWidget::customEvent(QEvent *event)

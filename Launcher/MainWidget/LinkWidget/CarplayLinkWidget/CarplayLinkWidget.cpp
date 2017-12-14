@@ -245,7 +245,7 @@ void CarplayLinkWidgetPrivate::initialize()
     m_CarplayShortCutWidget = new CarplayShortCutWidget(m_Parent);
     m_DeviceMessageBox = new MessageBox(m_Parent);
     m_DeviceMessageBox->hide();
-    m_DeviceMessageBox->setFontPointSize(15 * g_Widget->widthScalabilityFactor());
+    m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
 }
 
 void CarplayLinkWidgetPrivate::receiveAllCustomEvent()
@@ -280,7 +280,7 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
     }
     case LINK_DISCONNECTED: {   //退出链接
 //         g_Port->setMemStatus(Port::RGB);
-        g_Port->setStatus(Port::CarPlayDisConnected);
+//        g_Port->setStatus(Port::CarPlayDisConnected);
 //        char data = 0x1;
 //        g_Port->responseMCU(Port::C_Close, &data, 1);
 
@@ -335,7 +335,7 @@ void CarplayLinkWidgetPrivate::onCarplayLinkStatus(const int status)   //查看�
             g_EventEngine->sendCustomEvent(event);
             m_DeviceMessageBox->setAutoHide(true);
             m_DeviceMessageBox->setText(SourceString::Remove_Carplay_Device);
-            m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+//            m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
             g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
             //            EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
             //            g_EventEngine->sendCustomEvent(event2);

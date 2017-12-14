@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'CarlifeLinkWidget.h'
 **
-** Created: Sat Dec 9 17:33:39 2017
+** Created: Tue Dec 12 19:22:56 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_CarlifeLinkWidget[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,6 +33,7 @@ static const uint qt_meta_data_CarlifeLinkWidget[] = {
  // slots: signature, parameters, type, tag, flags
       31,   19,   18,   18, 0x09,
       73,   19,   18,   18, 0x09,
+     101,   18,   18,   18, 0x08,
 
        0        // eod
 };
@@ -40,7 +41,7 @@ static const uint qt_meta_data_CarlifeLinkWidget[] = {
 static const char qt_meta_stringdata_CarlifeLinkWidget[] = {
     "CarlifeLinkWidget\0\0type,status\0"
     "ontWidgetTypeChange(Widget::Type,QString)\0"
-    "onLinkStatusChange(int,int)\0"
+    "onLinkStatusChange(int,int)\0onTimeout()\0"
 };
 
 const QMetaObject CarlifeLinkWidget::staticMetaObject = {
@@ -74,9 +75,10 @@ int CarlifeLinkWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         switch (_id) {
         case 0: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
         case 1: onLinkStatusChange((*reinterpret_cast< const int(*)>(_a[1])),(*reinterpret_cast< const int(*)>(_a[2]))); break;
+        case 2: onTimeout(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

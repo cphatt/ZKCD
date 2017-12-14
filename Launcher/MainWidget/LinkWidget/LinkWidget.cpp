@@ -14,26 +14,25 @@
 #include "FaderWidget.h"
 #include <QPainter>
 #include <QMouseEvent>
+#include <QTimer>
+static int a = 0;
+static int x1,x2,y_1,y_2;
 namespace SourceString {
 static const QString Select_Connect_Mode = QString(QObject::tr("Select connect mode!"));
 static const QString AndroidMirror = QString(QObject::tr("Carlife"));
 static const QString AndroidMirrorTip = QString(QObject::tr("1:Enable developer USB debugging options!\n"
                                                             "2:Connect to bluetooth devices!\n"
-                                                            "3:Connect usb cable!\n"
+                                                            "3:Connect andriod usb cable!\n"
                                                             "4:Press Carlife icon!"));
-static const QString AppleCarPlay = QString(QObject::tr("CarPlay"));
-static const QString AppleCarPlayTip = QString(QObject::tr(" \n"
-                                                           "1:Connect usb cable!\n"
-                                                           "2:Press Carplay icon!\n"
-                                                           " "));
+static const QString AppleCarPlay = QString(QObject::tr("Carplay"));
+static const QString AppleCarPlayTip = QString(QObject::tr("1:Connect iphone usb cable!\n"
+                                                           "2:Press Carplay icon!\n"));
+
+static const QString version = QString(QObject::tr("MAN:2017-12-14\n"
+                                                    "BSP:2017-12-14\n"
+                                                    "APP:2017-12-14\n"));
 }
-//namespace SourceString {
-//static const QString Select_Connect_Mode = QString(QObject::tr(""));
-//static const QString AndroidMirror = QString(QObject::tr(""));
-//static const QString AndroidMirrorTip = QString(QObject::tr(""));
-//static const QString AppleCarPlay = QString(QObject::tr(""));
-//static const QString AppleCarPlayTip = QString(QObject::tr(""));
-//}
+
 class LinkWidgetPrivate
 {
     Q_DISABLE_COPY(LinkWidgetPrivate)
@@ -54,9 +53,12 @@ public:
     BmpButton* m_CarplayBtn = NULL;
     TextWidget* m_CarplayBtnText = NULL;
     TextWidget* m_CarplayTipText = NULL;
+    BmpButton* m_BackBtn = NULL;
+     MessageBox* m_DeviceMessageBox = NULL;
 //    MirrorLinkWidget* m_MirrorLinkWidget = NULL;
     CarplayLinkWidget* m_CarplayLinkWidget = NULL;
     CarlifeLinkWidget * m_CarlifeLinkWidget = NULL;
+    QTimer *m_Timer = NULL;
 private:
     LinkWidget* m_Parent = NULL;
 };
@@ -70,6 +72,14 @@ LinkWidget::LinkWidget(QWidget *parent)
 LinkWidget::~LinkWidget()
 {
 }
+//void LinkWidget::mouseDoubleClickEvent(QMouseEvent *event){
+//    qWarning() << a;
+//    if(a++ % 2)
+//        m_Private->m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/LinkWidgetBackground2"));
+//    else
+//        m_Private->m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/test"));
+//    update();
+//}
 
 void LinkWidget::resizeEvent(QResizeEvent *event)
 {
@@ -85,6 +95,61 @@ void LinkWidget::showEvent(QShowEvent *event)
     }
 }
 
+//void LinkWidget::mousePressEvent(QMouseEvent *event){
+//    x1 = event->x();
+//    y_1 = event->y();
+//    qWarning() << x1;
+//    m_Private->m_Timer->start();
+//        QWidget::mousePressEvent(event);
+//}
+
+//void LinkWidget::mouseReleaseEvent(QMouseEvent *event){
+//    x2 = event->x();
+//    y_2 = event->y();
+//    qWarning() << x2;
+//    if((x2 - x1 > 400 )|| (x1 - x2 > 400)){
+//        a = 1-a;
+//        qWarning() << a;
+//        if(a)
+//            m_Private->m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/LinkWidgetBackground2"));
+//        else
+//            m_Private->m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/test"));
+//    }
+//    if((y_2 - y_1 > 100) || (y_1 - y_2 > 100)){
+
+//        QVariant* variant = new QVariant();
+//        variant->setValue(static_cast<QWidget*>(m_Private->m_DeviceMessageBox));
+//        EventEngine::CustomEvent<QVariant> event(static_cast<QEvent::Type>(CustomEventType::LinkMessageWidgetAddChild), variant);
+//        g_EventEngine->sendCustomEvent(event);
+//        m_Private->m_DeviceMessageBox->setAutoHide(true);
+//        m_Private->m_DeviceMessageBox->setText(tr("2017-12-14"));
+//        g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Private->m_DeviceMessageBox);
+//        EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestShow));
+//        g_EventEngine->sendCustomEvent(event2);
+//    }
+//    m_Private->m_Timer->stop();
+//    QWidget::mouseReleaseEvent(event);
+//}
+
+void LinkWidget::onTimeout(){
+    m_Private->m_BackBtn->setVisible(false);
+    QVariant* variant = new QVariant();
+    variant->setValue(static_cast<QWidget*>(m_Private->m_DeviceMessageBox));
+    EventEngine::CustomEvent<QVariant> event(static_cast<QEvent::Type>(CustomEventType::LinkMessageWidgetAddChild), variant);
+    g_EventEngine->sendCustomEvent(event);
+
+    m_Private->m_DeviceMessageBox->setAutoHide(true);
+    m_Private->m_DeviceMessageBox->setText(tr("2017-12-14"));
+    g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Private->m_DeviceMessageBox);
+    EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestShow));
+    g_EventEngine->sendCustomEvent(event2);
+}
+
+void LinkWidget::onMessageChange(){
+        m_Private->m_BackBtn->setVisible(true);
+    raise();
+
+}
 void LinkWidget::customEvent(QEvent *event)
 {
     qWarning() << "LinkWidget::customEvent";
@@ -147,20 +212,11 @@ void LinkWidget::ontWidgetTypeChange(const Widget::Type type, const QString &sta
             g_Widget->setWidgetType(Widget::T_Link, WidgetStatus::Show);
         } else if (WidgetStatus::Show == status) {
             m_Private->initializeLinkWidget();
-//            if ((NULL == m_Private->m_MirrorLinkWidget)
-//                    || (NULL == m_Private->m_CarplayLinkWidget)) {
-//                startTimer(150);
-//            }
-        //            if ( (NULL == m_Private->m_CarplayLinkWidget))
-        //                startTimer(150);
             lower();
             setVisible(true);
-//            FaderWidget *fader = new FaderWidget(this);
-//            fader->start();
         }
         break;
     }
-//    case Widget::T_Mirror:
     case Widget::T_Carplay:
     case Widget::T_Carlife: {
         if (WidgetStatus::Show == status) {
@@ -183,8 +239,9 @@ void LinkWidget::onToolButtonRelease()
 //        m_Private->initializeMirrowWidget();
         g_Widget->setWidgetType(Widget::T_Carlife, WidgetStatus::RequestShow);
     } else if (sender() == m_Private->m_CarplayBtn) {
-
         g_Widget->setWidgetType(Widget::T_Carplay, WidgetStatus::RequestShow);
+    }else if (sender() == m_Private->m_BackBtn) {
+        g_Widget->setWidgetType(Widget::T_Back, WidgetStatus::RequestShow);
     }
 }
 
@@ -205,6 +262,7 @@ void LinkWidgetPrivate::initializeLinkWidget()
     if (NULL == m_Background) {
         m_Background = new BmpWidget(m_Parent);
         m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/LinkWidgetBackground2"));
+//        m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/test"));
         g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Background);
         m_Background->setVisible(true);
     }
@@ -236,7 +294,7 @@ void LinkWidgetPrivate::initializeLinkWidget()
         m_MirrorTipText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
         m_MirrorTipText->setText(SourceString::AndroidMirrorTip);
         m_MirrorTipText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
-        g_Widget->geometryFit(180, (g_Widget->baseWindowHeight() - height) * 0.5 + height, 572, 120, m_MirrorTipText);
+        g_Widget->geometryFit(260, (g_Widget->baseWindowHeight() - height) * 0.5 + height, 572, 120, m_MirrorTipText);
         m_MirrorTipText->setVisible(true);
     }
     if (NULL == m_CarplayBtn) {
@@ -258,8 +316,25 @@ void LinkWidgetPrivate::initializeLinkWidget()
         m_CarplayTipText->setAlignmentFlag(Qt::AlignLeft | Qt::AlignVCenter);
         m_CarplayTipText->setText(SourceString::AppleCarPlayTip);
         m_CarplayTipText->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
-        g_Widget->geometryFit(678 + 50, (g_Widget->baseWindowHeight() - height) * 0.5 + height - 50, 572, 120, m_CarplayTipText);
+        g_Widget->geometryFit(678 + 120, (g_Widget->baseWindowHeight() - height) * 0.5 + height - 20, 572, 120, m_CarplayTipText);
         m_CarplayTipText->setVisible(true);
+    }
+    if(NULL == m_DeviceMessageBox){
+        m_DeviceMessageBox = new MessageBox(m_Parent);
+        m_DeviceMessageBox->hide();
+        m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+    }
+//    if(NULL == m_Timer){
+//        m_Timer = new QTimer(m_Parent);
+//        m_Timer->setSingleShot(true);
+//        m_Timer->setInterval(1000);
+//    }
+    if (NULL == m_BackBtn) {
+        m_BackBtn = new BmpButton(m_Parent);
+        m_BackBtn->setNormalBmpPath(QString(":/Images/Resources/Images/go_back"));
+        m_BackBtn->setPressBmpPath(QString(":/Images/Resources/Images/go_back"));
+        g_Widget->geometryFit(1280 - 136, 720- 136, 96, 96, m_BackBtn);
+        m_BackBtn->setVisible(true);
     }
 }
 
@@ -308,5 +383,17 @@ void LinkWidgetPrivate::connectAllSlots()
                          m_Parent,     SLOT(onToolButtonRelease()),
                          type);
     }
-
+//    if(NULL != m_Timer){
+//        QObject::connect(m_Timer,  SIGNAL(timeout()),
+//                         m_Parent, SLOT(onTimeout()),
+//                         type);
+//    }
+    if(NULL != m_BackBtn){
+        QObject::connect(m_BackBtn, SIGNAL(bmpButtonRelease()),
+                         m_Parent,     SLOT(onToolButtonRelease()),
+                         type);
+    }
+//    QObject::connect(m_DeviceMessageBox, SIGNAL(messageShowTimeout()),
+//                     m_Parent,  SLOT(onMessageChange()),
+//                     type);
 }

@@ -41,23 +41,21 @@
         <translation type="obsolete">Mirror</translation>
     </message>
     <message>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="24"/>
         <source>Carplay</source>
-        <translation type="obsolete">Carplay</translation>
+        <translation>Carplay</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="22"/>
         <source>No Mirror Device...</source>
-        <translation>无Mirror设备...</translation>
+        <translation type="obsolete">无Carlife设备...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="23"/>
         <source>Conneting Mirror Device...</source>
-        <translation>连接Mirror设备...</translation>
+        <translation type="obsolete">连接Carlife设备...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="24"/>
         <source>Remove Mirror Device...</source>
-        <translation>拔出Mirror设备...</translation>
+        <translation type="obsolete">拔出Mirror设备...</translation>
     </message>
     <message>
         <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="14"/>
@@ -66,11 +64,16 @@
     </message>
     <message>
         <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="15"/>
+        <source>Conneting Carplay Fail...</source>
+        <translation>连接carplay失败</translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="16"/>
         <source>Conneting Carplay Device...</source>
         <translation>连接Carplay设备...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="16"/>
+        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="17"/>
         <source>Remove Carplay Device...</source>
         <translation>拔出Carplay设备...</translation>
     </message>
@@ -396,41 +399,79 @@
         <translation>关</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="15"/>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="18"/>
         <source>Select connect mode!</source>
         <translation>选择连接模式!</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="16"/>
-        <source>Android Mirror</source>
-        <translation>Android Mirror</translation>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="19"/>
+        <source>Carlife</source>
+        <translation>Carlife</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="17"/>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="20"/>
+        <source>1:Enable developer USB debugging options!
+2:Connect to bluetooth devices!
+3:Connect andriod usb cable!
+4:Press Carlife icon!</source>
+        <translation>1.开启开发者USB调试选项!
+2:连接蓝牙设备!
+3:连接安卓USB线!
+4:点击Carlife图标!</translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="25"/>
+        <source>1:Connect iphone usb cable!
+2:Press Carplay icon!
+</source>
+        <translation>1:连接苹果USB线!
+2:点击Carplay图标!</translation>
+    </message>
+    <message>
+        <source>1:Connect iphone usb cable!
+2:Press Carplay icon!
+ </source>
+        <translation type="obsolete">1:连接苹果USB线!
+2:点击Carplay图标!</translation>
+    </message>
+    <message>
+        <source> 
+1:Connect iphone usb cable!
+2:Press Carplay icon!
+ </source>
+        <translatorcomment>
+1:连接苹果USB线!
+2:点击Carplay图标!</translatorcomment>
+        <translation type="obsolete">
+1:连接苹果USB线!
+2:点击Carplay图标!</translation>
+    </message>
+    <message>
+        <source>Android Mirror</source>
+        <translation type="obsolete">Android Mirror</translation>
+    </message>
+    <message>
         <source>1:Enable developer USB debugging options!
 2:Connect to bluetooth devices!
 3:Connect usb cable!
 4:Press Mirror icon!</source>
-        <translation>1.开启开发者USB调试选项!
+        <translation type="obsolete">1.开启开发者USB调试选项!
 2:连接蓝牙设备!
-3:连接USB线!
+3:连接安卓USB线!
 4:点击Mirror图标!</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="21"/>
         <source>Apple CarPlay</source>
-        <translation>Apple CarPlay</translation>
+        <translation type="obsolete">Apple CarPlay</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="22"/>
         <source> 
 1:Connect usb cable!
 2:Press Carplay icon!
  </source>
-        <translation> 
-1:连接USB线!
-2:点击Carplay图标!
- </translation>
+        <translation type="obsolete">
+1:连接苹果USB线!
+2:点击Carplay图标!</translation>
     </message>
     <message>
         <source>
@@ -513,6 +554,21 @@
         <location filename="../../MainWidget/DiskWidget/VideoWidget/VideoWidget.cpp" line="17"/>
         <source>Unsupport...</source>
         <translation>不支持...</translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="14"/>
+        <source>No Carlife Device...</source>
+        <translation>无Carlife设备...</translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="15"/>
+        <source>Conneting Carlife Device...</source>
+        <translation>连接Carlife设备...</translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="16"/>
+        <source>Remove Carlife Device...</source>
+        <translation>拔出Carlife设备...</translation>
     </message>
 </context>
 </TS>

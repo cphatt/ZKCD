@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'LinkWidget.h'
 **
-** Created: Sat Dec 9 17:33:37 2017
+** Created: Thu Dec 14 15:38:32 2017
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -28,23 +28,22 @@ static const uint qt_meta_data_LinkWidget[] = {
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
-
- // signals: signature, parameters, type, tag, flags
-      12,   11,   11,   11, 0x05,
-      27,   11,   11,   11, 0x05,
+       0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      54,   42,   11,   11, 0x09,
-      96,   11,   11,   11, 0x08,
+      24,   12,   11,   11, 0x09,
+      66,   11,   11,   11, 0x08,
+      88,   11,   11,   11, 0x08,
+     106,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_LinkWidget[] = {
-    "LinkWidget\0\0clickCarlife()\0clickCarplay()\0"
-    "type,status\0ontWidgetTypeChange(Widget::Type,QString)\0"
-    "onToolButtonRelease()\0"
+    "LinkWidget\0\0type,status\0"
+    "ontWidgetTypeChange(Widget::Type,QString)\0"
+    "onToolButtonRelease()\0onMessageChange()\0"
+    "onTimeout()\0"
 };
 
 const QMetaObject LinkWidget::staticMetaObject = {
@@ -76,26 +75,14 @@ int LinkWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: clickCarlife(); break;
-        case 1: clickCarplay(); break;
-        case 2: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 3: onToolButtonRelease(); break;
+        case 0: ontWidgetTypeChange((*reinterpret_cast< const Widget::Type(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 1: onToolButtonRelease(); break;
+        case 2: onMessageChange(); break;
+        case 3: onTimeout(); break;
         default: ;
         }
         _id -= 4;
     }
     return _id;
-}
-
-// SIGNAL 0
-void LinkWidget::clickCarlife()
-{
-    QMetaObject::activate(this, &staticMetaObject, 0, 0);
-}
-
-// SIGNAL 1
-void LinkWidget::clickCarplay()
-{
-    QMetaObject::activate(this, &staticMetaObject, 1, 0);
 }
 QT_END_MOC_NAMESPACE

@@ -9,11 +9,12 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QDomElement>
-
+#include <QTimer>
 namespace SourceString {
 static const QString No_Carlife_Device = QString(QObject::tr("No Carlife Device..."));
 static const QString Conneting_Carlife_Device = QString(QObject::tr("Conneting Carlife Device..."));
 static const QString Remove_Carlife_Device = QString(QObject::tr("Remove Carlife Device..."));
+static const QString ReConneting_Carlife_Device = QString(QObject::tr("ReConneting Carlife Device..."));
 }
 
 class CarlifeLinkWidgetPrivate
@@ -32,8 +33,10 @@ public:
     QString translateTouchEvent(const QList<TouchEvent> &list);
     CarlifeShortCutWidget* m_CarlifeShortCutWidget = NULL;
     MessageBox* m_DeviceMessageBox = NULL;
+    QTimer *m_timer = NULL;
     QPoint m_Src = QPoint(0, 0);
     QPoint m_Dest = QPoint(0, 0);
+
 private:
     CarlifeLinkWidget* m_Parent = NULL;
 };
@@ -73,6 +76,7 @@ void CarlifeLinkWidget::mousePressEvent(QMouseEvent *event)
         QString touchPointXml = m_Private->translateTouchEvent(touchPointList);
         g_Link->requestTouchStatus(CARLIFE, TouchBegin, touchPointXml);
     }
+
 }
 
 void CarlifeLinkWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -165,7 +169,20 @@ void CarlifeLinkWidget::ontWidgetTypeChange(const Widget::Type type, const QStri
     switch (type) {
     case Widget::T_Carlife: {
         if (WidgetStatus::RequestShow == status) {
-            g_Link->requestLinkStatus(CARLIFE, LINK_STARTING);
+            if(g_Port->soundStatus == Port::CarlifeConnected){
+                QVariant* variant = new QVariant();
+                variant->setValue(static_cast<QWidget*>(m_Private->m_DeviceMessageBox));
+                EventEngine::CustomEvent<QVariant> event(static_cast<QEvent::Type>(CustomEventType::MessageBoxWidgetAddChild), variant);
+                g_EventEngine->sendCustomEvent(event);
+                m_Private->m_DeviceMessageBox->setAutoHide(false);
+                m_Private->m_DeviceMessageBox->setText(SourceString::Conneting_Carlife_Device);
+                g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_Private->m_DeviceMessageBox);
+                EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestShow));
+                g_EventEngine->sendCustomEvent(event2);
+                m_Private->m_timer->start();
+            }else{
+                g_Link->requestLinkStatus(CARLIFE, LINK_STARTING);
+            }
         } else if (WidgetStatus::Show == status) {
             raise();
             if (!qgetenv("QWS_ARK_MT_DEVICE").isEmpty()) {
@@ -198,7 +215,9 @@ void CarlifeLinkWidget::onLinkStatusChange(const Link_Type type, const Link_STAT
     }
     }
 }
-
+void CarlifeLinkWidget::onTimeout(){
+     g_Link->requestLinkStatus(CARLIFE, LINK_STARTING);
+}
 CarlifeLinkWidgetPrivate::CarlifeLinkWidgetPrivate(CarlifeLinkWidget* parent)
     : m_Parent(parent)
 
@@ -215,9 +234,12 @@ CarlifeLinkWidgetPrivate::~CarlifeLinkWidgetPrivate()
 void CarlifeLinkWidgetPrivate::initialize()
 {
     m_CarlifeShortCutWidget = new CarlifeShortCutWidget(m_Parent);
+    m_timer = new QTimer(m_Parent);
+    m_timer->setSingleShot(true);
+    m_timer->setInterval(200);
     m_DeviceMessageBox = new MessageBox(m_Parent);
     m_DeviceMessageBox->hide();
-    m_DeviceMessageBox->setFontPointSize(15 * g_Widget->widthScalabilityFactor());
+    m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
 }
 
 void CarlifeLinkWidgetPrivate::receiveAllCustomEvent()
@@ -230,6 +252,10 @@ void CarlifeLinkWidgetPrivate::connectAllSlots()
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
     connectSignalAndSlotByNamesake(g_Link, m_Parent);
     connectSignalAndSlotByNamesake(g_Port, m_Parent);
+     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
+    QObject::connect(m_timer,  SIGNAL(timeout()),
+                     m_Parent, SLOT(onTimeout()),
+                     type);
 }
 
 void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看触发事件，确认给MCU发信息的时间
@@ -291,7 +317,7 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
             g_EventEngine->sendCustomEvent(event);
             m_DeviceMessageBox->setAutoHide(true);
             m_DeviceMessageBox->setText(SourceString::Remove_Carlife_Device);
-            m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
+//            m_DeviceMessageBox->setFontPointSize(22 * g_Widget->widthScalabilityFactor());
             g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
             //            EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
             //            g_EventEngine->sendCustomEvent(event2);
@@ -312,9 +338,10 @@ void CarlifeLinkWidgetPrivate::onCarlifeLinkStatus(const int status)   //查看�
          char data = Port::CarlifeConnected;
         g_Port->responseMCU(Port::C_SoundStatus, &data, 1);
 
-        EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
-        g_EventEngine->sendCustomEvent(event2);
-        g_Widget->setWidgetType(Widget::T_Carlife, WidgetStatus::Show);
+
+            EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestHide));
+            g_EventEngine->sendCustomEvent(event2);
+            g_Widget->setWidgetType(Widget::T_Carlife, WidgetStatus::Show);
 
         m_Parent->startTimer(250);
         break;

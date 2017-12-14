@@ -125,28 +125,30 @@
     </message>
     <message>
         <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="15"/>
+        <source>Conneting Carplay Fail...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="16"/>
         <source>Conneting Carplay Device...</source>
         <translation>Verbindung Carplay Ausrüstung...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="16"/>
+        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="17"/>
         <source>Remove Carplay Device...</source>
         <translation>entfernen Carplay Ausrüstung...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="22"/>
         <source>No Mirror Device...</source>
-        <translation>Kein Mirror Ausrüstung...</translation>
+        <translation type="obsolete">Kein Mirror Ausrüstung...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="23"/>
         <source>Conneting Mirror Device...</source>
-        <translation>Verbindung Carplay Ausrüstung...</translation>
+        <translation type="obsolete">Verbindung Carplay Ausrüstung...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="24"/>
         <source>Remove Mirror Device...</source>
-        <translation>entfernen Mirror Ausrüstung...</translation>
+        <translation type="obsolete">entfernen Mirror Ausrüstung...</translation>
     </message>
     <message>
         <source>HighPitch</source>
@@ -360,38 +362,59 @@
         <translation>schließen</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="15"/>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="18"/>
         <source>Select connect mode!</source>
         <translation>Wählen Sie den Verbindungsmodus!</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="16"/>
-        <source>Android Mirror</source>
-        <translation>Android Mirror</translation>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="19"/>
+        <source>Carlife</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="17"/>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="20"/>
+        <source>1:Enable developer USB debugging options!
+2:Connect to bluetooth devices!
+3:Connect andriod usb cable!
+4:Press Carlife icon!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="24"/>
+        <source>Carplay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="25"/>
+        <source>1:Connect iphone usb cable!
+2:Press Carplay icon!
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Android Mirror</source>
+        <translation type="obsolete">Android Mirror</translation>
+    </message>
+    <message>
         <source>1:Enable developer USB debugging options!
 2:Connect to bluetooth devices!
 3:Connect usb cable!
 4:Press Mirror icon!</source>
-        <translation>1:Power-Entwickler USB-Debugging -Option!
+        <translation type="obsolete">1:Power-Entwickler USB-Debugging -Option!
 2:Schließen Sie Bluetooth-Geräte!
 3:Schließen Sie das USB-Kabel!
 4:Klicken Sie auf die Spiegel-Symbol!</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="21"/>
         <source>Apple CarPlay</source>
-        <translation>Apple CarPlay</translation>
+        <translation type="obsolete">Apple CarPlay</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="22"/>
         <source> 
 1:Connect usb cable!
 2:Press Carplay icon!
  </source>
-        <translation> 
+        <translation type="obsolete"> 
 1:Verbinden Sie das USB-Kabel!
 2:Klicken Sie auf das Symbol Carplay!
  </translation>
@@ -468,6 +491,21 @@
         <location filename="../../MainWidget/DiskWidget/VideoWidget/VideoWidget.cpp" line="17"/>
         <source>Unsupport...</source>
         <translation>Nicht unterstützt...</translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="14"/>
+        <source>No Carlife Device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="15"/>
+        <source>Conneting Carlife Device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="16"/>
+        <source>Remove Carlife Device...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

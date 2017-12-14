@@ -9,7 +9,8 @@
 #include "UserInterfaceUtility.h"
 
 namespace SourceString {
-static const QString Volume = QString(QObject::tr("Volume"));
+//static const QString Volume = QString(QObject::tr("Volume"));
+static const QString Volume = QString(QObject::tr(""));
 }
 
 class VolumeToolWidgetPrivate
@@ -40,9 +41,10 @@ VolumeToolWidget::~VolumeToolWidget()
 
 void VolumeToolWidget::resizeEvent(QResizeEvent *event)
 {
-    g_Widget->geometryFit(213, 180, 853, 360, this);
+    g_Widget->geometryFit(213, 0, 853, 460, this);
     g_Widget->geometryFit(0, 0, 853, 360, m_Private->m_Background);
-    g_Widget->geometryFit(0, 0, 853, 180, m_Private->m_TitleText);
+    g_Widget->geometryFit(330, 0, 853, 180, m_Private->m_TitleText);
+//    g_Widget->geometryFit(853 - 52 - 92 + 20, (180 - 92) * 0.5, 92, 92, m_Private->m_TitleText);
 }
 
 void VolumeToolWidget::changeEvent(QEvent *event)
@@ -100,7 +102,7 @@ VolumeToolWidgetPrivate::~VolumeToolWidgetPrivate()
 void VolumeToolWidgetPrivate::initialize()
 {
     m_Background = new BmpWidget(m_Parent);
-    m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/MessageBackground"));
+//    m_Background->setBackgroundBmpPath(QString(":/Images/Resources/Images/MessageBackground"));
     m_Background->setVisible(true);
     m_TitleText = new TextWidget(m_Parent);
     m_TitleText->setAlignmentFlag(Qt::AlignCenter);

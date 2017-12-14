@@ -5,6 +5,7 @@
 #include "Setting.h"
 #include "Audio.h"
 #include "BusinessLogicUtility.h"
+#include "EventEngine.h"
 #include<QTimer>
 #include <QThreadPool>
 #include <stdio.h>
@@ -48,13 +49,14 @@ public:
     void initializeMem();
     void initializeInput();
     void connectAllSlots();
+    void receiveAllCustomEvent();
 
 
     void doHanderData();
     ssize_t  readData(char *buffer, size_t n);
     ssize_t writeData(const void *buffer, size_t n);
     int write(char ch);
-    static void SerialPortReadThread(void *);
+//    static void SerialPortReadThread(void *);
     bool isLinkCommand(const char *buff);
     bool isTouchCommand(const char *buff, void * paramater);
     QTimer *m_Timer  = NULL;
@@ -86,8 +88,9 @@ Port::~Port()
 void Port::onTimeOut()
 {
 
-        qWarning()<< "send"<< m_Private->writeData("6666", 5) << "byte";
+//        qWarning()<< "send"<< m_Private->writeData("6666", 5) << "byte";
 //        m_Private->m_Timer->start();
+
 }
 
 /**
@@ -96,12 +99,7 @@ void Port::onTimeOut()
  */
 void Port::handlerData(int type)
 {
-        qDebug() <<"Port::handlerData" <<type;
-        if(1== type){
 
-        }else if(2 == type){
-                    setMemStatus(Port::IO);
-        }
 }
 /**
 该函数用于向串口中写入数据
@@ -149,21 +147,29 @@ void Port::setStatus(Port::SoundStatus status){
 void Port::setMemStatus(Port::MemStatus status){
         qWarning() << " Port::setMemStatus " << status;
         switch (status) {
-            case Port::IO:
+            case Port::IO:{
                 *(sysio + 0x1C0 / 4) = 0;
                 *(sysio + 0x1C4 / 4) = 0;
                 *(sysio + 0x1C8 / 4) = 0;
                 *(sysio + 0x1CC / 4) &= ~0xFFFF;
                 *(gpio + 0) |= (0xFFFFFFF << 2);
+            //拉黑
+//                EventEngine::CustomEvent<QString> event(CustomEventType::IdleWidgetStatus, new QString(WidgetStatus::RequestShow));
+//                g_EventEngine->sendCustomEvent(event);
                 break;
+            }
             case Port::RGB:
-            default:
+            default:{
                 *(sysio + 0x1C0 / 4) = (1<<28) |(1<<24) |(1<<20) |(1<<16) |(1<<12) |(1<<8) | (1<<4) |(1<<0);
                 *(sysio + 0x1C4 / 4) = (1<<28) |(1<<24) |(1<<20) |(1<<16) |(1<<12) |(1<<8) | (1<<4) |(1<<0);
                 *(sysio + 0x1C8 / 4) = (1<<28) |(1<<24) |(1<<20) |(1<<16) |(1<<12) |(1<<8) | (1<<4) |(1<<0);
                 *(sysio + 0x1CC / 4) = (1<<12) |(1<<8) | (1<<4) |(1<<0);
+            //正常
+//                EventEngine::CustomEvent<QString> event1(CustomEventType::IdleWidgetStatus, new QString(WidgetStatus::RequestHide));
+//                g_EventEngine->sendCustomEvent(event1);
                 break;
             }
+        }
 }
 
 /**
@@ -238,96 +244,15 @@ PortPrivate::PortPrivate(Port* parent)
     QObject::connect(m_Timer,  SIGNAL(timeout()),
                      m_Parent, SLOT(onTimeOut()),
                      type);
-    m_Timer->start();
+//    m_Timer->start();
 
 #ifndef gcc
     initialize();
 #endif
     connectAllSlots();
+    receiveAllCustomEvent();
 }
 
-/**
- * @brief PortPrivate::isTouchCommand
- * @param buff
- * @param paramater
- * @return
- */
-//bool PortPrivate::isTouchCommand(const char *buff, void * paramater){
-//    struct input_event ev; //input
-//    int x_val,y_val, i;
-//    bool ret = false;
-//    unsigned char checksum=buff[0];
-//    unsigned char temp =buff[2] + 4;
-
-//    for(i = 1; i < temp; i++)
-//    {
-//        checksum = checksum ^buff[i];
-//    }
-////    printf("isTouchCommand temp = %d,0x%x,0x%x,0x%x,0x%x,0x%x,checksum 0x%x, buff[temp] 0x%x\n",temp,buff[4], buff[5], buff[6], buff[7], buff[8], checksum,buff[temp]);
-//    if(checksum ==buff[temp]){
-//        if(buff[8] == 0x01 || buff[8] == 0x02 )//header -- touch event
-//        {
-//                        ret = true;
-//            x_val = (buff[4] << 8) | (buff[5] << 0);
-//            y_val = (buff[6] << 8) | (buff[7] << 0);
-//             printf("x:%d,y:%d\n", x_val, y_val);
-
-//            if(buff[8] == 0x02) //release
-//            {
-//                //presure
-//                ev.type = EV_ABS;
-//                ev.code = ABS_PRESSURE;
-//                ev.value = 0x0;
-//                ::write(input_fd, &ev, sizeof(struct input_event));
-
-//                //sync
-//                ev.type = EV_SYN;
-//                ev.code = SYN_REPORT;
-//                ev.value = 0x0;
-//                ret = ::write(input_fd, &ev, sizeof(struct input_event));
-//                qWarning()<< "UP";
-//            }
-//            else	//push
-//            {
-//                //x axis
-//                ev.type = EV_ABS;
-//                ev.code = ABS_X;
-//                ev.value = x_val;
-//                ret = ::write(input_fd, &ev, sizeof(struct input_event));
-//                if(ret < 0)
-//                {
-//                    qDebug() << "write X axis failed";
-//                }
-//                //y axis
-//                ev.type = EV_ABS;
-//                ev.code = ABS_Y;
-//                ev.value = y_val;
-//                ::write(input_fd, &ev, sizeof(struct input_event));
-//                //presure
-//                ev.type = EV_ABS;
-//                ev.code = ABS_PRESSURE;
-//                ev.value = 0xFFF;
-//               ::write(input_fd, &ev, sizeof(struct input_event));
-
-//                //sync
-//                ev.type = EV_SYN;
-//                ev.code = SYN_REPORT;
-//                ev.value = 0x0;
-//                ::write(input_fd, &ev, sizeof(struct input_event));
-//                qWarning() << "MOVE";
-//            }
-
-//        }
-//        //
-//        //        else
-//        //        {
-//        //            printf("###### data: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x \n",buff[0], buff[1], buff[2], buff[3], buff[4], buff[5]);
-//        //        //	printf("###### x:%d y:%d\n",(buff[2] << 8) | (buff[1] << 0),(buff[4] << 8) | (buff[3] << 0));
-//        //        }
-//    }
-
-//    return ret;
-//}
 
 /**
  * @brief PortPrivate::isLinkCommand    判断MCU数据并处理
@@ -351,18 +276,20 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
     if(checksum ==buff[temp])
     {       flag = 1;
 //            qWarning() << "type" <<buff[3] <<",data" << type_data;
-            printf("type = 0x%x, data = 0x%x\n", buff[3],  type_data);
+//            printf("type = 0x%x, data = 0x%x\n", buff[3],  type_data);
             if(buff[3] == 0x2){
                     if(type_data == 0x1){
 //                        emit m_Private->m_Parent->read_port_data(1);
+                        //延时
                         m_Parent->setMemStatus(Port::RGB);
+//                        m_Timer->start();
                         char data = m_Parent->soundStatus;
                         m_Parent->responseMCU(Port::C_SoundStatus, &data, 1);
                     }else if(type_data == 0x2){     //turn on carplay
 //                        emit m_Private->m_Parent->read_port_data(2);
                         m_Parent->setMemStatus(Port::IO);
                     }
-            }else if(buff[3] == 0x3){       //set Laguage
+            }else if(buff[3] == 0x100){       //set Laguage
                     switch(type_data){
                         case 0x1:   //LT_English
                             g_Setting->setLanguage(LT_English);
@@ -402,11 +329,6 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
             }else if(buff[3] == 0x10){       //set volume
                 //设置底板的声音
                 m_Parent->handlerMCUData(0,type_data);
-//                if(data == 0x1) {//增加声音
-//                    g_Audio->requestIncreaseVolume();
-//                }else if(data = 0x2){
-//                    g_Audio->requestDecreaseVolume();
-//                }
             }else if(buff[3] == 0x11){      //answer phone
                 m_Parent->handlerMCUData(1,type_data);
             }
@@ -421,16 +343,12 @@ bool PortPrivate:: isLinkCommand(const char *buff){   //
  */
 bool isCommand(const char *buff){
     struct input_event ev; //input
-
-    char checksum = buff[0];
     int x_val,y_val,i;
     bool ret = false;
+    char checksum = buff[0];
+
         for(i = 1; i < 5; i++)
             checksum = checksum ^buff[i];
-//        qWarning()<<"isCommand"<< buff[0] << checksum << buff[i];
-//                    for(i =0 ; i < 6; i++)
-//                        printf("0x%x, ", buff[i]);
-//                    printf("\n");
 
         if(checksum == buff[i])
         {           
@@ -491,17 +409,20 @@ bool isCommand(const char *buff){
  * @brief PortPrivate::SerialPortReadThread 该函数的作用于处理MCU数据，但是在线程中发送带枚举参数的信号会报错
  * @param paramater PortPrivate
  */
-void PortPrivate::SerialPortReadThread(void *paramater)
+static void SerialPortReadThread(void *paramater)
 {
     qDebug() << "SerialPortReadThread" << paramater;
     PortPrivate* m_Private = (PortPrivate*)paramater;
     char data = 0x1;
-    m_Private->m_Parent->responseMCU(Port::C_ShowCarplay, &data, 1);
+    g_Port->responseMCU(Port::C_ShowCarplay, &data, 1);
+    g_Port->responseMCU(Port::C_HideCarplay, &data, 1);
+    g_Port->setMemStatus(Port::IO);
     int n;
 
     char rbuff[1024+128]={0};
     int count = 0;
     g_Audio->requestSetVolume(38);
+//    system("./test.sh");
     forever{
 //        printf("wait data and count=%d.\n", count);
 //        n= m_Private->readData(rbuff, 10);
@@ -510,18 +431,9 @@ void PortPrivate::SerialPortReadThread(void *paramater)
 //        printf("%d data has been read\n ", n);
         if(n > 0)
                count += n;
-//        for(i =0 ; i < count; i++)
-//            printf("0x%x, ", rbuff[i]);
-//        printf("\n");
-//        sleep(1);
-//        emit m_Private->m_Parent->read_port_data(QByteArray());
+
         while(count >= 6)
         {
-//            printf("head data = 0x%x \n",  rbuff[0]);
-//            printf("count=%d.\n", count);
-//            for(i =0 ; i < count; i++)
-//                printf("0x%x, ", rbuff[i]);
-//            printf("\n");
             if( isCommand(rbuff) || m_Private->isLinkCommand(rbuff)  ){
                 memcpy(rbuff, rbuff+6, count );
                 count -= 6;
@@ -786,10 +698,14 @@ void PortPrivate::initialize()
     QThreadPool::globalInstance()->start(runnable);
 
 }
-
+void PortPrivate::receiveAllCustomEvent()
+{
+    g_EventEngine->attachCustomEvent(m_Parent);
+}
 void PortPrivate::connectAllSlots(){
     connectSignalAndSlotByNamesake(g_Widget, m_Parent);
     connectSignalAndSlotByNamesake(g_Multimedia, m_Parent);
+    connectSignalAndSlotByNamesake(g_Setting, m_Parent);
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::AutoConnection);
 
 
@@ -798,32 +714,6 @@ void PortPrivate::connectAllSlots(){
                      type);
 
 }
-
-//这个函数可以改一下,做个测试
-//ssize_t PortPrivate::readData(void *buffer, size_t n)
-//{
-//    ssize_t numRead = 0;
-//    size_t totRead = 0;
-//    char *buf;
-//    buf = (char *)buffer;
-
-//    for (totRead = 0; totRead < n; ) {
-//        numRead = read(fd, buf, n - totRead);
-//        if (numRead == 0)
-//            return totRead;
-//        if (numRead == -1) {
-//            if (errno == EINTR) {printf("\033[;31m%s:%d  numRead=%d\033[0m\n", __func__, __LINE__, numRead);
-//                continue;
-//            } else {
-//                return -1;
-//            }
-//        }
-//        totRead += numRead;
-//        buf += numRead;
-//    }
-
-//    return totRead;
-//}
 
 ssize_t PortPrivate::writeData( const void *buffer, size_t n)
 {
@@ -847,104 +737,4 @@ ssize_t PortPrivate::writeData( const void *buffer, size_t n)
 }
 
 
-//ssize_t safe_write(int fd, const void *vptr, size_t n)
-//{
-//    size_t  nleft;
-//    ssize_t nwritten;
-//    const char *ptr;
 
-//    ptr = vptr;
-//    nleft = n;
-
-//    while(nleft > 0)
-//    {
-//    if((nwritten = write(fd, ptr, nleft)) <= 0)
-//        {
-//            if(nwritten < 0&&errno == EINTR)
-//                nwritten = 0;
-//            else
-//                return -1;
-//        }
-//        nleft -= nwritten;
-//        ptr   += nwritten;
-//    }
-//    return(n);
-//}
-
-
-ssize_t safe_read(int fd,char *vptr,size_t n)
-{
-    size_t nleft;
-    ssize_t nread;
-    char *ptr;
-
-    ptr=vptr;
-    nleft=n;
-
-    while(nleft > 0)
-    {
-        if((nread = read(fd,ptr,nleft)) < 0)
-        {
-            if(errno == EINTR)//被信号中断
-                nread = 0;
-            else
-                return -1;
-        }
-        else
-        if(nread == 0)
-            break;
-        nleft -= nread;
-        ptr += nread;
-    }
-    return (n-nleft);
-}
-
-
-ssize_t PortPrivate::readData(char *r_buf, size_t len)
-{
-    ssize_t cnt = 0;
-    fd_set rfds;
-    struct timeval time;
-
-    /*将文件描述符加入读描述符集合*/
-    FD_ZERO(&rfds);
-    FD_SET(fd,&rfds);
-
-    /*设置超时为15s*/
-    time.tv_sec = 15;
-    time.tv_usec = 0;
-
-    /*实现串口的多路I/O*/
-    ret = select(fd+1,&rfds,NULL,NULL,&time);
-    switch(ret)
-    {
-        case -1:
-            fprintf(stderr,"select error!\n");
-            return -1;
-        case 0:
-            fprintf(stderr,"time over!\n");
-            return -1;
-        default:
-            cnt = safe_read(fd,r_buf,len);
-            if(cnt == -1)
-            {
-                fprintf(stderr,"read error!\n");
-                return -1;
-            }
-            return cnt;
-    }
-}
-
-//int uart_write(int fd,const char *w_buf,size_t len)
-//{
-//    ssize_t cnt = 0;
-
-//    cnt = safe_write(fd,w_buf,len);
-//    if(cnt == -1)
-//    {
-//        fprintf(stderr,"write error!\n");
-//        return -1;
-//    }
-
-//    return cnt;
-//}

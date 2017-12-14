@@ -18,11 +18,11 @@
 #include <QTouchEvent>
 #include <QDomElement>
 
-namespace SourceString {
-static const QString No_Mirror_Device = QString(QObject::tr("No Mirror Device..."));
-static const QString Conneting_Mirror_Device = QString(QObject::tr("Conneting Mirror Device..."));
-static const QString Remove_Mirror_Device = QString(QObject::tr("Remove Mirror Device..."));
-}
+//namespace SourceString {
+//static const QString No_Mirror_Device = QString(QObject::tr("No Mirror Device..."));
+//static const QString Conneting_Mirror_Device = QString(QObject::tr("Conneting Mirror Device..."));
+//static const QString Remove_Mirror_Device = QString(QObject::tr("Remove Mirror Device..."));
+//}
 
 class MirrorLinkWidgetPrivate
 {
@@ -424,7 +424,7 @@ void MirrorLinkWidgetPrivate::onMirrorLinkStatus(const Link_STATUS status)
         EventEngine::CustomEvent<QVariant> event(static_cast<QEvent::Type>(CustomEventType::MessageBoxWidgetAddChild), variant);
         g_EventEngine->sendCustomEvent(event);
         m_DeviceMessageBox->setAutoHide(false);
-        m_DeviceMessageBox->setText(SourceString::Conneting_Mirror_Device);
+//        m_DeviceMessageBox->setText(SourceString::Conneting_Mirror_Device);
         g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
         EventEngine::CustomEvent<QString> event2(CustomEventType::MessageBoxWidgetStatus, new QString(WidgetStatus::RequestShow));
         g_EventEngine->sendCustomEvent(event2);
@@ -439,7 +439,7 @@ void MirrorLinkWidgetPrivate::onMirrorLinkStatus(const Link_STATUS status)
         EventEngine::CustomEvent<QVariant> event(static_cast<QEvent::Type>(CustomEventType::LinkMessageWidgetAddChild), variant);
         g_EventEngine->sendCustomEvent(event);
         m_DeviceMessageBox->setAutoHide(true);
-        m_DeviceMessageBox->setText(SourceString::No_Mirror_Device);
+//        m_DeviceMessageBox->setText(SourceString::No_Mirror_Device);
         g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
         break;
     }
@@ -462,7 +462,7 @@ void MirrorLinkWidgetPrivate::onMirrorLinkStatus(const Link_STATUS status)
             EventEngine::CustomEvent<QVariant> event(static_cast<QEvent::Type>(CustomEventType::LinkMessageWidgetAddChild), variant);
             g_EventEngine->sendCustomEvent(event);
             m_DeviceMessageBox->setAutoHide(true);
-            m_DeviceMessageBox->setText(SourceString::Remove_Mirror_Device);
+//            m_DeviceMessageBox->setText(SourceString::Remove_Mirror_Device);
             g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), m_DeviceMessageBox);
             //            QVariant* variant = new QVariant();
             //            variant->setValue(static_cast<QWidget*>(m_DeviceMessageBox));

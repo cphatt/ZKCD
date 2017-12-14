@@ -30,6 +30,9 @@ protected slots:
     void ontWidgetTypeChange(const Widget::Type type, const QString &status);
     void onLinkStatusChange(const int type, const int status);
     //  void onLinkStatusChange(const Link_Type type, const Link_STATUS status);
+
+private slots:
+    void onTimeout();
 private:
     friend class CarlifeLinkWidgetPrivate;
     QScopedPointer<CarlifeLinkWidgetPrivate> m_Private;

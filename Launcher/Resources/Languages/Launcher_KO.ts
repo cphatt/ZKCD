@@ -125,28 +125,30 @@
     </message>
     <message>
         <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="15"/>
+        <source>Conneting Carplay Fail...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="16"/>
         <source>Conneting Carplay Device...</source>
         <translation>연결Carplay장치...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="16"/>
+        <location filename="../../MainWidget/LinkWidget/CarplayLinkWidget/CarplayLinkWidget.cpp" line="17"/>
         <source>Remove Carplay Device...</source>
         <translation>뽑다Carplay장치...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="22"/>
         <source>No Mirror Device...</source>
-        <translation>무Mirror장치...</translation>
+        <translation type="obsolete">무Mirror장치...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="23"/>
         <source>Conneting Mirror Device...</source>
-        <translation>연결Mirror장치...</translation>
+        <translation type="obsolete">연결Mirror장치...</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/MirrorLinkWidget/MirrorLinkWidget.cpp" line="24"/>
         <source>Remove Mirror Device...</source>
-        <translation>뽑다Mirror장치...</translation>
+        <translation type="obsolete">뽑다Mirror장치...</translation>
     </message>
     <message>
         <source>HighPitch</source>
@@ -360,38 +362,59 @@
         <translation>닫다</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="15"/>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="18"/>
         <source>Select connect mode!</source>
         <translation>접속 모드를 선택！</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="16"/>
-        <source>Android Mirror</source>
-        <translation>Android Mirror</translation>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="19"/>
+        <source>Carlife</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="17"/>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="20"/>
+        <source>1:Enable developer USB debugging options!
+2:Connect to bluetooth devices!
+3:Connect andriod usb cable!
+4:Press Carlife icon!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="24"/>
+        <source>Carplay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="25"/>
+        <source>1:Connect iphone usb cable!
+2:Press Carplay icon!
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Android Mirror</source>
+        <translation type="obsolete">Android Mirror</translation>
+    </message>
+    <message>
         <source>1:Enable developer USB debugging options!
 2:Connect to bluetooth devices!
 3:Connect usb cable!
 4:Press Mirror icon!</source>
-        <translation>1:전원 개발자 USB 디버깅 옵션!
+        <translation type="obsolete">1:전원 개발자 USB 디버깅 옵션!
 2:연결 블루투스 장치!
 3:USB 케이블을 연결합니다!
 4:미러 아이콘을 클릭!</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="21"/>
         <source>Apple CarPlay</source>
-        <translation>Apple CarPlay</translation>
+        <translation type="obsolete">Apple CarPlay</translation>
     </message>
     <message>
-        <location filename="../../MainWidget/LinkWidget/LinkWidget.cpp" line="22"/>
         <source> 
 1:Connect usb cable!
 2:Press Carplay icon!
  </source>
-        <translation> 
+        <translation type="obsolete"> 
 1:USB 케이블을 연결합니다!
 2:아이콘 Carplay을 클릭!
  </translation>
@@ -468,6 +491,21 @@
         <location filename="../../MainWidget/DiskWidget/VideoWidget/VideoWidget.cpp" line="17"/>
         <source>Unsupport...</source>
         <translation>지원되지 않음...</translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="14"/>
+        <source>No Carlife Device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="15"/>
+        <source>Conneting Carlife Device...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../MainWidget/LinkWidget/CarlifeLinkWidget/CarlifeLinkWidget.cpp" line="16"/>
+        <source>Remove Carlife Device...</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

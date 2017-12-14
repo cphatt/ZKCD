@@ -29,9 +29,9 @@ void Setting::reset()
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->reset();
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::reset" << reply.isFinished();
+        qWarning() << "Dbus call Setting::reset" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::setLanguage failed" << reply.error();
+            qWarning() << "method call Setting::setLanguage failed" << reply.error();
         }
     }
 }
@@ -42,9 +42,9 @@ void Setting::setLanguage(const LanguageType language)
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->setLanguage(language);
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::setLanguage" << reply.isFinished();
+        qWarning() << "Dbus call Setting::setLanguage" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::setLanguage failed" << reply.error();
+            qWarning() << "method call Setting::setLanguage failed" << reply.error();
         }
     }
 }
@@ -55,9 +55,9 @@ void Setting::setBrightness(const SettingType type, const int value)
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->setBrightness(type, value);
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::setBrightness" << reply.isFinished();
+        qWarning() << "Dbus call Setting::setBrightness" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::setBrightness failed" << reply.error();
+            qWarning() << "method call Setting::setBrightness failed" << reply.error();
         }
     }
 }
@@ -68,9 +68,9 @@ void Setting::setContrast(const SettingType type, const int value)
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->setContrast(type, value);
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::setContrast" << reply.isFinished();
+        qWarning() << "Dbus call Setting::setContrast" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::setContrast failed" << reply.error();
+            qWarning() << "method call Setting::setContrast failed" << reply.error();
         }
     }
 }
@@ -81,9 +81,9 @@ void Setting::setSaturation(const SettingType type, const int value)
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->setSaturation(type, value);
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::setSaturation" << reply.isFinished();
+        qWarning() << "Dbus call Setting::setSaturation" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::setSaturation failed" << reply.error();
+            qWarning() << "method call Setting::setSaturation failed" << reply.error();
         }
     }
 }
@@ -94,9 +94,9 @@ void Setting::setDisplayScreen(const DisplayScreenType type)
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->setDisplayScreen(type);
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::setDisplayScreen" << reply.isFinished();
+        qWarning() << "Dbus call Setting::setDisplayScreen" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::setDisplayScreen failed" << reply.error();
+            qWarning() << "method call Setting::setDisplayScreen failed" << reply.error();
         }
     }
 }
@@ -107,9 +107,9 @@ void Setting::startCalibrate()
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->startCalibrate();
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::startCalibrate" << reply.isFinished();
+        qWarning() << "Dbus call Setting::startCalibrate" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::startCalibrate failed" << reply.error();
+            qWarning() << "method call Setting::startCalibrate failed" << reply.error();
         }
     }
 }
@@ -120,9 +120,9 @@ void Setting::startAV(const AVType type, const int width, const int height)
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->startAV(type, width, height);
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::startAV" << reply.isFinished();
+        qWarning() << "Dbus call Setting::startAV" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::startAV failed" << reply.error();
+            qWarning() << "method call Setting::startAV failed" << reply.error();
         }
     }
 }
@@ -133,31 +133,31 @@ void Setting::stopAV(const AVType type)
     if (NULL != m_Private->m_SettingServiceProxy) {
         QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->stopAV(type);
         reply.waitForFinished();
-        qDebug() << "Dbus call Setting::stopAV" << reply.isFinished();
+        qWarning() << "Dbus call Setting::stopAV" << reply.isFinished();
         if (reply.isError()) {
-            qDebug() << "method call Setting::stopAV failed" << reply.error();
+            qWarning() << "method call Setting::stopAV failed" << reply.error();
         }
     }
 }
 
 void Setting::onLanguageChange(const LanguageType language)
 {
-    qDebug() << "onLanguageChange" << language;
+    qWarning() << "onLanguageChange" << language;
     m_Private->onLanguageChange(language);
 }
 
 void Setting::onServiceRegistered(const QString &service)
 {
-    qDebug() << "Setting::onServiceRegistered" << service;
+    qWarning() << "Setting::onServiceRegistered" << service;
     //    if (ArkMicroSettingService == service) {
     //        if (NULL != m_Private->m_SettingService) {
     //            m_Private->m_SettingService->synchronize();
     //        } else if (NULL != m_Private->m_SettingServiceProxy) {
     //            QDBusPendingReply<> reply = m_Private->m_SettingServiceProxy->synchronize();
     //            reply.waitForFinished();
-    //            qDebug() << "Dbus call m_SettingServiceProxy synchronize" << reply.isFinished();
+    //            qWarning() << "Dbus call m_SettingServiceProxy synchronize" << reply.isFinished();
     //            if (reply.isError()) {
-    //                qDebug() << "method call synchronize failed" << reply.error();
+    //                qWarning() << "method call synchronize failed" << reply.error();
     //            }
     //        }
     //    }
@@ -165,7 +165,7 @@ void Setting::onServiceRegistered(const QString &service)
 
 void Setting::onServiceUnregistered(const QString &service)
 {
-    qDebug() << "Setting::onServiceUnregistered" << service;
+    qWarning() << "Setting::onServiceUnregistered" << service;
     if (ArkMicroSettingService == service) {
         g_DbusService->startService(ArkMicroSettingService);
         //        g_DbusService->startService(ArkMicroSettingService);
@@ -269,6 +269,6 @@ void SettingPrivate::onLanguageChange(const LanguageType language)
     if (ArkApp->installTranslatorPath(languagePath)) {
         emit m_Parent->onLanguageTranslateChange(language);
     } else {
-        qDebug() << "QTranslator load" << language << languagePath << "fail!";
+        qWarning() << "QTranslator load" << language << languagePath << "fail!";
     }
 }

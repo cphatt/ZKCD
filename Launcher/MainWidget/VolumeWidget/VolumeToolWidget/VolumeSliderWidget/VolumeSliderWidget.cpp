@@ -40,9 +40,9 @@ void VolumeSliderWidget::setTickMarksMillesimal(const int millesimal)
 
 void VolumeSliderWidget::resizeEvent(QResizeEvent *event)
 {
-    g_Widget->geometryFit(0, 180, 853, 180, this);
+    g_Widget->geometryFit(0, 45, 853, 180, this);
     g_Widget->geometryFit(52 - 20, (180 - 92) * 0.5, 92, 92, m_Private->m_MinusBtn);
-    g_Widget->geometryFit(117, (180 - 92) * 0.5, 619, 92, m_Private->m_Slider);
+    g_Widget->geometryFit(117, 0, 619, 92, m_Private->m_Slider);
     g_Widget->geometryFit(853 - 52 - 92 + 20, (180 - 92) * 0.5, 92, 92, m_Private->m_PlusBtn);
 }
 
@@ -60,12 +60,12 @@ VolumeSliderWidgetPrivate::~VolumeSliderWidgetPrivate()
 void VolumeSliderWidgetPrivate::initialize()
 {
     m_MinusBtn = new BmpButton(m_Parent);
-    m_MinusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
-    m_MinusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
+   // m_MinusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
+ //   m_MinusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderMinusNormal"));
     m_MinusBtn->setVisible(true);
     m_PlusBtn = new BmpButton(m_Parent);
-    m_PlusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
-    m_PlusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
+//    m_PlusBtn->setNormalBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
+//    m_PlusBtn->setPressBmpPath(QString(":/Images/Resources/Images/EffectSoundSliderPlusNormal"));
     m_PlusBtn->setVisible(true);
     m_Slider = new Slider(m_Parent);
     m_Slider->setTickMarksSize(QSize(40 * g_Widget->widthScalabilityFactor(), 40 * g_Widget->heightScalabilityFactor()));
@@ -78,13 +78,13 @@ void VolumeSliderWidgetPrivate::initialize()
 void VolumeSliderWidgetPrivate::connectAllSlots()
 {
     Qt::ConnectionType type = static_cast<Qt::ConnectionType>(Qt::AutoConnection | Qt::UniqueConnection);
-    QObject::connect(m_MinusBtn, SIGNAL(bmpButtonRelease()),
-                     m_Parent,   SIGNAL(minusBtnRelease()),
-                     type);
+//    QObject::connect(m_MinusBtn, SIGNAL(bmpButtonRelease()),
+//                     m_Parent,   SIGNAL(minusBtnRelease()),
+//                     type);
     QObject::connect(m_Slider, SIGNAL(tickMarksMillesimalEnd(const int)),
                      m_Parent, SIGNAL(tickMarksMillesimalEnd(const int)),
                      type);
-    QObject::connect(m_PlusBtn, SIGNAL(bmpButtonRelease()),
-                     m_Parent,  SIGNAL(plusBtnRelease()),
-                     type); 
+//    QObject::connect(m_PlusBtn, SIGNAL(bmpButtonRelease()),
+//                     m_Parent,  SIGNAL(plusBtnRelease()),
+//                     type);
 }

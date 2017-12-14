@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 //volume
 //kmem 0xe4000008 0x7878
 //kernel message
@@ -90,7 +89,7 @@ void customMessageOutput(QtMsgType type, const char *msg)
         break;
     }
     case QtWarningMsg: {
-        fprintf(stderr, "Warning: %s\n", msg);
+//        fprintf(stderr, "Warning: %s\n", msg);
         break;
     }
     case QtCriticalMsg: {

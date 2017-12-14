@@ -51,7 +51,7 @@ TabBarWidget::~TabBarWidget()
 void TabBarWidget::resizeEvent(QResizeEvent *event)
 {
     int height(g_Widget->baseTabBarHeight());
-    g_Widget->geometryFit(0, g_Widget->baseWindowHeight() - height, g_Widget->baseWindowWidth(), height, this);
+    g_Widget->geometryFit(0, g_Widget->baseWindowHeight() - height - 30, g_Widget->baseWindowWidth(), height, this);
 }
 
 void TabBarWidget::customEvent(QEvent *event)
@@ -231,7 +231,7 @@ void TabBarWidgetPrivate::initializeBasicWidget()
 
 void TabBarWidgetPrivate::initializeOtherWidget()
 {
-    int width(226);
+    int width(96);
     int height(g_Widget->baseTabBarHeight());
 //    if (NULL == m_HomeBtn) {
 //        m_HomeBtn = new BmpButton(m_Parent);
@@ -241,9 +241,9 @@ void TabBarWidgetPrivate::initializeOtherWidget()
 //    }
     if (NULL == m_BackBtn) {
         m_BackBtn = new BmpButton(m_Parent);
-        m_BackBtn->setNormalBmpPath(QString(":/Images/Resources/Images/newReturn"));
-        m_BackBtn->setPressBmpPath(QString(":/Images/Resources/Images/newReturn"));
-        g_Widget->geometryFit(1112 + (1196 - 1112 - width) * 0.5, 0, width, height, m_BackBtn);
+        m_BackBtn->setNormalBmpPath(QString(":/Images/Resources/Images/go_back"));
+        m_BackBtn->setPressBmpPath(QString(":/Images/Resources/Images/go_back"));
+        g_Widget->geometryFit(1112 + (1196 - 1112 - width) * 0.5 + 25, 0, width, height, m_BackBtn);
     }
     connectAllSlots();
 }

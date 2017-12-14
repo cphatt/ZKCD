@@ -9,15 +9,16 @@ class FaderWidget : public QWidget
 public:
     explicit FaderWidget(QWidget *parent = 0);
     void start();
+    void end();
 signals:
 
 public slots:
 
 protected:
     void paintEvent(QPaintEvent *event);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
-    void mouseMoveEvent(QMouseEvent *);
+//    void mousePressEvent(QMouseEvent *);
+//    void mouseReleaseEvent(QMouseEvent *);
+//    void mouseMoveEvent(QMouseEvent *);
 
 private:
     QTimer *timer;

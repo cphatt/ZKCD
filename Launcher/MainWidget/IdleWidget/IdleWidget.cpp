@@ -25,7 +25,7 @@ IdleWidget::IdleWidget(QWidget *parent)
     : QWidget(parent)
     , m_Private(new IdleWidgetPrivate(this))
 {
-    setVisible(true);
+    setVisible(false);
 }
 
 IdleWidget::~IdleWidget()
@@ -35,25 +35,26 @@ IdleWidget::~IdleWidget()
 void IdleWidget::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    painter.fillRect(rect(), Qt::transparent);
+    painter.fillRect(rect(), QColor(0, 0, 1));
 }
 
 void IdleWidget::showEvent(QShowEvent *event)
 {
-    if (NULL != m_Private) {
-        m_Private->receiveAllCustomEvent();
-        m_Private->connectAllSlots();
-    }
+//    if (NULL != m_Private) {
+
+//    }
 }
 
 void IdleWidget::resizeEvent(QResizeEvent *event)
 {
     g_Widget->geometryFit(0, 0, g_Widget->baseWindowWidth(), g_Widget->baseWindowHeight(), this);
+    QWidget::resizeEvent(event);
 }
 
 void IdleWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    g_Setting->setDisplayScreen(DST_On);
+    setVisible(false);
+    QWidget::mouseReleaseEvent(event);
 }
 
 void IdleWidget::customEvent(QEvent *event)
@@ -61,11 +62,18 @@ void IdleWidget::customEvent(QEvent *event)
     qDebug() << "IdleWidget::customEvent" << event->type();
     if (CustomEventType::IdleWidgetStatus == event->type()) {
         QString* temp = static_cast<EventEngine::CustomEvent<QString>*>(event)->m_Data;
+//        if (NULL != temp) {
+//            if (WidgetStatus::RequestShow == *temp) {
+//                g_Setting->setDisplayScreen(DST_Off);
+//            } else if (WidgetStatus::RequestHide == *temp) {
+//                g_Setting->setDisplayScreen(DST_On);
+//            }
+//        }
         if (NULL != temp) {
             if (WidgetStatus::RequestShow == *temp) {
-                g_Setting->setDisplayScreen(DST_Off);
+                setVisible(true);
             } else if (WidgetStatus::RequestHide == *temp) {
-                g_Setting->setDisplayScreen(DST_On);
+                setVisible(false);
             }
         }
     }
@@ -74,7 +82,7 @@ void IdleWidget::customEvent(QEvent *event)
 
 void IdleWidget::onDisplayScreenChange(const DisplayScreenType type)
 {
-    qDebug() << "IdleWidget::onDisplayScreenChange" << type;
+    qWarning() << "IdleWidget::onDisplayScreenChange" << type;
     switch (type) {
     case DST_Off: {
         setVisible(true);
@@ -94,6 +102,9 @@ IdleWidgetPrivate::IdleWidgetPrivate(IdleWidget *parent)
     : m_Parent(parent)
 {
     initialize();
+    receiveAllCustomEvent();
+    connectAllSlots();
+    m_Parent->setVisible(false);
 }
 
 IdleWidgetPrivate::~IdleWidgetPrivate()
